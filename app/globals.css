@@ -2,26 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
+/**
+ * Brand palette (per Reformd Brand Guidelines 2025)
+ *   Earth         #4f3e33 (primary brown)
+ *   Earth Dark    #5e4b40
+ *   Concrete      #bfb8a8 (primary stone)
+ *   Concrete Lt   #cec6ba
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-cream: #f5f0e8;
+  --color-cement: #bfb8a8;
+  --color-brown: #4f3e33;
+  --color-charcoal: #2a2520;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--color-charcoal);
+  background: var(--color-cream);
+  font-family: var(--font-body), "Founders Grotesk", "Inter", system-ui, sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display), "Roc Grotesk Wide", "Archivo Black", Impact, sans-serif;
+  color: var(--color-brown);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+h1 { letter-spacing: -0.02em; }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .container-tight {
+    @apply mx-auto max-w-6xl px-6 lg:px-8;
   }
 }
