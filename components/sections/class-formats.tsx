@@ -4,14 +4,24 @@ import { ImageSlot } from "@/components/ui/image-slot";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionNumber } from "@/components/ui/section-number";
 
-const FORMATS = [
+const FORMATS: Array<{
+  name: string;
+  blurb: string;
+  intensity: string;
+  duration: string;
+  tone: "warm" | "stone" | "dark";
+  src?: string;
+  alt?: string;
+}> = [
   {
     name: "Reformer",
     blurb:
       "The classic. Long, controlled movement that builds deep core strength and lean muscle.",
     intensity: "Moderate",
     duration: "50 min",
-    tone: "warm" as const,
+    tone: "warm",
+    src: "/images/classes/reformer.jpg",
+    alt: "Reformer pilates — sculpted controlled movement on the reformer",
   },
   {
     name: "Jumpboard",
@@ -19,7 +29,8 @@ const FORMATS = [
       "Cardio on the reformer. Add a jumpboard, get your heart rate up, and protect your joints at the same time.",
     intensity: "High",
     duration: "50 min",
-    tone: "stone" as const,
+    tone: "stone",
+    // placeholder — no jumpboard photo yet
   },
   {
     name: "Dynamic",
@@ -27,7 +38,9 @@ const FORMATS = [
       "Faster tempo, weighted ball, more reps. Pilates principles dialled toward endurance and burn.",
     intensity: "High",
     duration: "45 min",
-    tone: "dark" as const,
+    tone: "dark",
+    src: "/images/classes/dynamic.jpg",
+    alt: "Morning Pilates routine — dynamic flow energy on the reformer",
   },
   {
     name: "Sculpt",
@@ -35,7 +48,9 @@ const FORMATS = [
       "Reformer + light weights for upper-body and glute focus. Builds visible tone without bulk.",
     intensity: "Moderate",
     duration: "50 min",
-    tone: "warm" as const,
+    tone: "warm",
+    src: "/images/classes/sculpt.jpg",
+    alt: "Reformd Pilates Sculpt class — community-style training on the reformer",
   },
   {
     name: "Stretch",
@@ -43,7 +58,9 @@ const FORMATS = [
       "Recovery, mobility and breath. The session that lets the rest of the week happen.",
     intensity: "Low",
     duration: "45 min",
-    tone: "stone" as const,
+    tone: "stone",
+    src: "/images/classes/stretch.jpg",
+    alt: "Reformd Pilates Stretch class — slow controlled mobility work",
   },
 ];
 
@@ -90,10 +107,12 @@ export function ClassFormats() {
                   <div className="grid grid-cols-12 gap-0">
                     <div className={`col-span-12 ${isFeature ? "md:col-span-6" : ""}`}>
                       <ImageSlot
-                        aspect={isFeature ? "aspect-[4/3]" : "aspect-[5/4]"}
+                        src={f.src}
+                        alt={f.alt}
+                        aspect={isFeature ? "aspect-[4/5]" : "aspect-[4/5]"}
                         tone={f.tone}
                         label={`${f.name.toUpperCase()}`}
-                        hint={isFeature ? "1800×1350" : "1500×1200"}
+                        hint={isFeature ? "1800×2250" : "1500×1875"}
                       />
                     </div>
                     <div

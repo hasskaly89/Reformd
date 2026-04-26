@@ -34,3 +34,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# raw shoot footage — local only, never commit
+/public/_dropbox_pull/
+
+# claude code helpers
+/.claude/

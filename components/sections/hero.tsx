@@ -155,19 +155,17 @@ export function Hero() {
         >
           <div className="sticky top-24">
             <ImageSlot
+              src="/images/hero/cecil-hills-studio.jpg"
+              alt="Cecil Hills Reformd Pilates studio interior — warm cream reformers in a low-lit boutique room"
               aspect="aspect-[4/5]"
-              tone="warm"
-              label="Hero · interior"
-              hint="2400×3000 · jpg or webp"
               priority
               className="rounded-sm"
             />
-            <div className="absolute -bottom-12 -left-10 hidden w-[60%] lg:block">
+            <div className="absolute -bottom-12 -left-10 hidden w-[58%] lg:block">
               <ImageSlot
-                aspect="aspect-[4/3]"
-                tone="dark"
-                label="Reformer · close-up"
-                hint="1800×1350"
+                src="/images/hero/reformer-detail.jpg"
+                alt="Close-up of a Reformd Pilates instructor on the reformer in warm earth tones"
+                aspect="aspect-[4/5]"
                 className="rounded-sm border-4 border-cream shadow-2xl shadow-brown/20"
               />
             </div>

@@ -42,10 +42,13 @@ export function StudioLocations() {
             <Reveal key={s.slug} delay={i * 0.08}>
               <article className="group flex h-full flex-col">
                 <ImageSlot
+                  src={
+                    s.slug === "cecil-hills"
+                      ? "/images/studios/cecil-hills-detail.jpg"
+                      : "/images/studios/kings-park-studio.jpg"
+                  }
+                  alt={`Reformd Pilates ${s.shortName} studio interior`}
                   aspect="aspect-[4/5]"
-                  tone="warm"
-                  label={`${s.shortName.toUpperCase()} · interior`}
-                  hint="2000×2500"
                   className="rounded-sm"
                 />
                 <div className="mt-7 flex items-start justify-between gap-4">
