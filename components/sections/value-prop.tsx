@@ -19,7 +19,7 @@ export function ValueProp() {
         />
         <div>
           <p className="eyebrow">The studio</p>
-          <h2 className="mt-4 text-balance text-4xl md:text-5xl">Not a chain. Two rooms, done properly.</h2>
+          <h2 className="mt-4 text-balance text-4xl md:text-5xl">Not a chain. One room per studio, done properly.</h2>
           <ul className="mt-8 divide-y divide-brown/15 border-y border-brown/15">
             {VALUES.map((v) => (
               <li key={v.title} className="flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:gap-6">

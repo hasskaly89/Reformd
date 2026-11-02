@@ -19,7 +19,7 @@ export function StudioLocations() {
           title="Find your home in the south-west."
           aside={
             <p className="text-sm leading-relaxed text-cream/70">
-              Two rooms, same standard. Pick the one closer to home.
+              Two studios, same standard. Pick the one closer to home.
             </p>
           }
         />
