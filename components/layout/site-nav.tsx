@@ -100,7 +100,7 @@ export function SiteNav() {
   return (
     <header className="sticky top-0 z-40 border-b border-cement/40 bg-cream/95 backdrop-blur">
       <nav className="container-tight flex h-16 items-center justify-between gap-6 md:h-20">
-        <Link href="/" className="shrink-0" aria-label="Reformd Pilates home">
+        <Link href="/" className="shrink-0 py-3" aria-label="Reformd Pilates home">
           <Image
             src="/images/logo-brown.svg"
             alt="Reformd Pilates"

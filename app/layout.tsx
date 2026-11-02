@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteNav } from "@/components/layout/site-nav";
+import { IntroPopup } from "@/components/sections/intro-popup";
 import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/constants";
 
 import "./globals.css";
@@ -75,6 +76,7 @@ export default function RootLayout({
         <SiteNav />
         <main className="flex-1">{children}</main>
         <SiteFooter />
+        <IntroPopup />
       </body>
     </html>
   );

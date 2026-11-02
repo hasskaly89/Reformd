@@ -50,6 +50,12 @@ h1, h2, h3, h4, h5, h6, .font-display {
   text-indent: 0.15em;
 }
 
+/* 44px minimum tap target for every pill button (Apple HIG / WCAG 2.5.5) */
+a.rounded-full,
+button.rounded-full {
+  min-height: 44px;
+}
+
 ::selection {
   background: var(--color-brown);
   color: var(--color-cream);
@@ -66,7 +72,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
     @apply py-16 md:py-24;
   }
   .eyebrow {
-    @apply text-[11px] font-medium uppercase tracking-[0.18em] text-brown/60 md:tracking-[0.25em];
+    @apply text-xs font-medium uppercase tracking-[0.16em] text-brown/60 md:tracking-[0.22em];
   }
   .tabular {
     font-variant-numeric: tabular-nums;

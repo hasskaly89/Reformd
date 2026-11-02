@@ -16,14 +16,14 @@ export function SiteFooter() {
           <Link href="/" aria-label="Reformd Pilates home">
             <Image src="/images/logo-cement.svg" alt="Reformd Pilates" width={140} height={26} className="h-5 w-auto" />
           </Link>
-          <a href={PHONE_HREF} className="mt-4 block tabular text-cream hover:text-cement">
+          <a href={PHONE_HREF} className="mt-3 inline-block py-2.5 tabular text-cream hover:text-cement">
             {PHONE}
           </a>
-          <div className="mt-3 flex gap-5">
-            <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noreferrer" className="hover:text-cream">
+          <div className="flex gap-5">
+            <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noreferrer" className="inline-block py-2.5 hover:text-cream">
               Instagram
             </a>
-            <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noreferrer" className="hover:text-cream">
+            <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noreferrer" className="inline-block py-2.5 hover:text-cream">
               Facebook
             </a>
           </div>
@@ -47,7 +47,7 @@ export function SiteFooter() {
         <ul className="flex flex-wrap gap-x-5 gap-y-1 md:flex-col">
           {FOOTER_LINKS.map((l) => (
             <li key={l.href}>
-              <Link href={l.href} className="hover:text-cream">
+              <Link href={l.href} className="inline-block py-2 hover:text-cream">
                 {l.label}
               </Link>
             </li>
@@ -57,7 +57,10 @@ export function SiteFooter() {
 
       <div className="border-t border-cream/10">
         <p className="container-tight py-4 text-xs text-cream/50">
-          © {new Date().getFullYear()} Reformd Pilates · Cecil Hills + Kings Park, NSW
+          © {new Date().getFullYear()} Reformd Pilates · Cecil Hills + Kings Park, NSW ·{" "}
+          <Link href="/privacy" className="underline-offset-4 hover:underline">
+            Privacy
+          </Link>
         </p>
       </div>
     </footer>

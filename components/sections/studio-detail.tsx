@@ -66,11 +66,11 @@ export function StudioDetail({ studio }: { studio: Studio }) {
               href={studio.mapsEmbed.replace("&output=embed", "")}
               target="_blank"
               rel="noreferrer"
-              className="mt-2 inline-block text-sm text-brown underline-offset-4 hover:underline"
+              className="mt-1 inline-block py-2.5 text-sm text-brown underline-offset-4 hover:underline"
             >
               Get directions →
             </a>
-            <a href={`tel:${studio.phone.replace(/\s/g, "")}`} className="mt-3 block text-lg tabular text-brown">
+            <a href={`tel:${studio.phone.replace(/\s/g, "")}`} className="inline-block py-2 text-lg tabular text-brown">
               {studio.phone}
             </a>
           </div>
@@ -159,8 +159,8 @@ export function StudioDetail({ studio }: { studio: Studio }) {
           </div>
           <div className="divide-y divide-brown/15 border-y border-brown/15">
             {faqs.map((f) => (
-              <details key={f.q} className="group py-5">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-medium text-brown">
+              <details key={f.q} className="group py-3">
+                <summary className="flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-4 py-2 text-base font-medium text-brown">
                   {f.q}
                   <span aria-hidden className="text-xl leading-none transition-transform group-open:rotate-45">
                     +
