@@ -31,10 +31,10 @@ export default function AboutPage() {
         lede="A studio that feels like a refuge, not a franchise."
       />
 
-      <section className="container-tight section grid gap-10 md:grid-cols-2 md:gap-12">
+      <section className="container-tight section grid gap-10 lg:grid-cols-2 lg:gap-12">
         <div>
           <p className="eyebrow">The founder</p>
-          <h2 className="mt-4 text-4xl md:text-5xl">A decade on the reformer.</h2>
+          <h2 className="mt-4 text-[2rem] sm:text-4xl lg:text-5xl">A decade on the reformer.</h2>
         </div>
         {/* TODO(owner): swap in the founder's own story. */}
         <div className="space-y-4 text-lg leading-relaxed text-charcoal/80">

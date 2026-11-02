@@ -85,7 +85,7 @@ export default function PricingPage({ params }: Props) {
                         tier.featured ? "border-brown bg-brown text-cream" : "border-brown/15 bg-cement-50"
                       }`}
                     >
-                      <h3 className={`text-xl ${tier.featured ? "!text-cream" : ""}`}>{tier.name}</h3>
+                      <h3 className={`text-lg ${tier.featured ? "!text-cream" : ""}`}>{tier.name}</h3>
                       <p className={`mt-1 text-sm ${tier.featured ? "text-cream/80" : "text-charcoal/75"}`}>
                         {tier.detail}
                       </p>

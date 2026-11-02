@@ -31,13 +31,23 @@ h1, h2, h3, h4, h5, h6 {
   font-synthesis: none;
   text-transform: uppercase;
   letter-spacing: -0.01em;
-  line-height: 0.95;
+  line-height: 1;
+}
+
+h3, h4, h5, h6 {
+  line-height: 1.1;
 }
 
 /* Wide cut: drives the Archivo fallback to Expanded; no-op for Roc Grotesk Wide */
 h1, h2, h3, h4, h5, h6, .font-display {
   font-stretch: 125%;
   font-synthesis: none;
+}
+
+/* Letter-spacing adds trailing space after the last character, which pushes
+   tracked uppercase button labels left of centre. Indent by the same amount. */
+.inline-flex.uppercase {
+  text-indent: 0.15em;
 }
 
 ::selection {
@@ -56,7 +66,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
     @apply py-16 md:py-24;
   }
   .eyebrow {
-    @apply text-[11px] font-medium uppercase tracking-[0.25em] text-brown/60;
+    @apply text-[11px] font-medium uppercase tracking-[0.18em] text-brown/60 md:tracking-[0.25em];
   }
   .tabular {
     font-variant-numeric: tabular-nums;

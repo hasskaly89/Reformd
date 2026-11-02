@@ -6,11 +6,11 @@ import { STUDIO_LIST } from "@/lib/constants";
 export function Hero() {
   return (
     <section className="bg-gradient-to-b from-cream to-cement-100/60">
-      <div className="container-tight grid items-center gap-10 py-12 md:grid-cols-2 md:gap-12 md:py-20 lg:py-24">
-        <div>
+      <div className="container-tight grid gap-10 pb-12 pt-8 md:pb-16 md:pt-10 lg:grid-cols-2 lg:items-start lg:gap-12 lg:pb-20 lg:pt-12">
+        <div className="lg:pt-2">
           <p className="eyebrow">Reformer Pilates · Cecil Hills &amp; Kings Park</p>
 
-          <h1 className="mt-6 text-balance text-5xl sm:text-6xl lg:text-7xl">
+          <h1 className="mt-6 text-[2.5rem] sm:text-5xl md:text-6xl lg:text-[3.5rem] xl:text-[4rem]">
             Redefine strength, reform your body.
           </h1>
 
@@ -46,7 +46,7 @@ export function Hero() {
         <ImageSlot
           src="/images/gallery/cecil-hills-community.jpg"
           alt="A full reformer Pilates class at Reformd Pilates Cecil Hills"
-          aspect="aspect-[4/3] md:aspect-[4/5]"
+          aspect="aspect-[4/3] lg:aspect-[4/5]"
           priority
           className="rounded-sm"
         />

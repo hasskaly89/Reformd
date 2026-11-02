@@ -17,10 +17,10 @@ export function StudioDetail({ studio }: { studio: Studio }) {
 
       {/* Hero: keyword H1 + photo */}
       <section className="bg-gradient-to-b from-cream to-cement-100/60">
-        <div className="container-tight grid items-center gap-10 py-12 md:grid-cols-2 md:gap-12 md:py-20">
+        <div className="container-tight grid gap-10 pb-12 pt-8 md:pb-16 md:pt-10 lg:grid-cols-2 lg:items-start lg:gap-12 lg:pb-20 lg:pt-12">
           <div>
             <p className="eyebrow">{studio.region}</p>
-            <h1 className="mt-5 text-balance text-5xl md:text-6xl">
+            <h1 className="mt-5 text-[2.5rem] sm:text-5xl md:text-6xl lg:text-[3.5rem] xl:text-6xl">
               Reformer Pilates in {studio.suburb}
             </h1>
             <p className="mt-5 max-w-md text-lg text-charcoal/75">{studio.blurb}</p>
@@ -34,7 +34,7 @@ export function StudioDetail({ studio }: { studio: Studio }) {
           <ImageSlot
             src={studio.image}
             alt={`Inside the Reformd Pilates ${studio.suburb} reformer studio`}
-            aspect="aspect-[4/3] md:aspect-[4/5]"
+            aspect="aspect-[4/3] lg:aspect-[4/5]"
             priority
             className="rounded-sm"
           />
@@ -127,10 +127,10 @@ export function StudioDetail({ studio }: { studio: Studio }) {
       </section>
 
       {/* Local: nearby suburbs */}
-      <section className="container-tight section grid gap-8 md:grid-cols-2 md:gap-12">
+      <section className="container-tight section grid gap-8 lg:grid-cols-2 lg:gap-12">
         <div>
           <p className="eyebrow">Close to home</p>
-          <h2 className="mt-4 text-balance text-4xl md:text-5xl">
+          <h2 className="mt-4 text-[2rem] sm:text-4xl lg:text-5xl">
             Pilates near {studio.nearby[0]} and {studio.nearby[1]}
           </h2>
         </div>

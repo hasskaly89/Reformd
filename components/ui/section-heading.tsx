@@ -16,7 +16,7 @@ export function SectionHeading({ eyebrow, title, aside, tone = "dark" }: Props) 
       <div className="max-w-2xl">
         <p className={`eyebrow ${light ? "!text-cement" : ""}`}>{eyebrow}</p>
         <h2
-          className={`mt-4 text-balance text-4xl md:text-5xl ${light ? "!text-cream" : ""}`}
+          className={`mt-4 text-balance text-[2rem] sm:text-4xl lg:text-5xl ${light ? "!text-cream" : ""}`}
         >
           {title}
         </h2>

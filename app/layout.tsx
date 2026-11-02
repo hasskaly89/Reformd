@@ -24,7 +24,10 @@ const displayFallback = Archivo({
   display: "swap",
 });
 
-// Body: Founders Grotesk (Klim)
+// Body: Founders Grotesk (Klim).
+// Its metrics put the baseline at the very top of the em box (ascent 630 =
+// cap height, descent 370), so text sits ~0.19em high in buttons and pills.
+// Re-balance ascent/descent (same 1000-unit total) to centre the cap height.
 const body = localFont({
   src: [
     { path: "../public/fonts/FoundersGrotesk-Regular.otf", weight: "400", style: "normal" },
@@ -33,6 +36,11 @@ const body = localFont({
   ],
   variable: "--font-body",
   display: "swap",
+  declarations: [
+    { prop: "ascent-override", value: "81.5%" },
+    { prop: "descent-override", value: "18.5%" },
+    { prop: "line-gap-override", value: "0%" },
+  ],
 });
 
 export const metadata: Metadata = {
