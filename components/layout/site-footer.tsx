@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { NAV_LINKS, SOCIAL_LINKS, STUDIO_LIST } from "@/lib/constants";
+import { NAV_LINKS, PHONE, PHONE_HREF, SOCIAL_LINKS, STUDIO_LIST } from "@/lib/constants";
 
 /** Top-level nav links (studio dropdowns are covered by the studio column). */
 const FOOTER_LINKS = NAV_LINKS.flatMap((l) =>
@@ -16,7 +16,10 @@ export function SiteFooter() {
           <Link href="/" aria-label="Reformd Pilates home">
             <Image src="/images/logo-cement.svg" alt="Reformd Pilates" width={140} height={26} className="h-5 w-auto" />
           </Link>
-          <div className="mt-4 flex gap-5">
+          <a href={PHONE_HREF} className="mt-4 block tabular text-cream hover:text-cement">
+            {PHONE}
+          </a>
+          <div className="mt-3 flex gap-5">
             <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noreferrer" className="hover:text-cream">
               Instagram
             </a>

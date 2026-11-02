@@ -5,7 +5,6 @@ import { notFound } from "next/navigation";
 import { MindbodySchedule } from "@/components/sections/mindbody-schedule";
 import { PageHero } from "@/components/sections/page-hero";
 import {
-  INTRO_OFFER_BUY_URL,
   STUDIOS,
   type StudioSlug,
 } from "@/lib/constants";
@@ -54,7 +53,7 @@ export default function SchedulePage({ params }: Props) {
                 Switch to {other.shortName} →
               </Link>
               <a
-                href={INTRO_OFFER_BUY_URL}
+                href={studio.mindbody.introOfferUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center rounded-full bg-brown px-5 py-2 text-xs font-medium uppercase tracking-[0.15em] text-cream transition-colors hover:bg-charcoal"

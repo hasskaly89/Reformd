@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { ImageSlot } from "@/components/ui/image-slot";
-import { INTRO_OFFER_BUY_URL, STUDIO_LIST } from "@/lib/constants";
+import { STUDIO_LIST } from "@/lib/constants";
 
 export function Hero() {
   return (
@@ -15,13 +15,11 @@ export function Hero() {
           </h1>
 
           <p className="mt-6 max-w-md text-lg leading-relaxed text-charcoal/75">
-            Small classes. Expert instructors. Five ways to train on the reformer, every level welcome.
+            Small classes. Expert instructors. Five class types, every level welcome.
           </p>
 
           <a
-            href={INTRO_OFFER_BUY_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#intro-offer"
             className="mt-8 inline-flex items-center justify-center gap-3 rounded-full bg-brown px-7 py-3.5 text-sm font-medium text-cream transition-colors hover:bg-charcoal"
           >
             Try 4 classes for $49 <span aria-hidden>→</span>
@@ -34,7 +32,7 @@ export function Hero() {
                 href={`/studios/${s.slug}`}
                 className={`group py-4 transition-colors hover:bg-cement-100/50 ${i === 0 ? "pr-4" : "pl-4"}`}
               >
-                <span className="font-display text-xl font-bold uppercase text-brown">
+                <span className="font-display text-xl font-semibold uppercase text-brown">
                   {s.shortName}
                 </span>
                 <span className="mt-1 block text-xs text-brown/65 group-hover:text-brown">

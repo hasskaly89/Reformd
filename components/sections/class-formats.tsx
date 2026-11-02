@@ -10,7 +10,7 @@ export function ClassFormats() {
       <div className="container-tight section">
         <SectionHeading
           eyebrow="Class formats"
-          title="Five formats. One reformer."
+          title="Five class types. One reformer."
           aside={
             <Link href="/classes" className="text-sm text-brown underline-offset-4 hover:underline">
               See all classes →
@@ -30,7 +30,7 @@ export function ClassFormats() {
               />
               <h3 className="mt-4 text-lg group-hover:underline md:text-xl">{f.name}</h3>
               <p className="mt-1 text-xs uppercase tracking-[0.15em] text-brown/60">
-                {f.duration} · {f.intensity}
+                {f.variants.length ? f.variants.join(" · ") : "Reformer"}
               </p>
               <p className="mt-2 text-sm leading-snug text-charcoal/75">{f.tagline}</p>
             </Link>

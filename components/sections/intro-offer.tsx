@@ -1,5 +1,5 @@
 import { ImageSlot } from "@/components/ui/image-slot";
-import { INTRO_OFFER_BUY_URL } from "@/lib/constants";
+import { STUDIO_LIST } from "@/lib/constants";
 
 export function IntroOffer() {
   return (
@@ -11,16 +11,21 @@ export function IntroOffer() {
             $49 for <br className="hidden md:block" />4 classes.
           </h2>
           <p className="mt-6 text-base text-charcoal/75">
-            New to Reformd? Book any class at either studio. First-timers only.
+            New to Reformd? Any class at your studio. New clients only, use within 14 days.
           </p>
-          <a
-            href={INTRO_OFFER_BUY_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center justify-center gap-3 rounded-full bg-brown px-7 py-3.5 text-sm font-medium text-cream transition-colors hover:bg-charcoal"
-          >
-            Claim the intro offer <span aria-hidden>→</span>
-          </a>
+          <div className="mt-6 flex flex-wrap gap-3">
+            {STUDIO_LIST.map((st) => (
+              <a
+                key={st.slug}
+                href={st.mindbody.introOfferUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-brown px-6 py-3.5 text-sm font-medium text-cream transition-colors hover:bg-charcoal"
+              >
+                Claim at {st.shortName} <span aria-hidden>→</span>
+              </a>
+            ))}
+          </div>
         </div>
         <ImageSlot
           src="/images/studios/kings-park-studio.jpg"

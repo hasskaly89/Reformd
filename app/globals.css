@@ -27,7 +27,8 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: "roc-grotesk-wide", var(--font-display-fallback), sans-serif;
   color: var(--color-brown);
-  font-weight: 700;
+  font-weight: 600; /* Adobe serves Roc Grotesk Wide Bold as 600 */
+  font-synthesis: none;
   text-transform: uppercase;
   letter-spacing: -0.01em;
   line-height: 0.95;
@@ -36,6 +37,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Wide cut: drives the Archivo fallback to Expanded; no-op for Roc Grotesk Wide */
 h1, h2, h3, h4, h5, h6, .font-display {
   font-stretch: 125%;
+  font-synthesis: none;
 }
 
 ::selection {

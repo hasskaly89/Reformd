@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ButtonLink } from "@/components/ui/button-link";
 import { ImageSlot } from "@/components/ui/image-slot";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { INTRO_OFFER_BUY_URL, SOCIAL_LINKS, type Studio } from "@/lib/constants";
+import { SOCIAL_LINKS, type Studio } from "@/lib/constants";
 import { JsonLd, studioClasses, studioFaqs, studioJsonLd } from "@/lib/seo";
 
 export function StudioDetail({ studio }: { studio: Studio }) {
@@ -69,10 +69,13 @@ export function StudioDetail({ studio }: { studio: Studio }) {
             >
               Get directions →
             </a>
+            <a href={`tel:${studio.phone.replace(/\s/g, "")}`} className="mt-3 block text-lg tabular text-brown">
+              {studio.phone}
+            </a>
           </div>
 
           <div>
-            <p className="eyebrow">Hours</p>
+            <p className="eyebrow">Class times</p>
             <ul className="mt-3 space-y-1.5 text-sm">
               {studio.hours.map((h) => (
                 <li key={h.day} className="flex justify-between gap-4">
@@ -95,7 +98,7 @@ export function StudioDetail({ studio }: { studio: Studio }) {
         <div className="container-tight section">
           <SectionHeading
             eyebrow={`Classes in ${studio.suburb}`}
-            title={`${classes.length} ways to train`}
+            title={`${classes.length} class types`}
             aside={
               <Link href="/classes" className="text-sm text-brown underline-offset-4 hover:underline">
                 Compare all classes →
@@ -114,7 +117,7 @@ export function StudioDetail({ studio }: { studio: Studio }) {
                 />
                 <h3 className="mt-4 text-lg group-hover:underline">{c.name}</h3>
                 <p className="mt-1 text-xs uppercase tracking-[0.15em] text-brown/60">
-                  {c.duration} · {c.intensity}
+                  {c.variants.length ? c.variants.join(" · ") : "Reformer"}
                 </p>
               </Link>
             ))}
@@ -173,7 +176,7 @@ export function StudioDetail({ studio }: { studio: Studio }) {
           <h2 className="text-3xl !text-cream md:text-4xl">Try {studio.shortName}: 4 classes for $49.</h2>
           <div className="flex flex-wrap gap-3">
             <a
-              href={INTRO_OFFER_BUY_URL}
+              href={studio.mindbody.introOfferUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-full bg-cream px-7 py-3 text-sm font-medium text-brown transition-colors hover:bg-cement-100"

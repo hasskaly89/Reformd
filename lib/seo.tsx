@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import {
   CLASS_FORMATS,
+  CRECHE,
   PRICING_TIERS,
   SITE_NAME,
   SITE_URL,
@@ -39,20 +40,19 @@ export function studioMetadata(studio: Studio): Metadata {
 export function studioFaqs(studio: Studio): { q: string; a: string }[] {
   const price = (name: string) => PRICING_TIERS.find((t) => t.name === name)?.price;
   const classes = studioClasses(studio);
-  const durations = Array.from(new Set(classes.map((c) => c.duration))).join(" or ");
   const parking = studio.facilities.find((f) => /parking/i.test(f));
   const faqs = [
     {
       q: `Is reformer Pilates in ${studio.suburb} good for beginners?`,
-      a: `Yes. Every class at Reformd ${studio.shortName} welcomes beginners, and classes are small so your instructor can adjust your form. Start with Reformer or Stretch if you're new.`,
+      a: `Yes. Every class at Reformd ${studio.shortName} welcomes beginners, and classes are small so your instructor can adjust your form. Balanced | Foundation is the best place to start.`,
     },
     {
       q: `How much does reformer Pilates cost at ${studio.shortName}?`,
-      a: `New clients can try 4 classes for ${price("Intro Offer")}. After that, a casual class is ${price("Casual")} and memberships start from ${price("2 Classes / week")} a week.`,
+      a: `New clients can try 4 classes for ${price("Intro Offer")}. After that, a casual class is ${price("Casual")} and memberships start from ${price("Lite")} a week. Student rates are available.`,
     },
     {
       q: `What classes run at Reformd ${studio.shortName}?`,
-      a: `${classes.map((c) => c.name).join(", ")}. Classes run ${durations}.`,
+      a: `${classes.map((c) => c.name).join(", ")}. Check the ${studio.shortName} schedule for this week's times.`,
     },
     {
       q: `Where is the ${studio.shortName} studio?`,
@@ -66,7 +66,7 @@ export function studioFaqs(studio: Studio): { q: string; a: string }[] {
   if (studio.facilities.some((f) => /creche/i.test(f))) {
     faqs.splice(3, 0, {
       q: `Is there a creche at ${studio.shortName}?`,
-      a: `Yes. Reformd ${studio.shortName} has an on-site creche, so you can bring the kids and still make class.`,
+      a: `Yes. Creche runs ${CRECHE.days} at ${CRECHE.times.join(" and ")}, alongside those classes. It's ${CRECHE.price} a session, or free with a ${CRECHE.freeFor}.`,
     });
   }
   return faqs;
@@ -85,7 +85,7 @@ export function studioJsonLd(studio: Studio) {
       url,
       image: abs(studio.image),
       priceRange: "$$",
-      ...(studio.phone ? { telephone: studio.phone } : {}),
+      telephone: studio.phone,
       address: {
         "@type": "PostalAddress",
         streetAddress: studio.address,

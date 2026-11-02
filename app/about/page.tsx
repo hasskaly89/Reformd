@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 
 import { PageHero } from "@/components/sections/page-hero";
 import { ImageSlot } from "@/components/ui/image-slot";
-import { INTRO_OFFER_BUY_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "About",
@@ -80,9 +79,7 @@ export default function AboutPage() {
         <div className="container-tight flex flex-col items-start gap-6 py-14 md:flex-row md:items-center md:justify-between">
           <h2 className="text-3xl !text-cream md:text-4xl">4 classes for $49.</h2>
           <a
-            href={INTRO_OFFER_BUY_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/#intro-offer"
             className="inline-flex items-center justify-center rounded-full bg-cream px-7 py-3 text-sm font-medium text-brown transition-colors hover:bg-cement-100"
           >
             Claim the intro offer

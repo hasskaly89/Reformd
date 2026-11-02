@@ -3,8 +3,8 @@ import { ImageSlot } from "@/components/ui/image-slot";
 const VALUES = [
   { title: "Owner-operated", body: "Run by its owners, not a head office." },
   { title: "Small classes", body: "One room per studio, so your instructor sees every rep." },
-  { title: "Five formats", body: "From Stretch to Jumpboard. No two weeks the same." },
-  { title: "On-site creche", body: "At Cecil Hills, so you actually make it to class." },
+  { title: "Five class types", body: "From Recharge to Ignite. No two weeks the same." },
+  { title: "Weekday creche", body: "At both studios, so you actually make it to class." },
 ];
 
 export function ValueProp() {

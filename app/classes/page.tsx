@@ -8,7 +8,7 @@ import { CLASS_FORMATS, STUDIOS } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "Classes",
   description:
-    "Five reformer Pilates formats: Reformer, Jumpboard, Dynamic, Sculpt and Stretch. Every level welcome.",
+    "Five reformer Pilates class types at Reformd: Balanced, Dynamic, Ignite, Lift and Recharge. Every level welcome.",
 };
 
 export default function ClassesPage() {
@@ -16,7 +16,7 @@ export default function ClassesPage() {
     <>
       <PageHero
         eyebrow="Class formats"
-        title={<>Five formats. One reformer.</>}
+        title={<>Five class types. One reformer.</>}
         lede="Sweat, sculpt or slow down. Every level welcome."
       />
 
@@ -32,13 +32,12 @@ export default function ClassesPage() {
                 className="rounded-sm"
               />
               <h2 className="mt-5 text-3xl">{format.name}</h2>
-              <p className="mt-2 text-xs uppercase tracking-[0.15em] text-brown/60">
-                {format.duration} · {format.intensity} ·{" "}
-                {format.availableAt.map((slug) => STUDIOS[slug].shortName).join(" + ")}
-              </p>
-              <p className="mt-3 flex-1 text-base leading-relaxed text-charcoal/80">
-                {format.description}
-              </p>
+              {format.variants.length > 0 && (
+                <p className="mt-2 text-xs uppercase tracking-[0.15em] text-brown/60">
+                  {format.variants.map((v) => `${format.name} | ${v}`).join(" · ")}
+                </p>
+              )}
+              <p className="mt-3 flex-1 text-base leading-relaxed text-charcoal/80">{format.tagline}</p>
               <div className="mt-5 flex flex-wrap gap-2">
                 {format.availableAt.map((slug) => (
                   <Link

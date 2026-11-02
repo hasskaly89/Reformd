@@ -9,11 +9,13 @@ import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/constants";
 import "./globals.css";
 
 /**
- * Display font: Roc Grotesk Wide (brand) via an Adobe Fonts web project.
- * Set NEXT_PUBLIC_TYPEKIT_ID to the 7-char kit id to switch it on.
- * Until then, or if the kit fails, Archivo Expanded (free, OFL) renders.
+ * Display font: Roc Grotesk Wide Bold from the Adobe Fonts web project
+ * "Reformd Pilates" (kit kkx7tho), covered by the studio's Adobe licence.
+ * Adobe serves Wide Bold at weight 600. The kit's allowed domains must
+ * include every host the site runs on. Archivo Expanded (OFL) is the
+ * fallback while the kit loads or if it fails.
  */
-const TYPEKIT_ID = process.env.NEXT_PUBLIC_TYPEKIT_ID;
+const TYPEKIT_ID = process.env.NEXT_PUBLIC_TYPEKIT_ID ?? "kkx7tho";
 
 const displayFallback = Archivo({
   subsets: ["latin"],
@@ -58,9 +60,8 @@ export default function RootLayout({
   return (
     <html lang="en-AU" className={`${displayFallback.variable} ${body.variable}`}>
       <head>
-        {TYPEKIT_ID && (
-          <link rel="stylesheet" href={`https://use.typekit.net/${TYPEKIT_ID}.css`} />
-        )}
+        <link rel="preconnect" href="https://use.typekit.net" crossOrigin="anonymous" />
+        <link rel="stylesheet" href={`https://use.typekit.net/${TYPEKIT_ID}.css`} />
       </head>
       <body className="flex min-h-screen flex-col antialiased">
         <SiteNav />
