@@ -3,10 +3,13 @@ import Link from "next/link";
 
 import { NAV_LINKS, PHONE, PHONE_HREF, SOCIAL_LINKS, STUDIO_LIST } from "@/lib/constants";
 
-/** Top-level nav links (studio dropdowns are covered by the studio column). */
-const FOOTER_LINKS = NAV_LINKS.flatMap((l) =>
-  l.href ? [{ label: l.label, href: l.href, external: l.external }] : [],
-);
+const FOOTER_LINKS = [
+  ...NAV_LINKS.flatMap((l) => (l.href ? [{ label: l.label, href: l.href }] : [])),
+  { label: "Contact", href: "/contact" },
+  { label: "Creche", href: "/creche" },
+  { label: "Private sessions", href: "/private-sessions" },
+  { label: "Member login", href: "/login" },
+];
 
 export function SiteFooter() {
   return (
@@ -35,7 +38,7 @@ export function SiteFooter() {
               <Link href={`/studios/${s.slug}`} className="font-medium text-cream hover:text-cement">
                 {s.shortName}
               </Link>
-              <p className="mt-1 text-xs leading-relaxed text-cream/60">
+              <p className="mt-1 text-sm leading-relaxed text-cream/70">
                 {s.address}
                 <br />
                 {s.suburb} {s.state} {s.postcode}
@@ -44,7 +47,7 @@ export function SiteFooter() {
           ))}
         </ul>
 
-        <ul className="flex flex-wrap gap-x-5 gap-y-1 md:flex-col">
+        <ul className="grid grid-cols-2 gap-x-6 md:grid-cols-1">
           {FOOTER_LINKS.map((l) => (
             <li key={l.href}>
               <Link href={l.href} className="inline-block py-2 hover:text-cream">
@@ -56,7 +59,7 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-cream/10">
-        <p className="container-tight py-4 text-xs text-cream/50">
+        <p className="container-tight py-4 text-sm text-cream/60">
           © {new Date().getFullYear()} Reformd Pilates · Cecil Hills + Kings Park, NSW ·{" "}
           <Link href="/privacy" className="underline-offset-4 hover:underline">
             Privacy

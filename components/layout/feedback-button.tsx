@@ -45,7 +45,7 @@ export function FeedbackButton() {
   }
 
   return (
-    <div className="fixed bottom-4 left-4 z-40 print:hidden">
+    <div className="fixed bottom-24 left-4 z-40 print:hidden lg:bottom-4">
       {open ? (
         <form
           onSubmit={send}

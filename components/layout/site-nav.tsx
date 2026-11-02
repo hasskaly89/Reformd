@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { NAV_LINKS, PHONE, PHONE_HREF, SOCIAL_LINKS, STUDIO_LIST, type NavLink } from "@/lib/constants";
 
@@ -87,15 +87,41 @@ const PRIMARY_BTN =
 
 export function SiteNav() {
   const [open, setOpen] = useState(false);
+  const [showBar, setShowBar] = useState(false);
   const pathname = usePathname();
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const wasOpen = useRef(false);
 
   useEffect(() => setOpen(false), [pathname]);
+
+  // Menu open: lock scroll, focus first link, close on Escape. On close, return focus to the toggle.
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    if (open) {
+      wasOpen.current = true;
+      menuRef.current?.querySelector<HTMLElement>("a,button")?.focus();
+      const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+      document.addEventListener("keydown", onKey);
+      return () => {
+        document.removeEventListener("keydown", onKey);
+        document.body.style.overflow = "";
+      };
+    }
+    if (wasOpen.current) toggleRef.current?.focus();
     return () => {
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  // Mobile booking bar appears once the hero has scrolled away
+  useEffect(() => {
+    const onScroll = () => setShowBar(window.scrollY > 560);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  const hideBar = pathname.startsWith("/schedule") || pathname.startsWith("/pricing");
 
   return (
     <>
@@ -134,6 +160,7 @@ export function SiteNav() {
           </div>
 
           <button
+            ref={toggleRef}
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
@@ -151,6 +178,10 @@ export function SiteNav() {
       {open && (
         <div
           id="mobile-menu"
+          ref={menuRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menu"
           className="menu-in fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto bg-cream lg:hidden"
         >
           <div className="container-tight flex min-h-full flex-col pb-8 pt-6">
@@ -191,6 +222,8 @@ export function SiteNav() {
               {[
                 { label: "Classes", href: "/classes" },
                 { label: "About", href: "/about" },
+                { label: "Creche", href: "/creche" },
+                { label: "Contact", href: "/contact" },
               ].map((l) => (
                 <li key={l.href} className="border-b border-brown/15">
                   <Link href={l.href} className="flex items-center justify-between py-4 font-display text-2xl font-semibold uppercase text-brown">
@@ -214,9 +247,37 @@ export function SiteNav() {
               </a>
               <div className="mt-5 flex items-center justify-between text-sm text-brown">
                 <a href={PHONE_HREF} className="py-3 tabular">{PHONE}</a>
+                <Link href="/login" className="py-3">Member login</Link>
                 <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className="py-3">Instagram</a>
               </div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Persistent mobile booking action once the hero is out of view */}
+      {!open && !hideBar && (
+        <div
+          className={`fixed inset-x-0 bottom-0 z-30 border-t border-brown/15 bg-cream/95 px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 backdrop-blur transition-transform duration-200 lg:hidden ${
+            showBar ? "translate-y-0" : "translate-y-full"
+          }`}
+          aria-hidden={!showBar}
+        >
+          <div className="mx-auto flex max-w-md gap-2">
+            <Link
+              href="/schedule"
+              tabIndex={showBar ? 0 : -1}
+              className="flex-1 inline-flex items-center justify-center rounded-full border border-brown/25 px-4 py-3 text-sm font-medium text-brown"
+            >
+              Book a class
+            </Link>
+            <a
+              href="/#intro-offer"
+              tabIndex={showBar ? 0 : -1}
+              className="flex-1 inline-flex items-center justify-center rounded-full bg-brown px-4 py-3 text-sm font-medium text-cream"
+            >
+              4 classes for $49
+            </a>
           </div>
         </div>
       )}

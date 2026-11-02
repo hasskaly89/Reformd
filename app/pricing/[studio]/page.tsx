@@ -101,6 +101,7 @@ export default function PricingPage({ params }: Props) {
                       <div className="flex-1" />
                       <a
                         href={buyUrl(tier, studio)}
+                        aria-label={`${cta} ${tier.name} at ${studio.shortName}, ${tier.price}${tier.unit ?? ""}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className={`mt-6 inline-flex items-center justify-center rounded-full px-5 py-2.5 text-xs font-medium uppercase tracking-[0.15em] transition-colors ${

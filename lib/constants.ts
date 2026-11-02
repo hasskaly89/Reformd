@@ -64,15 +64,16 @@ export type Studio = {
    * Mindbody schedule (week of 2 Nov 2026). Keep in sync with Google.
    */
   hours: { day: string; open: string }[];
-  /** schema.org openingHours, mirrors `hours` */
-  openingHours: string[];
   facilities: string[];
   /** One-line studio intro */
   blurb: string;
   /** Studio photo under /public */
   image: string;
-  /** Map coordinates (from the studio shoot) */
-  geo: { lat: number; lng: number };
+  /**
+   * Verified map pin for schema.org geo. Omit rather than guess: a wrong pin is
+   * worse than none (the address alone identifies the studio).
+   */
+  geo?: { lat: number; lng: number };
   /** Council area + region, for local copy */
   region: string;
   /** Neighbouring suburbs, for local SEO copy + schema areaServed */
@@ -129,15 +130,6 @@ export const STUDIOS: Record<StudioSlug, Studio> = {
       { day: "Saturday", open: "7:00am to 11:50am" },
       { day: "Sunday", open: "7:00am to 10:50am" },
     ],
-    openingHours: [
-      "Mo 06:00-19:50",
-      "Tu 05:00-20:50",
-      "We 05:00-19:50",
-      "Th 05:00-20:50",
-      "Fr 06:00-18:50",
-      "Sa 07:00-11:50",
-      "Su 07:00-10:50",
-    ],
     facilities: [
       "Soundproof creche (Mon to Fri, 8:30am and 9:30am)",
       "Showers and change rooms",
@@ -145,7 +137,7 @@ export const STUDIOS: Record<StudioSlug, Studio> = {
     ],
     blurb: "Our flagship studio, where Reformd began. The full class lineup, plus a soundproof creche.",
     image: "/images/hero/cecil-hills-studio.jpg",
-    geo: { lat: -33.8903, lng: 150.8789 },
+    // geo: TODO(owner) confirm the Cecil Hills pin from Google Business Profile
     region: "Liverpool, South-West Sydney",
     nearby: ["Abbotsbury", "Cecil Park", "Edensor Park", "Bonnyrigg Heights", "Green Valley", "Elizabeth Hills"],
     instagram: "reformdpilatesstudio",
@@ -172,15 +164,6 @@ export const STUDIOS: Record<StudioSlug, Studio> = {
       { day: "Saturday", open: "7:00am to 10:50am" },
       { day: "Sunday", open: "7:00am to 9:50am" },
     ],
-    openingHours: [
-      "Mo 06:00-19:50",
-      "Tu 05:00-19:50",
-      "We 06:00-19:50",
-      "Th 05:00-19:50",
-      "Fr 06:00-19:50",
-      "Sa 07:00-10:50",
-      "Su 07:00-09:50",
-    ],
     facilities: [
       "Creche (Mon to Fri, 8:30am and 9:30am)",
       "Showers and change rooms",
@@ -188,7 +171,8 @@ export const STUDIOS: Record<StudioSlug, Studio> = {
     ],
     blurb: "Reformer Pilates for Blacktown and the north-west. Same small classes, same weekday creche.",
     image: "/images/classes/reformer.jpg",
-    geo: { lat: -33.7369, lng: 150.9011 },
+    // Google Maps pin for 6/2 Garling Rd (verified in the 2 Nov preview audit)
+    geo: { lat: -33.7453629, lng: 150.9154175 },
     region: "Blacktown, Western Sydney",
     nearby: ["Blacktown", "Quakers Hill", "Marayong", "Kings Langley", "Acacia Gardens", "Glenwood"],
     instagram: "reformdpilatesstudio",
@@ -265,6 +249,8 @@ export type ClassFormat = {
   variants: string[];
   /** Photo under /public; omitted = tonal block */
   image?: string;
+  /** Recommended first class for beginners */
+  beginner?: boolean;
   availableAt: StudioSlug[];
 };
 
@@ -275,6 +261,7 @@ export const CLASS_FORMATS: ClassFormat[] = [
     tagline: "Your reformer class, refined. Precision, breath and control.",
     variants: ["Foundation", "Women"],
     image: "/images/hero/reformer-detail.jpg",
+    beginner: true,
     availableAt: ["cecil-hills", "kings-park"],
   },
   {

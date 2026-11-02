@@ -18,12 +18,22 @@ export function Hero() {
             Small classes. Expert instructors. Five class types, every level welcome.
           </p>
 
-          <a
-            href="#intro-offer"
-            className="mt-8 inline-flex items-center justify-center gap-3 rounded-full bg-brown px-7 py-3.5 text-sm font-medium text-cream transition-colors hover:bg-charcoal"
-          >
-            Try 4 classes for $49 <span aria-hidden>→</span>
-          </a>
+          <p className="mt-8 text-sm font-semibold text-brown">Try 4 classes for $49 at:</p>
+          <div className="mt-3 flex flex-wrap gap-3">
+            {STUDIO_LIST.map((s) => (
+              <a
+                key={s.slug}
+                href={s.mindbody.introOfferUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Claim 4 classes for $49 at ${s.shortName}`}
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-brown px-6 py-3.5 text-sm font-medium text-cream transition-colors hover:bg-charcoal"
+              >
+                {s.shortName} <span aria-hidden>→</span>
+              </a>
+            ))}
+          </div>
+          <p className="mt-2 text-xs text-charcoal/60">New clients only. Valid 14 days from first use.</p>
 
           <div className="mt-10 hidden max-w-md grid-cols-2 divide-x divide-brown/15 border-y border-brown/15 sm:grid">
             {STUDIO_LIST.map((s, i) => (

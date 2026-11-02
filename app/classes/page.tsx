@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Classes",
   description:
     "Five reformer Pilates class types at Reformd: Balanced, Dynamic, Ignite, Lift and Recharge. Every level welcome.",
+  alternates: { canonical: "/classes" },
 };
 
 export default function ClassesPage() {
@@ -31,7 +32,14 @@ export default function ClassesPage() {
                 sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                 className="rounded-sm"
               />
-              <h2 className="mt-5 text-3xl">{format.name}</h2>
+              <h2 className="mt-5 flex flex-wrap items-center gap-3 text-3xl">
+                {format.name}
+                {format.beginner && (
+                  <span className="rounded-full bg-brown px-3 py-1 font-sans text-xs font-semibold normal-case tracking-normal text-cream">
+                    Beginners start here
+                  </span>
+                )}
+              </h2>
               {format.variants.length > 0 && (
                 <p className="mt-2 text-xs uppercase tracking-[0.15em] text-brown/60">
                   {format.variants.map((v) => `${format.name} | ${v}`).join(" · ")}

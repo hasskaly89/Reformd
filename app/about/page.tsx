@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "About",
   description:
     "Owner-operated boutique reformer Pilates in Western Sydney. Studios in Cecil Hills and Kings Park.",
+  alternates: { canonical: "/about" },
 };
 
 const GALLERY = [
@@ -34,14 +35,14 @@ export default function AboutPage() {
       <section className="container-tight section grid gap-10 lg:grid-cols-2 lg:gap-12">
         <div>
           <p className="eyebrow">The founder</p>
-          <h2 className="mt-4 text-[2rem] sm:text-4xl lg:text-5xl">A decade on the reformer.</h2>
+          <h2 className="mt-4 text-[2rem] sm:text-4xl lg:text-5xl">Where it started.</h2>
         </div>
-        {/* TODO(owner): swap in the founder's own story. */}
+        {/* TODO(owner): swap in the founder's own story, with verified experience and credentials. */}
         <div className="space-y-4 text-lg leading-relaxed text-charcoal/80">
           <p>
-            Reformd started with one instructor, ten years of teaching across
-            Sydney, and a studio that felt too corporate or too intimidating
-            for the people who needed it most.
+            Reformd started with one instructor who found boutique studios
+            either too corporate or too intimidating for the people who needed
+            them most.
           </p>
           <p>
             Today it&rsquo;s two studios, Cecil Hills and Kings Park, with

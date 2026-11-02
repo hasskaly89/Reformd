@@ -7,6 +7,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/",
     "/about",
     "/classes",
+    "/schedule",
+    "/pricing",
+    "/contact",
+    "/creche",
+    "/private-sessions",
     ...STUDIO_LIST.flatMap((s) => [`/studios/${s.slug}`, `/schedule/${s.slug}`, `/pricing/${s.slug}`]),
   ];
   return paths.map((p) => ({ url: `${SITE_URL}${p}` }));

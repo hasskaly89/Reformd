@@ -3,7 +3,7 @@ import { STUDIO_LIST } from "@/lib/constants";
 
 export function IntroOffer() {
   return (
-    <section id="intro-offer" className="bg-cement-50">
+    <section id="intro-offer" className="scroll-mt-16 bg-cement-50 md:scroll-mt-20">
       <div className="container-tight section grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
         <div>
           <p className="eyebrow">Intro offer</p>
@@ -11,7 +11,7 @@ export function IntroOffer() {
             $49 for <br className="hidden lg:block" />4 classes.
           </h2>
           <p className="mt-6 text-base text-charcoal/75">
-            New to Reformd? Any class at your studio. New clients only, use within 14 days.
+            New to Reformd? Any class at your studio. New clients only. Valid 14 days from first use.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             {STUDIO_LIST.map((st) => (

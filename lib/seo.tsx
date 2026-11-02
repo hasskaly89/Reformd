@@ -94,8 +94,9 @@ export function studioJsonLd(studio: Studio) {
         postalCode: studio.postcode,
         addressCountry: "AU",
       },
-      geo: { "@type": "GeoCoordinates", latitude: studio.geo.lat, longitude: studio.geo.lng },
-      openingHours: studio.openingHours,
+      ...(studio.geo
+        ? { geo: { "@type": "GeoCoordinates", latitude: studio.geo.lat, longitude: studio.geo.lng } }
+        : {}),
       areaServed: [studio.suburb, ...studio.nearby].map((name) => ({ "@type": "Place", name })),
       amenityFeature: studio.facilities.map((name) => ({
         "@type": "LocationFeatureSpecification",

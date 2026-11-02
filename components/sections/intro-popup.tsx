@@ -8,8 +8,8 @@ import { STUDIO_LIST, STUDIOS, type StudioSlug } from "@/lib/constants";
 
 const STORAGE_KEY = "reformd-intro-popup";
 const SUPPRESS_DAYS = 7;
-const DELAY_MS = 12_000;
-const SCROLL_TRIGGER = 0.45;
+const DELAY_MS = 30_000;
+const SCROLL_TRIGGER = 0.7;
 /** Pages where people are already buying: never interrupt them */
 const EXCLUDED = ["/pricing", "/schedule", "/privacy", "/api"];
 
@@ -178,7 +178,7 @@ export function IntroPopup() {
               4 classes for $49.
             </h2>
             <p className="mt-3 text-base text-charcoal/80">
-              Pop in your details and we&rsquo;ll text you the link to claim it.
+              Pop in your details and we&rsquo;ll text you the link. New clients only, valid 14 days from first use.
             </p>
 
             <form onSubmit={onSubmit} className="mt-6 grid gap-4" noValidate>
@@ -251,6 +251,23 @@ export function IntroPopup() {
               >
                 {status === "sending" ? "Sending…" : "Text me the offer"}
               </button>
+              <p className="text-center text-sm text-charcoal/70">
+                Ready now? Claim at{" "}
+                {STUDIO_LIST.map((s, i) => (
+                  <span key={s.slug}>
+                    {i > 0 && " or "}
+                    <a
+                      href={s.mindbody.introOfferUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={close}
+                      className="font-medium text-brown underline underline-offset-2"
+                    >
+                      {s.shortName}
+                    </a>
+                  </span>
+                ))}
+              </p>
               <button type="button" onClick={close} className="py-2 text-sm text-brown/70 underline-offset-4 hover:underline">
                 No thanks
               </button>

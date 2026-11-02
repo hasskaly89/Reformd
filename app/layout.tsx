@@ -55,13 +55,15 @@ export const metadata: Metadata = {
   description:
     "Boutique reformer Pilates studios in Cecil Hills and Kings Park, Sydney. Small classes, five class formats, every level welcome. Try 4 classes for $49.",
   openGraph: {
-    title: SITE_NAME,
+    title: `Reformer Pilates Cecil Hills & Kings Park | ${SITE_NAME}`,
     description: SITE_TAGLINE,
     url: SITE_URL,
     siteName: SITE_NAME,
     type: "website",
     locale: "en_AU",
+    images: [{ url: "/images/gallery/cecil-hills-community.jpg", width: 1439, height: 1530, alt: "A reformer Pilates class at Reformd Pilates" }],
   },
+  twitter: { card: "summary_large_image" },
   // Stay out of Google until launch day, so this build never competes with
   // the live Squarespace site. Set ALLOW_INDEXING=true in Vercel at go-live.
   robots: ALLOW_INDEXING ? { index: true, follow: true } : { index: false, follow: false },
@@ -80,6 +82,7 @@ export default function RootLayout({
         <SiteNav />
         <main className="flex-1">{children}</main>
         <SiteFooter />
+        <div aria-hidden className="h-20 bg-brown lg:hidden" />
         <IntroPopup />
         <FeedbackButton />
       </body>
