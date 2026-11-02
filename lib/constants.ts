@@ -347,7 +347,12 @@ export const NAV_LINKS: NavLink[] = [
  */
 export const REVIEWS_WIDGET_HTML = ``;
 
+/**
+ * Verified 2 Nov 2026 against the REFORMD PILATES Meta ad account: every ad
+ * runs from Facebook Page 475593318971497 and Instagram @reformdpilatesstudio.
+ * The numeric Page URL always redirects to the Page's current vanity URL.
+ */
 export const SOCIAL_LINKS = {
   instagram: "https://www.instagram.com/reformdpilatesstudio/",
-  facebook: "https://www.facebook.com/reformdpilates",
+  facebook: "https://www.facebook.com/475593318971497",
 };
