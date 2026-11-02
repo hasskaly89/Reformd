@@ -5,7 +5,9 @@ import localFont from "next/font/local";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteNav } from "@/components/layout/site-nav";
 import { IntroPopup } from "@/components/sections/intro-popup";
+import { FeedbackButton } from "@/components/layout/feedback-button";
 import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/constants";
+import { ALLOW_INDEXING } from "@/lib/site-env";
 
 import "./globals.css";
 
@@ -60,7 +62,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_AU",
   },
-  robots: { index: true, follow: true },
+  // Stay out of Google until launch day, so this build never competes with
+  // the live Squarespace site. Set ALLOW_INDEXING=true in Vercel at go-live.
+  robots: ALLOW_INDEXING ? { index: true, follow: true } : { index: false, follow: false },
 };
 
 export default function RootLayout({
@@ -77,6 +81,7 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <SiteFooter />
         <IntroPopup />
+        <FeedbackButton />
       </body>
     </html>
   );

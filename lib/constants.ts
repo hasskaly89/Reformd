@@ -290,6 +290,8 @@ export const CLASS_FORMATS: ClassFormat[] = [
     name: "Ignite",
     tagline: "Reformer meets cardio on the jumpboard.",
     variants: ["Fired Up"],
+    // TODO(owner): swap for a jumpboard shot
+    image: "/images/studios/kings-park-studio.jpg",
     availableAt: ["cecil-hills", "kings-park"],
   },
   {
