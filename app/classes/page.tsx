@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { PageHero } from "@/components/sections/page-hero";
-import { Reveal } from "@/components/ui/reveal";
 import { CLASS_FORMATS, STUDIOS } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -21,12 +20,12 @@ export default function ClassesPage() {
       />
 
       <section className="bg-cream">
-        <div className="container-tight grid gap-6 py-20 md:py-28 sm:grid-cols-2 lg:grid-cols-2">
-          {CLASS_FORMATS.map((format, i) => (
-            <Reveal key={format.slug} delay={i * 0.05}>
+        <div className="container-tight grid gap-6 section sm:grid-cols-2 lg:grid-cols-2">
+          {CLASS_FORMATS.map((format) => (
+            <div key={format.slug} id={format.slug} className="scroll-mt-24">
               <article className="flex h-full flex-col rounded-lg border border-brown/10 bg-cement-50 p-8 transition-colors hover:border-brown/30">
                 <div className="flex flex-wrap items-start justify-between gap-3">
-                  <h2 className="font-serif text-3xl text-brown md:text-4xl">
+                  <h2 className="font-display text-3xl text-brown md:text-4xl">
                     {format.name}
                   </h2>
                   <div className="flex flex-wrap gap-2">
@@ -41,7 +40,7 @@ export default function ClassesPage() {
                   </div>
                 </div>
                 <p className="mt-3 text-sm uppercase tracking-[0.2em] text-brown/60">
-                  {format.tagline}
+                  {format.duration} · {format.intensity} — {format.tagline}
                 </p>
                 <p className="mt-5 flex-1 text-base leading-relaxed text-charcoal/80">
                   {format.description}
@@ -58,7 +57,7 @@ export default function ClassesPage() {
                   ))}
                 </div>
               </article>
-            </Reveal>
+            </div>
           ))}
         </div>
       </section>

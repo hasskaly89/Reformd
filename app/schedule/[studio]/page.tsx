@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 
 import { MindbodySchedule } from "@/components/sections/mindbody-schedule";
 import { PageHero } from "@/components/sections/page-hero";
-import { Reveal } from "@/components/ui/reveal";
 import {
   INTRO_OFFER_BUY_URL,
   STUDIOS,
@@ -51,8 +50,8 @@ export default function SchedulePage({ params }: Props) {
       />
 
       <section className="bg-cream">
-        <div className="container-tight py-16 md:py-20">
-          <Reveal>
+        <div className="container-tight section">
+          <div>
             <div className="flex flex-wrap gap-3">
               <Link
                 href={`/schedule/${other.slug}`}
@@ -75,15 +74,15 @@ export default function SchedulePage({ params }: Props) {
                 See pricing
               </Link>
             </div>
-          </Reveal>
+          </div>
 
-          <Reveal delay={0.1}>
+          <div>
             <div className="mt-10 rounded-lg border border-brown/10 bg-cement-50 p-4 md:p-8">
               <MindbodySchedule widgetId={studio.mindbody.scheduleWidgetId} />
             </div>
-          </Reveal>
+          </div>
 
-          <Reveal delay={0.15}>
+          <div>
             <p className="mt-6 text-xs uppercase tracking-[0.2em] text-brown/55">
               Schedule loading? Refresh the page or{" "}
               <a
@@ -96,7 +95,7 @@ export default function SchedulePage({ params }: Props) {
               </a>
               .
             </p>
-          </Reveal>
+          </div>
         </div>
       </section>
     </>

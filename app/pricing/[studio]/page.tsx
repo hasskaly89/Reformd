@@ -3,7 +3,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { PageHero } from "@/components/sections/page-hero";
-import { Reveal } from "@/components/ui/reveal";
 import {
   INTRO_OFFER_BUY_URL,
   PRICING_TIERS,
@@ -82,8 +81,8 @@ export default function PricingPage({ params }: Props) {
       />
 
       <section className="bg-cream">
-        <div className="container-tight py-16 md:py-20">
-          <Reveal>
+        <div className="container-tight section">
+          <div>
             <div className="flex flex-wrap gap-3">
               <Link
                 href={`/pricing/${other.slug}`}
@@ -98,14 +97,14 @@ export default function PricingPage({ params }: Props) {
                 See live schedule
               </Link>
             </div>
-          </Reveal>
+          </div>
 
-          {groups.map((group, gi) => {
+          {groups.map((group) => {
             const tiers = PRICING_TIERS.filter((t) => t.group === group);
             const meta = GROUP_META[group];
             return (
               <div key={group} className="mt-16 first:mt-12">
-                <Reveal>
+                <div>
                   <p className="text-xs uppercase tracking-[0.3em] text-brown/60">
                     {meta.eyebrow}
                   </p>
@@ -115,15 +114,15 @@ export default function PricingPage({ params }: Props) {
                   <p className="mt-3 max-w-2xl text-charcoal/75">
                     {meta.lede}
                   </p>
-                </Reveal>
+                </div>
 
                 <div
                   className={`mt-8 grid gap-4 sm:grid-cols-2 ${
                     tiers.length >= 3 ? "lg:grid-cols-3" : ""
                   } ${tiers.length >= 4 ? "lg:grid-cols-4" : ""}`}
                 >
-                  {tiers.map((tier, i) => (
-                    <Reveal key={tier.name} delay={i * 0.05 + gi * 0.02}>
+                  {tiers.map((tier) => (
+                    <div key={tier.name}>
                       <article
                         className={`flex h-full flex-col rounded-lg border p-6 transition-colors ${
                           tier.featured
@@ -132,7 +131,7 @@ export default function PricingPage({ params }: Props) {
                         }`}
                       >
                         <h3
-                          className={`font-serif text-2xl ${
+                          className={`font-display text-2xl ${
                             tier.featured ? "text-cream" : "text-brown"
                           }`}
                         >
@@ -140,7 +139,7 @@ export default function PricingPage({ params }: Props) {
                         </h3>
                         <div className="mt-4 flex items-baseline gap-2">
                           <span
-                            className={`font-serif text-4xl ${
+                            className={`font-display text-4xl ${
                               tier.featured ? "text-cream" : "text-brown"
                             }`}
                           >
@@ -187,19 +186,19 @@ export default function PricingPage({ params }: Props) {
                             : "Buy pack"}
                         </a>
                       </article>
-                    </Reveal>
+                    </div>
                   ))}
                 </div>
               </div>
             );
           })}
 
-          <Reveal>
+          <div>
             <p className="mt-12 text-xs uppercase tracking-[0.2em] text-brown/55">
               All prices in AUD. Memberships processed weekly via direct debit.
               Bookings and purchases are powered by Mindbody.
             </p>
-          </Reveal>
+          </div>
         </div>
       </section>
     </>

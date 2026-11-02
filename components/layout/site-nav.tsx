@@ -5,46 +5,76 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { NAV_LINKS, STUDIO_LIST } from "@/lib/constants";
+import { NAV_LINKS, STUDIO_LIST, type NavLink } from "@/lib/constants";
 
-type DesktopDropdownProps = {
+const BOOK_ITEMS = STUDIO_LIST.map((s) => ({ label: s.shortName, href: `/schedule/${s.slug}` }));
+
+function NavAnchor({
+  href,
+  external,
+  className,
+  children,
+}: {
+  href: string;
+  external?: boolean;
+  className: string;
+  children: React.ReactNode;
+}) {
+  return external ? (
+    <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+      {children}
+    </a>
+  ) : (
+    <Link href={href} className={className}>
+      {children}
+    </Link>
+  );
+}
+
+/** Hover + keyboard (focus-within) dropdown — no JS state. */
+function Dropdown({
+  label,
+  items,
+  align = "center",
+  trigger,
+}: {
   label: string;
-  items: ReadonlyArray<{ label: string; href: string }>;
-};
-
-function DesktopDropdown({ label, items }: DesktopDropdownProps) {
+  items: NonNullable<NavLink["children"]>;
+  align?: "center" | "right";
+  trigger?: string;
+}) {
   return (
     <div className="group relative">
       <button
         type="button"
-        className="flex items-center gap-1 py-2 text-sm tracking-wide text-charcoal/80 transition-colors hover:text-brown"
+        aria-haspopup="true"
+        className={
+          trigger ??
+          "flex items-center gap-1 py-2 text-sm text-charcoal/80 transition-colors hover:text-brown"
+        }
       >
         {label}
-        <svg
-          aria-hidden
-          width="10"
-          height="10"
-          viewBox="0 0 10 10"
-          className="transition-transform group-hover:rotate-180"
-        >
-          <path
-            d="M2 4l3 3 3-3"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            fill="none"
-          />
-        </svg>
+        {!trigger && (
+          <svg aria-hidden width="10" height="10" viewBox="0 0 10 10">
+            <path d="M2 4l3 3 3-3" stroke="currentColor" strokeWidth="1.5" fill="none" />
+          </svg>
+        )}
       </button>
-      <div className="invisible absolute left-1/2 top-full z-50 -translate-x-1/2 pt-2 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100">
-        <div className="min-w-[180px] rounded-md border border-cement/30 bg-cream py-2 shadow-lg">
+      <div
+        className={`invisible absolute top-full z-50 pt-2 opacity-0 transition-opacity group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100 ${
+          align === "right" ? "right-0" : "left-1/2 -translate-x-1/2"
+        }`}
+      >
+        <div className="min-w-[170px] rounded-md border border-cement/40 bg-cream py-2 shadow-lg">
           {items.map((item) => (
-            <Link
+            <NavAnchor
               key={item.href}
               href={item.href}
-              className="block px-4 py-2 text-sm text-charcoal/80 transition-colors hover:bg-cement/10 hover:text-brown"
+              external={item.external}
+              className="block px-4 py-2 text-sm text-charcoal/80 hover:bg-cement/15 hover:text-brown"
             >
               {item.label}
-            </Link>
+            </NavAnchor>
           ))}
         </div>
       </div>
@@ -52,92 +82,24 @@ function DesktopDropdown({ label, items }: DesktopDropdownProps) {
   );
 }
 
-function BookNowButton({ variant = "desktop" }: { variant?: "desktop" | "mobile" }) {
-  const [open, setOpen] = useState(false);
-  const base =
-    "inline-flex items-center justify-center rounded-full bg-brown px-6 py-2.5 text-sm font-medium tracking-wide text-cream transition-colors hover:bg-charcoal";
-
-  if (variant === "mobile") {
-    return (
-      <div className="flex flex-col gap-3">
-        <p className="text-xs uppercase tracking-[0.2em] text-charcoal/50">
-          Book Now
-        </p>
-        {STUDIO_LIST.map((s) => (
-          <Link
-            key={s.slug}
-            href={`/schedule/${s.slug}`}
-            className={base + " w-full"}
-          >
-            Book {s.shortName}
-          </Link>
-        ))}
-      </div>
-    );
-  }
-
-  return (
-    <div className="relative">
-      <button
-        type="button"
-        onClick={() => setOpen((o) => !o)}
-        onBlur={() => setTimeout(() => setOpen(false), 150)}
-        className={base}
-      >
-        Book Now
-      </button>
-      {open && (
-        <div className="absolute right-0 top-full z-50 mt-2 min-w-[200px] rounded-md border border-cement/30 bg-cream py-2 shadow-lg">
-          <p className="px-4 pb-2 text-xs uppercase tracking-[0.2em] text-charcoal/50">
-            Choose a studio
-          </p>
-          {STUDIO_LIST.map((s) => (
-            <Link
-              key={s.slug}
-              href={`/schedule/${s.slug}`}
-              className="block px-4 py-2 text-sm text-charcoal/80 transition-colors hover:bg-cement/10 hover:text-brown"
-            >
-              {s.shortName}
-            </Link>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
+const PRIMARY_BTN =
+  "inline-flex items-center justify-center rounded-full bg-brown px-6 py-2.5 text-sm font-medium text-cream transition-colors hover:bg-charcoal";
 
 export function SiteNav() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
+  useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    document.body.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [mobileOpen]);
+  }, [open]);
 
   return (
-    <header
-      className={`sticky top-0 z-40 transition-colors duration-200 ${
-        scrolled || mobileOpen
-          ? "border-b border-cement/30 bg-cream/95 backdrop-blur"
-          : "bg-transparent"
-      }`}
-    >
-      <nav className="container-tight flex h-20 items-center justify-between gap-6">
+    <header className="sticky top-0 z-40 border-b border-cement/40 bg-cream/95 backdrop-blur">
+      <nav className="container-tight flex h-16 items-center justify-between gap-6 md:h-20">
         <Link href="/" className="shrink-0" aria-label="Reformd Pilates home">
           <Image
             src="/images/logo-brown.svg"
@@ -145,96 +107,75 @@ export function SiteNav() {
             width={140}
             height={26}
             priority
-            className="h-6 w-auto"
+            className="h-5 w-auto md:h-6"
           />
         </Link>
 
-        <div className="hidden items-center gap-7 lg:flex">
+        <div className="hidden items-center gap-8 lg:flex">
           {NAV_LINKS.map((link) =>
-            "children" in link ? (
-              <DesktopDropdown
-                key={link.label}
-                label={link.label}
-                items={link.children}
-              />
+            link.children ? (
+              <Dropdown key={link.label} label={link.label} items={link.children} />
             ) : (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm tracking-wide text-charcoal/80 transition-colors hover:text-brown"
+              <NavAnchor
+                key={link.label}
+                href={link.href!}
+                external={link.external}
+                className="py-2 text-sm text-charcoal/80 transition-colors hover:text-brown"
               >
                 {link.label}
-              </Link>
+              </NavAnchor>
             ),
           )}
         </div>
 
         <div className="hidden lg:block">
-          <BookNowButton />
+          <Dropdown label="Book now" items={BOOK_ITEMS} align="right" trigger={PRIMARY_BTN} />
         </div>
 
         <button
           type="button"
           aria-label="Toggle menu"
-          aria-expanded={mobileOpen}
-          onClick={() => setMobileOpen((o) => !o)}
+          aria-expanded={open}
+          onClick={() => setOpen((o) => !o)}
           className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden"
         >
-          <span
-            className={`block h-px w-6 bg-charcoal transition-transform duration-200 ${
-              mobileOpen ? "translate-y-[7px] rotate-45" : ""
-            }`}
-          />
-          <span
-            className={`block h-px w-6 bg-charcoal transition-opacity duration-200 ${
-              mobileOpen ? "opacity-0" : ""
-            }`}
-          />
-          <span
-            className={`block h-px w-6 bg-charcoal transition-transform duration-200 ${
-              mobileOpen ? "-translate-y-[7px] -rotate-45" : ""
-            }`}
-          />
+          <span className={`block h-px w-6 bg-charcoal transition-transform ${open ? "translate-y-[7px] rotate-45" : ""}`} />
+          <span className={`block h-px w-6 bg-charcoal transition-opacity ${open ? "opacity-0" : ""}`} />
+          <span className={`block h-px w-6 bg-charcoal transition-transform ${open ? "-translate-y-[7px] -rotate-45" : ""}`} />
         </button>
       </nav>
 
-      {mobileOpen && (
+      {open && (
         <div className="lg:hidden">
-          <div className="container-tight max-h-[calc(100vh-5rem)] overflow-y-auto py-6">
-            <ul className="flex flex-col divide-y divide-cement/20">
-              {NAV_LINKS.map((link) =>
-                "children" in link ? (
-                  <li key={link.label} className="py-4">
-                    <p className="mb-2 text-xs uppercase tracking-[0.2em] text-charcoal/50">
+          <div className="container-tight max-h-[calc(100vh-4rem)] overflow-y-auto pb-8">
+            <ul className="divide-y divide-cement/30">
+              {NAV_LINKS.map((link) => (
+                <li key={link.label} className="py-4">
+                  {link.children ? (
+                    <>
+                      <p className="eyebrow">{link.label}</p>
+                      <div className="mt-2 flex gap-6">
+                        {link.children.map((c) => (
+                          <NavAnchor key={c.href} href={c.href} external={c.external} className="text-base text-charcoal/90">
+                            {c.label}
+                          </NavAnchor>
+                        ))}
+                      </div>
+                    </>
+                  ) : (
+                    <NavAnchor href={link.href!} external={link.external} className="text-base text-charcoal/90">
                       {link.label}
-                    </p>
-                    <ul className="flex flex-col gap-2 pl-1">
-                      {link.children.map((child) => (
-                        <li key={child.href}>
-                          <Link
-                            href={child.href}
-                            className="text-base text-charcoal/80 transition-colors hover:text-brown"
-                          >
-                            {child.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-                ) : (
-                  <li key={link.href} className="py-4">
-                    <Link
-                      href={link.href}
-                      className="text-base text-charcoal/90 transition-colors hover:text-brown"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ),
-              )}
+                    </NavAnchor>
+                  )}
+                </li>
+              ))}
             </ul>
-            <div className="mt-6">
-              <BookNowButton variant="mobile" />
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              {BOOK_ITEMS.map((b) => (
+                <Link key={b.href} href={b.href} className={PRIMARY_BTN}>
+                  Book {b.label}
+                </Link>
+              ))}
             </div>
           </div>
         </div>

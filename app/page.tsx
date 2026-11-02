@@ -12,8 +12,8 @@ export default function HomePage() {
       <ValueProp />
       <ClassFormats />
       <Testimonials />
-      <IntroOffer />
       <StudioLocations />
+      <IntroOffer />
     </>
   );
 }

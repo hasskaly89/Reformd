@@ -1,7 +1,7 @@
 export const SITE_NAME = "Reformd Pilates";
 export const SITE_TAGLINE = "Redefine strength, reform your body.";
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://reformdpilates.com.au";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.reformdpilates.com.au";
 
 export type StudioSlug = "cecil-hills" | "kings-park";
 
@@ -133,6 +133,10 @@ export type ClassFormat = {
   name: string;
   tagline: string;
   description: string;
+  duration: string;
+  intensity: "Low" | "Moderate" | "High";
+  /** Photo under /public; omitted = tonal block */
+  image?: string;
   /** Studios that run this format */
   availableAt: StudioSlug[];
 };
@@ -140,6 +144,9 @@ export type ClassFormat = {
 export const CLASS_FORMATS: ClassFormat[] = [
   {
     slug: "reformer",
+    duration: "50 min",
+    intensity: "Moderate",
+    image: "/images/classes/reformer.jpg",
     name: "Reformer",
     tagline: "The classic. Long, lean, controlled.",
     description:
@@ -148,6 +155,8 @@ export const CLASS_FORMATS: ClassFormat[] = [
   },
   {
     slug: "jumpboard",
+    duration: "50 min",
+    intensity: "High",
     name: "Jumpboard",
     tagline: "Cardio in disguise.",
     description:
@@ -156,6 +165,9 @@ export const CLASS_FORMATS: ClassFormat[] = [
   },
   {
     slug: "dynamic",
+    duration: "45 min",
+    intensity: "High",
+    image: "/images/classes/dynamic.jpg",
     name: "Dynamic",
     tagline: "Faster pace, bigger burn.",
     description:
@@ -164,6 +176,9 @@ export const CLASS_FORMATS: ClassFormat[] = [
   },
   {
     slug: "sculpt",
+    duration: "50 min",
+    intensity: "Moderate",
+    image: "/images/classes/sculpt.jpg",
     name: "Sculpt",
     tagline: "Reformer + weights.",
     description:
@@ -172,6 +187,9 @@ export const CLASS_FORMATS: ClassFormat[] = [
   },
   {
     slug: "stretch",
+    duration: "45 min",
+    intensity: "Low",
+    image: "/images/classes/stretch.jpg",
     name: "Stretch",
     tagline: "Slow it down. Open up.",
     description:
@@ -185,41 +203,35 @@ export const STUDIO_LIST: Studio[] = [
   STUDIOS["kings-park"],
 ];
 
-export const NAV_LINKS = [
-  { label: "About", href: "/about" },
+/**
+ * Site navigation — single source for header + footer.
+ * V1: only routes that exist in this build. Add live-site links here.
+ */
+export type NavLink = {
+  label: string;
+  href?: string;
+  external?: boolean;
+  children?: { label: string; href: string; external?: boolean }[];
+};
+
+export const NAV_LINKS: NavLink[] = [
   {
     label: "Studios",
-    children: [
-      { label: "Cecil Hills", href: "/studios/cecil-hills" },
-      { label: "Kings Park", href: "/studios/kings-park" },
-    ],
+    children: STUDIO_LIST.map((s) => ({ label: s.shortName, href: `/studios/${s.slug}` })),
   },
   { label: "Classes", href: "/classes" },
   {
     label: "Schedule",
-    children: [
-      { label: "Cecil Hills", href: "/schedule/cecil-hills" },
-      { label: "Kings Park", href: "/schedule/kings-park" },
-    ],
+    children: STUDIO_LIST.map((s) => ({ label: s.shortName, href: `/schedule/${s.slug}` })),
   },
   {
     label: "Pricing",
-    children: [
-      { label: "Cecil Hills", href: "/pricing/cecil-hills" },
-      { label: "Kings Park", href: "/pricing/kings-park" },
-    ],
+    children: STUDIO_LIST.map((s) => ({ label: s.shortName, href: `/pricing/${s.slug}` })),
   },
-  { label: "Instructors", href: "/instructors" },
-  { label: "Shop", href: "/shop" },
-  { label: "Contact", href: "/contact" },
-] as const;
+  { label: "About", href: "/about" },
+];
 
 export const SOCIAL_LINKS = {
   instagram: "https://www.instagram.com/reformdpilates",
   facebook: "https://www.facebook.com/reformdpilates",
-};
-
-export const APP_LINKS = {
-  ios: "#",
-  android: "#",
 };
