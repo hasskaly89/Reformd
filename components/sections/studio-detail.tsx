@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { InstagramFeed } from "@/components/sections/instagram-feed";
 import { ButtonLink } from "@/components/ui/button-link";
 import { ImageSlot } from "@/components/ui/image-slot";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -146,6 +147,8 @@ export function StudioDetail({ studio }: { studio: Studio }) {
           </ul>
         </div>
       </section>
+
+      <InstagramFeed studios={[studio]} title={`Inside ${studio.shortName}`} />
 
       {/* FAQ */}
       <section className="bg-cement-50">

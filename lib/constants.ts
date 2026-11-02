@@ -77,6 +77,10 @@ export type Studio = {
   region: string;
   /** Neighbouring suburbs, for local SEO copy + schema areaServed */
   nearby: string[];
+  /** Instagram handle (no @). TODO(owner): set per studio if they have their own account */
+  instagram: string;
+  /** Google Maps listing, for "read our reviews" links */
+  googleReviewsUrl: string;
   mindbody: {
     studioId: string;
     /** Branded Web widget id for the embedded schedule */
@@ -144,6 +148,8 @@ export const STUDIOS: Record<StudioSlug, Studio> = {
     geo: { lat: -33.8903, lng: 150.8789 },
     region: "Liverpool, South-West Sydney",
     nearby: ["Abbotsbury", "Cecil Park", "Edensor Park", "Bonnyrigg Heights", "Green Valley", "Elizabeth Hills"],
+    instagram: "reformdpilatesstudio",
+    googleReviewsUrl: "https://www.google.com/maps/search/?api=1&query=Reformd+Pilates+Cecil+Hills",
     mindbody: mindbodyFor("5741473", "047812b344", 100041),
   },
   "kings-park": {
@@ -185,6 +191,8 @@ export const STUDIOS: Record<StudioSlug, Studio> = {
     geo: { lat: -33.7369, lng: 150.9011 },
     region: "Blacktown, Western Sydney",
     nearby: ["Blacktown", "Quakers Hill", "Marayong", "Kings Langley", "Acacia Gardens", "Glenwood"],
+    instagram: "reformdpilatesstudio",
+    googleReviewsUrl: "https://www.google.com/maps/search/?api=1&query=Reformd+Pilates+Kings+Park",
     mindbody: mindbodyFor("5749916", "20429556a3a", 100111),
   },
 };
@@ -329,6 +337,13 @@ export const NAV_LINKS: NavLink[] = [
   },
   { label: "About", href: "/about" },
 ];
+
+/**
+ * Google reviews widget (Repuso). Paste the embed code from
+ * Repuso > Widgets > your widget > "Get code" between the backticks.
+ * Empty = the site shows its own review cards instead.
+ */
+export const REVIEWS_WIDGET_HTML = ``;
 
 export const SOCIAL_LINKS = {
   instagram: "https://www.instagram.com/reformdpilatesstudio/",
