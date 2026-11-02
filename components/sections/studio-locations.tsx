@@ -13,7 +13,7 @@ export function StudioLocations() {
           eyebrow="Two studios"
           title="Two studios. Pick your closest."
           aside={
-            <p className="text-sm leading-relaxed text-cream/70">
+            <p className="hidden text-sm leading-relaxed text-cream/70 md:block">
               Cecil Hills for the south-west. Kings Park for Blacktown and the north-west.
             </p>
           }
@@ -30,7 +30,7 @@ export function StudioLocations() {
               />
               <h3 className="mt-6 text-3xl !text-cream">{s.shortName}</h3>
               <p className="mt-2 text-sm leading-relaxed text-cream/70">
-                {s.address}, {s.suburb} {s.state} {s.postcode} · {s.region}
+                {s.address}, {s.suburb} {s.state} {s.postcode}<span className="hidden md:inline"> · {s.region}</span>
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
                 <Link

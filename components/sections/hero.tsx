@@ -14,7 +14,7 @@ export function Hero() {
             Redefine strength, reform your body.
           </h1>
 
-          <p className="mt-6 max-w-md text-lg leading-relaxed text-charcoal/75">
+          <p className="mt-5 max-w-md text-base leading-relaxed text-charcoal/75 sm:text-lg">
             Small classes. Expert instructors. Five class types, every level welcome.
           </p>
 
@@ -25,7 +25,7 @@ export function Hero() {
             Try 4 classes for $49 <span aria-hidden>→</span>
           </a>
 
-          <div className="mt-10 grid max-w-md grid-cols-2 divide-x divide-brown/15 border-y border-brown/15">
+          <div className="mt-10 hidden max-w-md grid-cols-2 divide-x divide-brown/15 border-y border-brown/15 sm:grid">
             {STUDIO_LIST.map((s, i) => (
               <Link
                 key={s.slug}

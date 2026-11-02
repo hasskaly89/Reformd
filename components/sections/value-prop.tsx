@@ -14,7 +14,7 @@ export function ValueProp() {
         <ImageSlot
           src="/images/studios/cecil-hills-detail.jpg"
           alt="Reformd Pilates member on the reformer box with a resistance strap"
-          aspect="aspect-[4/5]"
+          aspect="aspect-[4/3] md:aspect-[4/5]"
           className="rounded-sm"
         />
         <div>
@@ -22,9 +22,9 @@ export function ValueProp() {
           <h2 className="mt-4 text-4xl lg:text-5xl">Boutique by design.</h2>
           <ul className="mt-8 divide-y divide-brown/15 border-y border-brown/15">
             {VALUES.map((v) => (
-              <li key={v.title} className="py-5">
+              <li key={v.title} className="py-4 sm:py-5">
                 <h3 className="text-lg md:text-xl">{v.title}</h3>
-                <p className="mt-1.5 text-sm text-charcoal/75">{v.body}</p>
+                <p className="mt-1.5 hidden text-sm text-charcoal/75 sm:block">{v.body}</p>
               </li>
             ))}
           </ul>

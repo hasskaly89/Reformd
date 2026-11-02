@@ -135,7 +135,7 @@ export function StudioDetail({ studio }: { studio: Studio }) {
           </h2>
         </div>
         <div>
-          <p className="text-base leading-relaxed text-charcoal/80">
+          <p className="hidden text-base leading-relaxed text-charcoal/80 sm:block">
             Our {studio.suburb} studio is a short drive from:
           </p>
           <ul className="mt-4 flex flex-wrap gap-2">

@@ -56,6 +56,17 @@ button.rounded-full {
   min-height: 44px;
 }
 
+@keyframes menu-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: none; }
+}
+.menu-in {
+  animation: menu-in 180ms ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .menu-in { animation: none; }
+}
+
 ::selection {
   background: var(--color-brown);
   color: var(--color-cream);

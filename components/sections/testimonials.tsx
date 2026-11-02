@@ -72,14 +72,14 @@ export function Testimonials() {
         {REVIEWS_WIDGET_HTML ? (
           <EmbedHtml html={REVIEWS_WIDGET_HTML} className="mt-10" />
         ) : (
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
+          <div className="-mx-5 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 sm:-mx-6 sm:px-6 md:mx-0 md:mt-10 md:grid md:grid-cols-3 md:gap-5 md:overflow-visible md:px-0 md:pb-0">
             {REVIEWS.map((r) => (
               <figure
                 key={r.initials}
-                className="flex flex-col rounded-sm bg-cream p-7 shadow-[0_1px_0_rgba(79,62,51,0.08),0_12px_30px_-18px_rgba(79,62,51,0.35)]"
+                className="flex w-[82%] shrink-0 snap-start flex-col rounded-sm bg-cream p-6 shadow-[0_1px_0_rgba(79,62,51,0.08),0_12px_30px_-18px_rgba(79,62,51,0.35)] md:w-auto md:p-7"
               >
                 <Stars />
-                <blockquote className="mt-5 flex-1 text-lg leading-relaxed text-charcoal/90">
+                <blockquote className="mt-4 flex-1 text-base leading-relaxed text-charcoal/90 md:mt-5 md:text-lg">
                   &ldquo;{r.quote}&rdquo;
                 </blockquote>
                 <figcaption className="mt-6 flex items-center justify-between text-xs uppercase tracking-[0.2em] text-brown/70">

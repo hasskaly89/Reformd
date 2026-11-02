@@ -18,9 +18,9 @@ export function ClassFormats() {
           }
         />
 
-        <div className="mt-10 grid grid-cols-2 gap-4 md:gap-5 lg:grid-cols-5">
+        <div className="-mx-5 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 sm:-mx-6 sm:px-6 md:mx-0 md:mt-10 md:grid md:grid-cols-3 md:gap-5 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-5">
           {CLASS_FORMATS.map((f) => (
-            <Link key={f.slug} href={`/classes#${f.slug}`} className="group flex flex-col">
+            <Link key={f.slug} href={`/classes#${f.slug}`} className="group flex w-[46%] shrink-0 snap-start flex-col md:w-auto">
               <ImageSlot
                 src={f.image}
                 alt={`${f.name} class at Reformd Pilates`}
@@ -32,7 +32,7 @@ export function ClassFormats() {
               <p className="mt-1 text-xs uppercase tracking-[0.15em] text-brown/60">
                 {f.variants.length ? f.variants.join(" · ") : "Reformer"}
               </p>
-              <p className="mt-2 text-sm leading-snug text-charcoal/75">{f.tagline}</p>
+              <p className="mt-2 hidden text-sm leading-snug text-charcoal/75 sm:block">{f.tagline}</p>
             </Link>
           ))}
         </div>
