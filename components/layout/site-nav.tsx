@@ -31,7 +31,7 @@ function NavAnchor({
   );
 }
 
-/** Hover + keyboard (focus-within) dropdown — no JS state. */
+/** Hover + keyboard (focus-within) dropdown, no JS state. */
 function Dropdown({
   label,
   items,

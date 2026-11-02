@@ -4,7 +4,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 const REVIEWS = [
   {
     quote:
-      "Absolutely love Reformd Pilates. The studio is stunning, the vibe is always welcoming, and the instructors are so knowledgeable and encouraging. Every class challenges me in the best way and leaves me feeling stronger, more flexible and refreshed.",
+      "Absolutely love Reformd Pilates. The studio is stunning, the vibe is always welcoming, and the instructors are so knowledgeable and encouraging.",
     initials: "S.M.",
   },
   {
@@ -14,7 +14,7 @@ const REVIEWS = [
   },
   {
     quote:
-      "Best Pilates studio I've been to. The trainers are experienced, very knowledgeable and helpful. The vibes are great and the range of class times available suits everyone's busy schedule.",
+      "Best Pilates studio I've been to. The trainers are experienced, very knowledgeable and helpful.",
     initials: "J.D.",
   },
 ];

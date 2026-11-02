@@ -11,7 +11,7 @@ import "./globals.css";
 /**
  * Display font: Roc Grotesk Wide (brand) via an Adobe Fonts web project.
  * Set NEXT_PUBLIC_TYPEKIT_ID to the 7-char kit id to switch it on.
- * Until then — or if the kit fails — Archivo Expanded (free, OFL) renders.
+ * Until then, or if the kit fails, Archivo Expanded (free, OFL) renders.
  */
 const TYPEKIT_ID = process.env.NEXT_PUBLIC_TYPEKIT_ID;
 
@@ -36,7 +36,7 @@ const body = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — Boutique Reformer Pilates · Cecil Hills & Kings Park`,
+    default: `${SITE_NAME} | Boutique Reformer Pilates · Cecil Hills & Kings Park`,
     template: `%s · ${SITE_NAME}`,
   },
   description: SITE_TAGLINE,

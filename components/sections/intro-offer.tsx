@@ -1,19 +1,17 @@
+import { ImageSlot } from "@/components/ui/image-slot";
 import { INTRO_OFFER_BUY_URL } from "@/lib/constants";
 
 export function IntroOffer() {
   return (
     <section id="intro-offer" className="bg-cement-50">
-      <div className="container-tight section grid gap-8 md:grid-cols-2 md:items-end md:gap-12">
+      <div className="container-tight section grid items-center gap-10 md:grid-cols-2 md:gap-12">
         <div>
           <p className="eyebrow">Intro offer</p>
           <h2 className="mt-4 text-5xl md:text-6xl">
             $49 for <br className="hidden md:block" />4 classes.
           </h2>
-        </div>
-        <div>
-          <p className="max-w-md text-base leading-relaxed text-charcoal/75">
-            New to Reformd? Try any class format at either studio — Reformer,
-            Jumpboard, Dynamic, Sculpt or Stretch. First-timers only.
+          <p className="mt-6 text-base text-charcoal/75">
+            Any class, either studio. First-timers only.
           </p>
           <a
             href={INTRO_OFFER_BUY_URL}
@@ -24,6 +22,12 @@ export function IntroOffer() {
             Claim the intro offer <span aria-hidden>→</span>
           </a>
         </div>
+        <ImageSlot
+          src="/images/hero/reformer-detail.jpg"
+          alt="Reformd Pilates member working with a Pilates ring on the reformer"
+          aspect="aspect-[4/3] md:aspect-[4/5]"
+          className="rounded-sm"
+        />
       </div>
     </section>
   );

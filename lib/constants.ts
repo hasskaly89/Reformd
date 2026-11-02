@@ -15,7 +15,7 @@ export type Studio = {
   state: "NSW";
   phone?: string;
   email?: string;
-  /** Google Maps embed query — `output=embed` URL */
+  /** Google Maps embed query - `output=embed` URL */
   mapsEmbed: string;
   /** Operating hours, day-by-day */
   hours: { day: string; open: string }[];
@@ -23,8 +23,10 @@ export type Studio = {
   classes: string[];
   /** Studio-specific facilities */
   facilities: string[];
-  /** What makes this studio unique — short paragraph */
+  /** One-line studio intro */
   blurb: string;
+  /** Studio photo under /public */
+  image: string;
   /** Mindbody integration */
   mindbody: {
     studioId: string;
@@ -59,7 +61,8 @@ export const STUDIOS: Record<StudioSlug, Studio> = {
       "Free on-site parking",
     ],
     blurb:
-      "Our flagship Cecil Hills studio is where Reformd began. It's the full menu — every class format, plus an on-site creche so the half-hour you carve out for yourself actually happens.",
+      "Where Reformd began. Every class format, plus an on-site creche.",
+    image: "/images/studios/cecil-hills-detail.jpg",
     mindbody: {
       studioId: "5741473",
       scheduleWidgetId: "047812b344",
@@ -89,7 +92,8 @@ export const STUDIOS: Record<StudioSlug, Studio> = {
       "Street parking",
     ],
     blurb:
-      "Our Kings Park studio brings the Reformd experience further west. Same boutique sizes, same instructor quality, with a class lineup tailored to the local schedule.",
+      "The Reformd standard, further west. Same small classes, same instructors.",
+    image: "/images/studios/kings-park-studio.jpg",
     mindbody: {
       studioId: "5749916",
       scheduleWidgetId: "20429556a3a",
@@ -99,11 +103,11 @@ export const STUDIOS: Record<StudioSlug, Studio> = {
   },
 };
 
-/** Intro offer URL — same product across both studios (hosted on Cecil Hills' Mindbody) */
+/** Intro offer URL - same product across both studios (hosted on Cecil Hills' Mindbody) */
 export const INTRO_OFFER_BUY_URL =
   "https://clients.mindbodyonline.com/classic/ws?studioid=5741473&stype=40&prodid=130";
 
-/** Pricing — identical at both studios; per-studio Mindbody URLs are derived */
+/** Pricing - identical at both studios; per-studio Mindbody URLs are derived */
 export type PricingTier = {
   name: string;
   price: string;
@@ -150,7 +154,7 @@ export const CLASS_FORMATS: ClassFormat[] = [
     name: "Reformer",
     tagline: "The classic. Long, lean, controlled.",
     description:
-      "Our signature class. A 50-minute full-body reformer session built around precision, breath and progressive load. Suitable for every level — beginners welcome, regulars challenged.",
+      "Our signature full-body class. Precision, breath and progressive load. Every level welcome.",
     availableAt: ["cecil-hills", "kings-park"],
   },
   {
@@ -160,7 +164,7 @@ export const CLASS_FORMATS: ClassFormat[] = [
     name: "Jumpboard",
     tagline: "Cardio in disguise.",
     description:
-      "Reformer meets HIIT. A jumpboard attached to the carriage turns the reformer into a low-impact cardio machine. Sweat without smashing your joints.",
+      "Reformer meets HIIT. Low-impact cardio that's easy on the joints.",
     availableAt: ["cecil-hills"],
   },
   {
@@ -171,7 +175,7 @@ export const CLASS_FORMATS: ClassFormat[] = [
     name: "Dynamic",
     tagline: "Faster pace, bigger burn.",
     description:
-      "A faster, flow-based reformer class. Continuous transitions, fewer rest beats — you finish having moved through the entire body.",
+      "A faster, flowing reformer class with fewer rest beats.",
     availableAt: ["cecil-hills", "kings-park"],
   },
   {
@@ -182,7 +186,7 @@ export const CLASS_FORMATS: ClassFormat[] = [
     name: "Sculpt",
     tagline: "Reformer + weights.",
     description:
-      "Layer in light dumbbells and resistance bands for a class that builds on the reformer base with targeted upper-body and glute work.",
+      "Light weights and bands for targeted upper-body and glute work.",
     availableAt: ["cecil-hills", "kings-park"],
   },
   {
@@ -193,7 +197,7 @@ export const CLASS_FORMATS: ClassFormat[] = [
     name: "Stretch",
     tagline: "Slow it down. Open up.",
     description:
-      "A 45-minute reformer-assisted mobility class. Holds, breath work, deep release. The recovery class your training already needs.",
+      "Mobility, breath work and deep release. Your recovery class.",
     availableAt: ["cecil-hills", "kings-park"],
   },
 ];
@@ -204,7 +208,7 @@ export const STUDIO_LIST: Studio[] = [
 ];
 
 /**
- * Site navigation — single source for header + footer.
+ * Site navigation - single source for header + footer.
  * V1: only routes that exist in this build. Add live-site links here.
  */
 export type NavLink = {

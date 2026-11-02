@@ -8,7 +8,7 @@ type Props = {
   tone?: "dark" | "light";
 };
 
-/** Standard section header — same left edge, same scale, everywhere. */
+/** Standard section header: same left edge, same scale, everywhere. */
 export function SectionHeading({ eyebrow, title, aside, tone = "dark" }: Props) {
   const light = tone === "light";
   return (

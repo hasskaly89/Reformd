@@ -36,17 +36,17 @@ const GROUP_META: Record<
   intro: {
     eyebrow: "Start here",
     title: "Intro offer",
-    lede: "First time at Reformd? Try us on.",
+    lede: "First time? Start here.",
   },
   membership: {
     eyebrow: "Best value",
     title: "Memberships",
-    lede: "Weekly direct debit. 12-week minimum, then ongoing — cancel any time after.",
+    lede: "Weekly direct debit. 12-week minimum.",
   },
   pack: {
     eyebrow: "No commitment",
     title: "Class packs",
-    lede: "Buy as you need. Casual through to bulk packs with long expiry windows.",
+    lede: "No lock-in. Buy as you go.",
   },
 };
 
@@ -71,13 +71,7 @@ export default function PricingPage({ params }: Props) {
       <PageHero
         eyebrow={`${studio.shortName} · Pricing`}
         title={<>Simple pricing. No surprises.</>}
-        lede={
-          <>
-            Identical pricing across both studios. Pick the option that suits
-            how often you want to move — or start with the intro offer and
-            decide from there.
-          </>
-        }
+        lede="Same prices at both studios."
       />
 
       <section className="bg-cream">

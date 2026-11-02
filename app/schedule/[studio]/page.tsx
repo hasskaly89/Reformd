@@ -40,13 +40,7 @@ export default function SchedulePage({ params }: Props) {
       <PageHero
         eyebrow={`${studio.shortName} · Live schedule`}
         title={<>Book your next class.</>}
-        lede={
-          <>
-            Live class schedule for {studio.name}. Tap any class to reserve your
-            spot — bookings are powered by Mindbody, the same system that runs
-            in-studio.
-          </>
-        }
+        lede="Tap a class to reserve your spot."
       />
 
       <section className="bg-cream">

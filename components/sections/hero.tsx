@@ -15,9 +15,7 @@ export function Hero() {
           </h1>
 
           <p className="mt-6 max-w-md text-lg leading-relaxed text-charcoal/75">
-            Two owner-operated studios in Cecil Hills and Kings Park. Small
-            classes, sharp instruction, and a room that&rsquo;s actually nice
-            to be in.
+            Boutique reformer studios in Cecil Hills and Kings Park.
           </p>
 
           <a
@@ -49,7 +47,7 @@ export function Hero() {
 
         <ImageSlot
           src="/images/hero/cecil-hills-studio.jpg"
-          alt="Cecil Hills Reformd Pilates studio interior — warm cream reformers in a low-lit boutique room"
+          alt="Cecil Hills Reformd Pilates studio interior with warm cream reformers in a low-lit boutique room"
           aspect="aspect-[4/3] md:aspect-[4/5]"
           priority
           className="rounded-sm"
