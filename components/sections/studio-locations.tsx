@@ -4,11 +4,6 @@ import { ImageSlot } from "@/components/ui/image-slot";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { STUDIO_LIST } from "@/lib/constants";
 
-const IMAGES: Record<string, string> = {
-  "cecil-hills": "/images/studios/cecil-hills-detail.jpg",
-  "kings-park": "/images/studios/kings-park-studio.jpg",
-};
-
 export function StudioLocations() {
   return (
     <section className="bg-brown text-cream">
@@ -16,10 +11,10 @@ export function StudioLocations() {
         <SectionHeading
           tone="light"
           eyebrow="Two studios"
-          title="Find your home in the south-west."
+          title="Two studios. Pick your closest."
           aside={
             <p className="text-sm leading-relaxed text-cream/70">
-              Two studios, same standard. Pick the one closer to home.
+              Cecil Hills for the south-west. Kings Park for Blacktown and the north-west.
             </p>
           }
         />
@@ -28,14 +23,14 @@ export function StudioLocations() {
           {STUDIO_LIST.map((s) => (
             <article key={s.slug}>
               <ImageSlot
-                src={IMAGES[s.slug]}
-                alt={`Reformd Pilates ${s.shortName} studio interior`}
+                src={s.image}
+                alt={`Inside the Reformd Pilates ${s.shortName} reformer studio`}
                 aspect="aspect-[4/3]"
                 className="rounded-sm"
               />
               <h3 className="mt-6 text-3xl !text-cream">{s.shortName}</h3>
               <p className="mt-2 text-sm leading-relaxed text-cream/70">
-                {s.address}, {s.suburb} {s.state} {s.postcode}
+                {s.address}, {s.suburb} {s.state} {s.postcode} · {s.region}
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
                 <Link

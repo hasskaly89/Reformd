@@ -36,10 +36,11 @@ const body = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} | Boutique Reformer Pilates · Cecil Hills & Kings Park`,
+    default: `Reformer Pilates Cecil Hills & Kings Park | ${SITE_NAME}`,
     template: `%s · ${SITE_NAME}`,
   },
-  description: SITE_TAGLINE,
+  description:
+    "Boutique reformer Pilates studios in Cecil Hills and Kings Park, Sydney. Small classes, five class formats, every level welcome. Try 4 classes for $49.",
   openGraph: {
     title: SITE_NAME,
     description: SITE_TAGLINE,

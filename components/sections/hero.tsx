@@ -8,14 +8,14 @@ export function Hero() {
     <section className="bg-gradient-to-b from-cream to-cement-100/60">
       <div className="container-tight grid items-center gap-10 py-12 md:grid-cols-2 md:gap-12 md:py-20 lg:py-24">
         <div>
-          <p className="eyebrow">Boutique reformer Pilates · NSW</p>
+          <p className="eyebrow">Reformer Pilates · Cecil Hills &amp; Kings Park</p>
 
           <h1 className="mt-6 text-balance text-5xl sm:text-6xl lg:text-7xl">
             Redefine strength, reform your body.
           </h1>
 
           <p className="mt-6 max-w-md text-lg leading-relaxed text-charcoal/75">
-            Boutique reformer studios in Cecil Hills and Kings Park.
+            Small classes. Expert instructors. Five ways to train on the reformer, every level welcome.
           </p>
 
           <a
@@ -46,8 +46,8 @@ export function Hero() {
         </div>
 
         <ImageSlot
-          src="/images/hero/cecil-hills-studio.jpg"
-          alt="Cecil Hills Reformd Pilates studio interior with warm cream reformers in a low-lit boutique room"
+          src="/images/gallery/cecil-hills-community.jpg"
+          alt="A full reformer Pilates class at Reformd Pilates Cecil Hills"
           aspect="aspect-[4/3] md:aspect-[4/5]"
           priority
           className="rounded-sm"

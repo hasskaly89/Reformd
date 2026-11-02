@@ -23,7 +23,7 @@ export function Testimonials() {
   return (
     <section className="bg-cream">
       <div className="container-tight section">
-        <SectionHeading eyebrow="From the room" title="The room speaks for itself." />
+        <SectionHeading eyebrow="From the room" title="Don’t take our word for it." />
         <div className="mt-10 grid gap-8 md:grid-cols-3 md:gap-10">
           {REVIEWS.map((r) => (
             <figure key={r.initials} className="flex flex-col border-t border-brown/15 pt-6">

@@ -11,7 +11,7 @@ export function IntroOffer() {
             $49 for <br className="hidden md:block" />4 classes.
           </h2>
           <p className="mt-6 text-base text-charcoal/75">
-            Any class, either studio. First-timers only.
+            New to Reformd? Book any class at either studio. First-timers only.
           </p>
           <a
             href={INTRO_OFFER_BUY_URL}
@@ -23,8 +23,8 @@ export function IntroOffer() {
           </a>
         </div>
         <ImageSlot
-          src="/images/hero/reformer-detail.jpg"
-          alt="Reformd Pilates member working with a Pilates ring on the reformer"
+          src="/images/studios/kings-park-studio.jpg"
+          alt="Reformers and Pilates rings set up for class at Reformd Pilates Kings Park"
           aspect="aspect-[4/3] md:aspect-[4/5]"
           className="rounded-sm"
         />

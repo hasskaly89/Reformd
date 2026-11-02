@@ -7,7 +7,7 @@ import { INTRO_OFFER_BUY_URL } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Owner-operated boutique reformer Pilates in South-West Sydney. Studios in Cecil Hills and Kings Park.",
+    "Owner-operated boutique reformer Pilates in Western Sydney. Studios in Cecil Hills and Kings Park.",
 };
 
 const GALLERY = [

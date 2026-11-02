@@ -27,6 +27,14 @@ export type Studio = {
   blurb: string;
   /** Studio photo under /public */
   image: string;
+  /** Map coordinates (from the studio shoot) */
+  geo: { lat: number; lng: number };
+  /** Council area + region, for local copy */
+  region: string;
+  /** Neighbouring suburbs, for local SEO copy + schema areaServed */
+  nearby: string[];
+  /** schema.org openingHours, mirrors `hours` */
+  openingHours: string[];
   /** Mindbody integration */
   mindbody: {
     studioId: string;
@@ -61,8 +69,12 @@ export const STUDIOS: Record<StudioSlug, Studio> = {
       "Free on-site parking",
     ],
     blurb:
-      "Where Reformd began. Every class format, plus an on-site creche.",
-    image: "/images/studios/cecil-hills-detail.jpg",
+      "Our flagship studio. All five class formats, plus an on-site creche.",
+    image: "/images/hero/cecil-hills-studio.jpg",
+    geo: { lat: -33.8903, lng: 150.8789 },
+    region: "Liverpool, South-West Sydney",
+    nearby: ["Abbotsbury", "Cecil Park", "Edensor Park", "Bonnyrigg Heights", "Green Valley", "Elizabeth Hills"],
+    openingHours: ["Mo-Fr 05:30-20:00", "Sa 07:00-12:00", "Su 08:00-11:00"],
     mindbody: {
       studioId: "5741473",
       scheduleWidgetId: "047812b344",
@@ -92,8 +104,12 @@ export const STUDIOS: Record<StudioSlug, Studio> = {
       "Street parking",
     ],
     blurb:
-      "The Reformd standard, further west. Same small classes, same instructors.",
-    image: "/images/studios/kings-park-studio.jpg",
+      "Reformer Pilates for Blacktown and the north-west. Same small classes, same standard.",
+    image: "/images/classes/reformer.jpg",
+    geo: { lat: -33.7369, lng: 150.9011 },
+    region: "Blacktown, Western Sydney",
+    nearby: ["Blacktown", "Quakers Hill", "Marayong", "Kings Langley", "Acacia Gardens", "Glenwood"],
+    openingHours: ["Mo-Fr 05:30-20:00", "Sa 07:00-12:00", "Su 08:00-11:00"],
     mindbody: {
       studioId: "5749916",
       scheduleWidgetId: "20429556a3a",
@@ -150,7 +166,7 @@ export const CLASS_FORMATS: ClassFormat[] = [
     slug: "reformer",
     duration: "50 min",
     intensity: "Moderate",
-    image: "/images/classes/reformer.jpg",
+    image: "/images/hero/reformer-detail.jpg",
     name: "Reformer",
     tagline: "The classic. Long, lean, controlled.",
     description:
