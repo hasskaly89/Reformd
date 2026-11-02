@@ -4,6 +4,7 @@ import { ClassFormats } from "@/components/sections/class-formats";
 import { Hero } from "@/components/sections/hero";
 import { InstagramFeed } from "@/components/sections/instagram-feed";
 import { IntroOffer } from "@/components/sections/intro-offer";
+import { MoreWays } from "@/components/sections/more-ways";
 import { StudioLocations } from "@/components/sections/studio-locations";
 import { Testimonials } from "@/components/sections/testimonials";
 import { ValueProp } from "@/components/sections/value-prop";
@@ -22,6 +23,7 @@ export default function HomePage() {
       <Testimonials />
       <InstagramFeed studios={STUDIO_LIST} />
       <StudioLocations />
+      <MoreWays />
       <IntroOffer />
     </>
   );

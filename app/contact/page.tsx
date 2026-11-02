@@ -17,15 +17,16 @@ export default function ContactPage() {
         title="Come and say hello."
         lede={
           <>
-            Call{" "}
+            Call us on{" "}
             <a href={PHONE_HREF} className="tabular text-brown underline underline-offset-4">
               {PHONE}
-            </a>{" "}
-            or{" "}
+            </a>
+            ,{" "}
             <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className="text-brown underline underline-offset-4">
               message us on Instagram
             </a>
-            .
+            , or drop into either studio before or after a class. The team at the desk can help with memberships,
+            bookings and the creche.
           </>
         }
       />

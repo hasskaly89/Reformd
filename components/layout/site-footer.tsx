@@ -7,7 +7,7 @@ const FOOTER_LINKS = [
   ...NAV_LINKS.flatMap((l) => (l.href ? [{ label: l.label, href: l.href }] : [])),
   { label: "Contact", href: "/contact" },
   { label: "Creche", href: "/creche" },
-  { label: "Private sessions", href: "/private-sessions" },
+  { label: "Private sessions & events", href: "/private-sessions" },
   { label: "Member login", href: "/login" },
 ];
 

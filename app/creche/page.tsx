@@ -50,7 +50,7 @@ export default function CrechePage() {
       <PageHero
         eyebrow="Creche"
         title="Your workout. Their playtime."
-        lede={`Supervised creche at both studios, ${CRECHE.days} at ${CRECHE.times.join(" and ")}. ${CRECHE.price} a session, or free with a ${CRECHE.freeFor}.`}
+        lede={`Reformd runs a supervised creche at both studios ${CRECHE.days}, at ${CRECHE.times.join(" and ")}. A staff member keeps it safe and engaging while you train, so you can enjoy your session knowing your little one is in good hands. ${CRECHE.price} a session, or free with a ${CRECHE.freeFor}.`}
       />
       <section className="container-tight section grid gap-12 md:grid-cols-2">
         <Steps title="1. Add your child" steps={ADD_FAMILY_STEPS} />
@@ -58,7 +58,7 @@ export default function CrechePage() {
       </section>
       <section className="bg-cement-50">
         <div className="container-tight flex flex-wrap items-center gap-3 py-12">
-          <p className="mr-auto text-lg text-brown">Prefer the website?</p>
+          <p className="mr-auto text-lg text-brown">Prefer the website? Book at whichever studio you&rsquo;re training at.</p>
           {STUDIO_LIST.map((s) => (
             <a
               key={s.slug}
