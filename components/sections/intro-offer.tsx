@@ -28,8 +28,9 @@ export function IntroOffer() {
           </div>
         </div>
         <ImageSlot
-          src="/images/studios/kings-park-studio.jpg"
-          alt="Reformers and Pilates rings set up for class at Reformd Pilates Kings Park"
+          src="/images/shoot/front-desk-welcome.jpg"
+          alt="Reformd team member welcoming people at the front desk"
+          position="50% 35%"
           aspect="aspect-[4/3] lg:aspect-[4/5]"
           className="rounded-sm"
         />

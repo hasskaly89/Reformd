@@ -12,9 +12,9 @@ export const metadata: Metadata = withOg({
 });
 
 const GALLERY = [
-  { src: "/images/hero/reformer-detail.jpg", alt: "Member using a Pilates ring on the reformer" },
-  { src: "/images/gallery/cecil-hills-community.jpg", alt: "A full class training at Reformd Cecil Hills" },
-  { src: "/images/classes/stretch.jpg", alt: "Stretch class on the reformer at Reformd Kings Park" },
+  { src: "/images/shoot/members-laughing.jpg", alt: "Three Reformd members laughing together in the studio lounge" },
+  { src: "/images/shoot/instructor-setup.jpg", alt: "Instructor helping a member set up a reformer before class" },
+  { src: "/images/shoot/class-strap.jpg", alt: "Members working with straps on the reformer in a Reformd class" },
 ];
 
 const VALUES = [

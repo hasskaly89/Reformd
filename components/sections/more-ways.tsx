@@ -19,8 +19,8 @@ const ITEMS = [
     eyebrow: "Private sessions & events",
     title: "Just you. Or just your people.",
     body: "1:1 and 2:1 reformer sessions tailored to your goals, and private group classes for birthdays, hens and team get-togethers.",
-    photo: "/images/hero/cecil-hills-studio.jpg",
-    alt: "Reformers set up under soft lighting at Reformd Pilates",
+    photo: "/images/shoot/private-session.jpg",
+    alt: "Instructor guiding a member through a strap stretch on the reformer",
   },
 ];
 

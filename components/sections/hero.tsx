@@ -54,8 +54,9 @@ export function Hero() {
         </div>
 
         <ImageSlot
-          src="/images/gallery/cecil-hills-community.jpg"
-          alt="A full reformer Pilates class at Reformd Pilates Cecil Hills"
+          src="/images/shoot/coaching-correction.jpg"
+          alt="Reformd instructor giving a member a hands-on correction during a reformer class"
+          position="50% 15%"
           aspect="aspect-[4/3] lg:aspect-[4/5]"
           priority
           className="rounded-sm"

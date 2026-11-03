@@ -277,8 +277,8 @@ export const CLASS_FORMATS: ClassFormat[] = [
     name: "Ignite",
     tagline: "Reformer meets cardio on the jumpboard.",
     variants: ["Fired Up"],
-    // TODO(owner): swap for a jumpboard shot
-    image: "/images/studios/kings-park-studio.jpg",
+    // TODO(owner): swap for a jumpboard shot when one exists
+    image: "/images/shoot/ignite-lunge.jpg",
     availableAt: ["cecil-hills", "kings-park"],
   },
   {
@@ -286,7 +286,7 @@ export const CLASS_FORMATS: ClassFormat[] = [
     name: "Lift",
     tagline: "Strength where it counts: lower, upper or total body.",
     variants: ["Lower", "Upper", "Total"],
-    image: "/images/classes/sculpt.jpg",
+    image: "/images/shoot/lift-weights.jpg",
     availableAt: ["cecil-hills", "kings-park"],
   },
   {

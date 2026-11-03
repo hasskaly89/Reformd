@@ -41,8 +41,8 @@ export default function PrivateSessionsPage() {
       <section className="container-tight section grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
           <ImageSlot
-            src="/images/hero/reformer-detail.jpg"
-            alt="A member working on the reformer at Reformd Pilates"
+            src="/images/shoot/private-session.jpg"
+            alt="Instructor guiding a member through a strap stretch on the reformer"
             aspect="aspect-[4/3] lg:aspect-[4/5]"
             className="rounded-sm"
           />
@@ -68,8 +68,8 @@ export default function PrivateSessionsPage() {
         <div className="container-tight section grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
           <div className="lg:order-2 lg:col-span-5">
             <ImageSlot
-              src="/images/gallery/cecil-hills-community.jpg"
-              alt="A full group class on the reformers at Reformd Pilates"
+              src="/images/shoot/members-lounge.jpg"
+              alt="Group of friends laughing together in the Reformd Pilates lounge"
               aspect="aspect-[4/3] lg:aspect-[4/5]"
               className="rounded-sm"
             />

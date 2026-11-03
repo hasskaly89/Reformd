@@ -9,6 +9,8 @@ type Props = {
   className?: string;
   priority?: boolean;
   sizes?: string;
+  /** CSS object-position focal point, e.g. "50% 20%", so crops keep faces in frame */
+  position?: string;
 };
 
 export function ImageSlot({
@@ -18,11 +20,12 @@ export function ImageSlot({
   className = "",
   priority,
   sizes = "(min-width: 1024px) 50vw, 100vw",
+  position,
 }: Props) {
   return (
     <div className={`relative overflow-hidden bg-cement-100 ${aspect} ${className}`}>
       {src && (
-        <Image src={src} alt={alt} fill priority={priority} sizes={sizes} className="object-cover" />
+        <Image src={src} alt={alt} fill priority={priority} sizes={sizes} className="object-cover" style={position ? { objectPosition: position } : undefined} />
       )}
     </div>
   );
