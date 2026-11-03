@@ -3,48 +3,78 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-import { NAV_LINKS, STUDIO_LIST } from "@/lib/constants";
+import { NAV_LINKS, PHONE, PHONE_HREF, SOCIAL_LINKS, STUDIO_LIST, type NavLink } from "@/lib/constants";
 
-type DesktopDropdownProps = {
+const BOOK_ITEMS = STUDIO_LIST.map((s) => ({ label: s.shortName, href: `/schedule/${s.slug}` }));
+
+function NavAnchor({
+  href,
+  external,
+  className,
+  children,
+}: {
+  href: string;
+  external?: boolean;
+  className: string;
+  children: React.ReactNode;
+}) {
+  return external ? (
+    <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+      {children}
+    </a>
+  ) : (
+    <Link href={href} className={className}>
+      {children}
+    </Link>
+  );
+}
+
+/** Hover + keyboard (focus-within) dropdown, no JS state. */
+function Dropdown({
+  label,
+  items,
+  align = "center",
+  trigger,
+}: {
   label: string;
-  items: ReadonlyArray<{ label: string; href: string }>;
-};
-
-function DesktopDropdown({ label, items }: DesktopDropdownProps) {
+  items: NonNullable<NavLink["children"]>;
+  align?: "center" | "right";
+  trigger?: string;
+}) {
   return (
     <div className="group relative">
       <button
         type="button"
-        className="flex items-center gap-1 py-2 text-sm tracking-wide text-charcoal/80 transition-colors hover:text-brown"
+        aria-haspopup="true"
+        className={
+          trigger ??
+          "flex items-center gap-1 py-2 text-sm text-charcoal/80 transition-colors hover:text-brown"
+        }
       >
         {label}
-        <svg
-          aria-hidden
-          width="10"
-          height="10"
-          viewBox="0 0 10 10"
-          className="transition-transform group-hover:rotate-180"
-        >
-          <path
-            d="M2 4l3 3 3-3"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            fill="none"
-          />
-        </svg>
+        {!trigger && (
+          <svg aria-hidden width="10" height="10" viewBox="0 0 10 10">
+            <path d="M2 4l3 3 3-3" stroke="currentColor" strokeWidth="1.5" fill="none" />
+          </svg>
+        )}
       </button>
-      <div className="invisible absolute left-1/2 top-full z-50 -translate-x-1/2 pt-2 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100">
-        <div className="min-w-[180px] rounded-md border border-cement/30 bg-cream py-2 shadow-lg">
+      <div
+        className={`invisible absolute top-full z-50 pt-2 opacity-0 transition-opacity group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100 ${
+          align === "right" ? "right-0" : "left-1/2 -translate-x-1/2"
+        }`}
+      >
+        <div className="min-w-[170px] rounded-md border border-cement/40 bg-cream py-2 shadow-lg">
           {items.map((item) => (
-            <Link
+            <NavAnchor
               key={item.href}
               href={item.href}
-              className="block px-4 py-2 text-sm text-charcoal/80 transition-colors hover:bg-cement/10 hover:text-brown"
+              external={item.external}
+              className="block px-4 py-2 text-sm text-charcoal/80 hover:bg-cement/15 hover:text-brown"
             >
               {item.label}
-            </Link>
+            </NavAnchor>
           ))}
         </div>
       </div>
@@ -52,193 +82,213 @@ function DesktopDropdown({ label, items }: DesktopDropdownProps) {
   );
 }
 
-function BookNowButton({ variant = "desktop" }: { variant?: "desktop" | "mobile" }) {
-  const [open, setOpen] = useState(false);
-  const base =
-    "inline-flex items-center justify-center rounded-full bg-brown px-6 py-2.5 text-sm font-medium tracking-wide text-cream transition-colors hover:bg-charcoal";
-
-  if (variant === "mobile") {
-    return (
-      <div className="flex flex-col gap-3">
-        <p className="text-xs uppercase tracking-[0.2em] text-charcoal/50">
-          Book Now
-        </p>
-        {STUDIO_LIST.map((s) => (
-          <Link
-            key={s.slug}
-            href={`/schedule/${s.slug}`}
-            className={base + " w-full"}
-          >
-            Book {s.shortName}
-          </Link>
-        ))}
-      </div>
-    );
-  }
-
-  return (
-    <div className="relative">
-      <button
-        type="button"
-        onClick={() => setOpen((o) => !o)}
-        onBlur={() => setTimeout(() => setOpen(false), 150)}
-        className={base}
-      >
-        Book Now
-      </button>
-      {open && (
-        <div className="absolute right-0 top-full z-50 mt-2 min-w-[200px] rounded-md border border-cement/30 bg-cream py-2 shadow-lg">
-          <p className="px-4 pb-2 text-xs uppercase tracking-[0.2em] text-charcoal/50">
-            Choose a studio
-          </p>
-          {STUDIO_LIST.map((s) => (
-            <Link
-              key={s.slug}
-              href={`/schedule/${s.slug}`}
-              className="block px-4 py-2 text-sm text-charcoal/80 transition-colors hover:bg-cement/10 hover:text-brown"
-            >
-              {s.shortName}
-            </Link>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
+const PRIMARY_BTN =
+  "inline-flex items-center justify-center rounded-full bg-brown px-6 py-2.5 text-sm font-medium text-cream transition-colors hover:bg-charcoal";
 
 export function SiteNav() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [showBar, setShowBar] = useState(false);
   const pathname = usePathname();
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const wasOpen = useRef(false);
 
+  useEffect(() => setOpen(false), [pathname]);
+
+  // Menu open: lock scroll, focus first link, close on Escape. On close, return focus to the toggle.
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    document.body.style.overflow = open ? "hidden" : "";
+    if (open) {
+      wasOpen.current = true;
+      menuRef.current?.querySelector<HTMLElement>("a,button")?.focus();
+      const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+      document.addEventListener("keydown", onKey);
+      return () => {
+        document.removeEventListener("keydown", onKey);
+        document.body.style.overflow = "";
+      };
+    }
+    if (wasOpen.current) toggleRef.current?.focus();
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  // Mobile booking bar appears once the hero has scrolled away
+  useEffect(() => {
+    const onScroll = () => setShowBar(window.scrollY > 560);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileOpen]);
+  const hideBar = pathname.startsWith("/schedule") || pathname.startsWith("/pricing");
 
   return (
-    <header
-      className={`sticky top-0 z-40 transition-colors duration-200 ${
-        scrolled || mobileOpen
-          ? "border-b border-cement/30 bg-cream/95 backdrop-blur"
-          : "bg-transparent"
-      }`}
-    >
-      <nav className="container-tight flex h-20 items-center justify-between gap-6">
-        <Link href="/" className="shrink-0" aria-label="Reformd Pilates home">
-          <Image
-            src="/images/logo-brown.svg"
-            alt="Reformd Pilates"
-            width={140}
-            height={26}
-            priority
-            className="h-6 w-auto"
-          />
-        </Link>
+    <>
+      <header className="sticky top-0 z-40 border-b border-cement/40 bg-cream/95 backdrop-blur">
+        <nav className="container-tight flex h-16 items-center justify-between gap-6 md:h-20">
+          <Link href="/" className="shrink-0 py-3" aria-label="Reformd Pilates home">
+            <Image
+              src="/images/logo-brown.svg"
+              alt="Reformd Pilates"
+              width={140}
+              height={26}
+              priority
+              className="h-5 w-auto md:h-6"
+            />
+          </Link>
 
-        <div className="hidden items-center gap-7 lg:flex">
-          {NAV_LINKS.map((link) =>
-            "children" in link ? (
-              <DesktopDropdown
-                key={link.label}
-                label={link.label}
-                items={link.children}
-              />
-            ) : (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm tracking-wide text-charcoal/80 transition-colors hover:text-brown"
-              >
-                {link.label}
-              </Link>
-            ),
-          )}
-        </div>
+          <div className="hidden items-center gap-8 lg:flex">
+            {NAV_LINKS.map((link) =>
+              link.children ? (
+                <Dropdown key={link.label} label={link.label} items={link.children} />
+              ) : (
+                <NavAnchor
+                  key={link.label}
+                  href={link.href!}
+                  external={link.external}
+                  className="py-2 text-sm text-charcoal/80 transition-colors hover:text-brown"
+                >
+                  {link.label}
+                </NavAnchor>
+              ),
+            )}
+          </div>
 
-        <div className="hidden lg:block">
-          <BookNowButton />
-        </div>
+          <div className="hidden lg:block">
+            <Dropdown label="Book now" items={BOOK_ITEMS} align="right" trigger={PRIMARY_BTN} />
+          </div>
 
-        <button
-          type="button"
-          aria-label="Toggle menu"
-          aria-expanded={mobileOpen}
-          onClick={() => setMobileOpen((o) => !o)}
-          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden"
+          <div className="flex items-center gap-2 lg:hidden">
+          <Link
+            href="/schedule"
+            className="inline-flex items-center justify-center rounded-full bg-brown px-4 py-2 text-sm font-medium text-cream"
+          >
+            Book
+          </Link>
+          <button
+            ref={toggleRef}
+            type="button"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            onClick={() => setOpen((o) => !o)}
+            className="-mr-2 flex h-11 w-11 flex-col items-center justify-center gap-1.5"
+          >
+            <span className={`block h-0.5 w-6 bg-charcoal transition-transform ${open ? "translate-y-2 rotate-45" : ""}`} />
+            <span className={`block h-0.5 w-6 bg-charcoal transition-opacity ${open ? "opacity-0" : ""}`} />
+            <span className={`block h-0.5 w-6 bg-charcoal transition-transform ${open ? "-translate-y-2 -rotate-45" : ""}`} />
+          </button>
+          </div>
+        </nav>
+      </header>
+
+      {open && (
+        <div
+          id="mobile-menu"
+          ref={menuRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menu"
+          className="menu-in fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto bg-cream lg:hidden"
         >
-          <span
-            className={`block h-px w-6 bg-charcoal transition-transform duration-200 ${
-              mobileOpen ? "translate-y-[7px] rotate-45" : ""
-            }`}
-          />
-          <span
-            className={`block h-px w-6 bg-charcoal transition-opacity duration-200 ${
-              mobileOpen ? "opacity-0" : ""
-            }`}
-          />
-          <span
-            className={`block h-px w-6 bg-charcoal transition-transform duration-200 ${
-              mobileOpen ? "-translate-y-[7px] -rotate-45" : ""
-            }`}
-          />
-        </button>
-      </nav>
-
-      {mobileOpen && (
-        <div className="lg:hidden">
-          <div className="container-tight max-h-[calc(100vh-5rem)] overflow-y-auto py-6">
-            <ul className="flex flex-col divide-y divide-cement/20">
-              {NAV_LINKS.map((link) =>
-                "children" in link ? (
-                  <li key={link.label} className="py-4">
-                    <p className="mb-2 text-xs uppercase tracking-[0.2em] text-charcoal/50">
-                      {link.label}
-                    </p>
-                    <ul className="flex flex-col gap-2 pl-1">
-                      {link.children.map((child) => (
-                        <li key={child.href}>
-                          <Link
-                            href={child.href}
-                            className="text-base text-charcoal/80 transition-colors hover:text-brown"
-                          >
-                            {child.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-                ) : (
-                  <li key={link.href} className="py-4">
+          <div className="container-tight flex min-h-full flex-col pb-8 pt-6">
+            {/* Studios: every action is per studio, so group by studio */}
+            <div className="grid gap-4">
+              {STUDIO_LIST.map((s) => (
+                <section key={s.slug} className="rounded-2xl border border-brown/15 bg-white/60 p-5">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <h2 className="text-2xl">{s.shortName}</h2>
+                    <span className="text-xs text-charcoal/60">{s.region.split(", ")[1]}</span>
+                  </div>
+                  <div className="mt-4 grid grid-cols-2 gap-2">
                     <Link
-                      href={link.href}
-                      className="text-base text-charcoal/90 transition-colors hover:text-brown"
+                      href={`/schedule/${s.slug}`}
+                      className="col-span-2 inline-flex items-center justify-center rounded-full bg-brown px-4 py-3 text-base font-medium text-cream"
                     >
-                      {link.label}
+                      Book a class
                     </Link>
-                  </li>
-                ),
-              )}
+                    <Link
+                      href={`/pricing/${s.slug}`}
+                      className="inline-flex items-center justify-center rounded-full border border-brown/25 px-4 py-3 text-sm font-medium text-brown"
+                    >
+                      Pricing
+                    </Link>
+                    <Link
+                      href={`/studios/${s.slug}`}
+                      className="inline-flex items-center justify-center rounded-full border border-brown/25 px-4 py-3 text-sm font-medium text-brown"
+                    >
+                      Studio info
+                    </Link>
+                  </div>
+                </section>
+              ))}
+            </div>
+
+            {/* Site pages */}
+            <ul className="mt-6 border-t border-brown/15">
+              {[
+                { label: "Classes", href: "/classes" },
+                { label: "About", href: "/about" },
+                { label: "Creche", href: "/creche" },
+                { label: "Contact", href: "/contact" },
+              ].map((l) => (
+                <li key={l.href} className="border-b border-brown/15">
+                  <Link href={l.href} className="flex items-center justify-between py-4 font-display text-2xl font-semibold uppercase text-brown">
+                    {l.label} <span aria-hidden className="font-sans text-xl text-brown/50">→</span>
+                  </Link>
+                </li>
+              ))}
             </ul>
-            <div className="mt-6">
-              <BookNowButton variant="mobile" />
+
+            <div className="mt-auto pt-8">
+              <a
+                href="/#intro-offer"
+                onClick={() => setOpen(false)}
+                className="flex items-center justify-between rounded-2xl bg-brown px-5 py-4 text-cream"
+              >
+                <span>
+                  <span className="block text-xs uppercase tracking-[0.16em] text-cream/70">New here?</span>
+                  <span className="mt-1 block font-display text-xl font-semibold uppercase">4 classes for $49</span>
+                </span>
+                <span aria-hidden className="text-2xl">→</span>
+              </a>
+              <div className="mt-5 flex items-center justify-between text-sm text-brown">
+                <a href={PHONE_HREF} className="py-3 tabular">{PHONE}</a>
+                <Link href="/login" className="py-3">Member login</Link>
+                <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className="py-3">Instagram</a>
+              </div>
             </div>
           </div>
         </div>
       )}
-    </header>
+
+      {/* Persistent mobile booking action once the hero is out of view */}
+      {!open && !hideBar && (
+        <div
+          className={`fixed inset-x-0 bottom-0 z-30 border-t border-brown/15 bg-cream/95 px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 backdrop-blur transition-transform duration-200 lg:hidden ${
+            showBar ? "translate-y-0" : "translate-y-full"
+          }`}
+          aria-hidden={!showBar}
+        >
+          <div className="mx-auto flex max-w-md gap-2">
+            <Link
+              href="/schedule"
+              tabIndex={showBar ? 0 : -1}
+              className="flex-1 inline-flex items-center justify-center rounded-full border border-brown/25 px-4 py-3 text-sm font-medium text-brown"
+            >
+              Book a class
+            </Link>
+            <a
+              href="/#intro-offer"
+              tabIndex={showBar ? 0 : -1}
+              className="flex-1 inline-flex items-center justify-center rounded-full bg-brown px-4 py-3 text-sm font-medium text-cream"
+            >
+              4 classes for $49
+            </a>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

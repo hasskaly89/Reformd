@@ -1,170 +1,91 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import { PageHero } from "@/components/sections/page-hero";
-import { ButtonLink } from "@/components/ui/button-link";
-import { Reveal } from "@/components/ui/reveal";
+import { ImageSlot } from "@/components/ui/image-slot";
+import { withOg } from "@/lib/meta";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: "About",
   description:
-    "Owner-operated boutique reformer Pilates in South-West Sydney. The story behind Reformd Pilates and how we came to be.",
-};
+    "Owner-operated boutique reformer Pilates in Western Sydney. Studios in Cecil Hills and Kings Park.",
+  alternates: { canonical: "/about" },
+});
+
+const GALLERY = [
+  { src: "/images/shoot/members-laughing.jpg", alt: "Three members laughing together in the lounge at Reformd Kings Park" },
+  { src: "/images/shoot/instructor-setup.jpg", alt: "Instructor helping a member set up a reformer before class at Reformd Kings Park" },
+  { src: "/images/shoot/class-strap.jpg", alt: "Members working with straps on the reformer at Reformd Kings Park" },
+];
+
+const VALUES = [
+  { h: "Small rooms", b: "Capped classes, so everyone gets corrections." },
+  { h: "Hospitality", b: "Lighting, music, the welcome at the door. It all counts." },
+  { h: "Everyone welcome", b: "Beginners, post-natal, gym-shy. Strength is for everyone." },
+  { h: "Owner-operated", b: "Not a franchise. The standard is set in the room." },
+];
 
 export default function AboutPage() {
   return (
     <>
       <PageHero
         eyebrow="Our story"
-        title={<>Redefining Pilates for the modern mover.</>}
-        lede="At Reformd, our mission is to empower every individual to build strength, flexibility and confidence through precise, purposeful movement — in a studio that feels like a refuge, not a franchise."
+        title="Redefining Pilates for the modern mover."
+        lede="A studio that feels like a refuge, not a franchise."
       />
 
-      <section className="container-tight py-24 md:py-28">
-        <div className="grid gap-12 lg:grid-cols-[1fr_2fr] lg:gap-20">
-          <Reveal>
-            <p className="text-xs uppercase tracking-[0.3em] text-brown/60">
-              The founder
-            </p>
-            <h2 className="mt-3 text-4xl">A decade on the reformer.</h2>
-          </Reveal>
-
-          <Reveal delay={0.05}>
-            <div className="space-y-6 text-lg leading-relaxed text-charcoal/80">
-              <p>
-                {/* Placeholder — swap in the founder's story here. */}
-                Reformd started with a single instructor, a decade of
-                experience teaching reformer Pilates across Sydney, and a
-                conviction that the boutique studios already on offer were
-                either too corporate or too intimidating for the people who
-                most needed them.
-              </p>
-              <p>
-                That instructor wanted a studio that felt like a refuge — warm
-                walls, lighting that didn&rsquo;t make you self-conscious, an
-                instructor who knew your name by your second class. Premium,
-                yes. Polished, absolutely. But never cold.
-              </p>
-              <p>
-                Today Reformd is two studios — Cecil Hills and Kings Park —
-                and a team of instructors hand-picked for their teaching, not
-                their following count. Same studio philosophy at both: small
-                classes, sharp instruction, and a room that&rsquo;s actually nice to
-                be in.
-              </p>
-            </div>
-          </Reveal>
+      <section className="container-tight section grid gap-10 lg:grid-cols-2 lg:gap-12">
+        <div>
+          <p className="eyebrow">The founder</p>
+          <h2 className="mt-4 text-[2rem] sm:text-4xl lg:text-5xl">Where it started.</h2>
         </div>
-      </section>
-
-      <section className="bg-cement-50">
-        <div className="container-tight py-24 md:py-28">
-          <Reveal>
-            <p className="text-xs uppercase tracking-[0.3em] text-brown/60">
-              How we started
-            </p>
-            <h2 className="mt-3 max-w-2xl text-4xl">
-              From one reformer in Cecil Hills to two studios across the
-              south-west.
-            </h2>
-          </Reveal>
-
-          <div className="mt-14 grid gap-10 md:grid-cols-3">
-            {[
-              {
-                year: "Day one",
-                title: "Cecil Hills opens",
-                body: "A boutique reformer studio in the heart of Cecil Hills, with on-site creche and a class roster built around real-life schedules.",
-              },
-              {
-                year: "Year one",
-                title: "Five formats, one room",
-                body: "Reformer, Jumpboard, Dynamic, Sculpt and Stretch — five formats so members never out-grow the room, and so the body keeps adapting.",
-              },
-              {
-                year: "Today",
-                title: "Kings Park joins",
-                body: "Same standard, second postcode. Kings Park brings the Reformd experience to Sydney's west — same boutique sizes, same instructor quality.",
-              },
-            ].map((m, i) => (
-              <Reveal key={m.year} delay={i * 0.06}>
-                <article className="border-l border-brown/20 pl-6">
-                  <p className="text-xs uppercase tracking-[0.2em] text-cement-700">
-                    {m.year}
-                  </p>
-                  <h3 className="mt-2 text-2xl">{m.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-charcoal/75">
-                    {m.body}
-                  </p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="container-tight py-24 md:py-28">
-        <Reveal>
-          <p className="text-xs uppercase tracking-[0.3em] text-brown/60">
-            What we believe
+        {/* TODO(owner): swap in the founder's own story, with verified experience and credentials. */}
+        <div className="space-y-4 text-lg leading-relaxed text-charcoal/80">
+          <p>
+            Reformd started with one instructor who found boutique studios
+            either too corporate or too intimidating for the people who needed
+            them most.
           </p>
-          <h2 className="mt-3 max-w-3xl text-4xl">
-            Boutique isn&rsquo;t a price point. It&rsquo;s a standard of attention.
-          </h2>
-        </Reveal>
-
-        <div className="mt-12 grid gap-x-10 gap-y-10 md:grid-cols-2">
-          {[
-            {
-              h: "Small rooms, sharp instruction",
-              b: "Class sizes capped so every member gets corrections — not just front-of-room cues you have to translate yourself.",
-            },
-            {
-              h: "Hospitality, not just fitness",
-              b: "The lighting, the music, the towels, the way you're greeted on the way in. The little things compound into how a session feels.",
-            },
-            {
-              h: "Inclusive by design",
-              b: "Beginner welcome, post-natal welcome, intimidated-by-gyms welcome. Strength is for everyone — and everyone is invited.",
-            },
-            {
-              h: "Owner-operated, always",
-              b: "We're not a franchise. The standard at Reformd is set by the people teaching in the room, not a head office two cities away.",
-            },
-          ].map((v, i) => (
-            <Reveal key={v.h} delay={i * 0.05}>
-              <div>
-                <h3 className="text-xl">{v.h}</h3>
-                <p className="mt-3 text-base leading-relaxed text-charcoal/75">
-                  {v.b}
-                </p>
-              </div>
-            </Reveal>
-          ))}
+          <p>
+            Today it&rsquo;s two studios, Cecil Hills and Kings Park, with
+            instructors picked for their teaching.
+          </p>
         </div>
+      </section>
+
+      <section className="container-tight grid grid-cols-3 gap-3 md:gap-5">
+        {GALLERY.map((g) => (
+          <ImageSlot
+            key={g.src}
+            src={g.src}
+            alt={g.alt}
+            aspect="aspect-[4/5]"
+            sizes="33vw"
+            className="rounded-sm"
+          />
+        ))}
+      </section>
+
+      <section className="container-tight section">
+        <p className="eyebrow">What we believe</p>
+        <ul className="mt-6 grid gap-x-12 border-t border-brown/15 sm:grid-cols-2">
+          {VALUES.map((v) => (
+            <li key={v.h} className="border-b border-brown/15 py-5">
+              <h3 className="text-xl">{v.h}</h3>
+              <p className="mt-1 text-sm text-charcoal/75">{v.b}</p>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section className="bg-brown text-cream">
-        <div className="container-tight flex flex-col items-start gap-6 py-20 md:flex-row md:items-center md:justify-between">
-          <div>
-            <h2 className="text-cream text-3xl md:text-4xl">
-              See it for yourself.
-            </h2>
-            <p className="mt-3 max-w-md text-cream/70">
-              Four sessions for $49 — try us at either studio.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            <ButtonLink href="/studios/cecil-hills" variant="secondary">
-              Cecil Hills
-            </ButtonLink>
-            <Link
-              href="/studios/kings-park"
-              className="inline-flex items-center justify-center rounded-full border border-cream/30 px-7 py-3 text-sm font-medium tracking-wide text-cream transition-colors hover:bg-cream/10"
-            >
-              Kings Park
-            </Link>
-          </div>
+        <div className="container-tight flex flex-col items-start gap-6 py-14 md:flex-row md:items-center md:justify-between">
+          <h2 className="text-3xl !text-cream md:text-4xl">4 classes for $49.</h2>
+          <a
+            href="/#intro-offer"
+            className="inline-flex items-center justify-center rounded-full bg-cream px-7 py-3 text-sm font-medium text-brown transition-colors hover:bg-cement-100"
+          >
+            Claim the intro offer
+          </a>
         </div>
       </section>
     </>

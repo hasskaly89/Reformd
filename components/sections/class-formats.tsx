@@ -1,151 +1,47 @@
 import Link from "next/link";
 
 import { ImageSlot } from "@/components/ui/image-slot";
-import { Reveal } from "@/components/ui/reveal";
-import { SectionNumber } from "@/components/ui/section-number";
-
-const FORMATS: Array<{
-  name: string;
-  blurb: string;
-  intensity: string;
-  duration: string;
-  tone: "warm" | "stone" | "dark";
-  src?: string;
-  alt?: string;
-}> = [
-  {
-    name: "Reformer",
-    blurb:
-      "The classic. Long, controlled movement that builds deep core strength and lean muscle.",
-    intensity: "Moderate",
-    duration: "50 min",
-    tone: "warm",
-    src: "/images/classes/reformer.jpg",
-    alt: "Reformer pilates — sculpted controlled movement on the reformer",
-  },
-  {
-    name: "Jumpboard",
-    blurb:
-      "Cardio on the reformer. Add a jumpboard, get your heart rate up, and protect your joints at the same time.",
-    intensity: "High",
-    duration: "50 min",
-    tone: "stone",
-    // placeholder — no jumpboard photo yet
-  },
-  {
-    name: "Dynamic",
-    blurb:
-      "Faster tempo, weighted ball, more reps. Pilates principles dialled toward endurance and burn.",
-    intensity: "High",
-    duration: "45 min",
-    tone: "dark",
-    src: "/images/classes/dynamic.jpg",
-    alt: "Morning Pilates routine — dynamic flow energy on the reformer",
-  },
-  {
-    name: "Sculpt",
-    blurb:
-      "Reformer + light weights for upper-body and glute focus. Builds visible tone without bulk.",
-    intensity: "Moderate",
-    duration: "50 min",
-    tone: "warm",
-    src: "/images/classes/sculpt.jpg",
-    alt: "Reformd Pilates Sculpt class — community-style training on the reformer",
-  },
-  {
-    name: "Stretch",
-    blurb:
-      "Recovery, mobility and breath. The session that lets the rest of the week happen.",
-    intensity: "Low",
-    duration: "45 min",
-    tone: "stone",
-    src: "/images/classes/stretch.jpg",
-    alt: "Reformd Pilates Stretch class — slow controlled mobility work",
-  },
-];
+import { SectionHeading } from "@/components/ui/section-heading";
+import { CLASS_FORMATS } from "@/lib/constants";
 
 export function ClassFormats() {
   return (
-    <section className="relative isolate bg-cement-50">
-      <div className="container-tight py-28 md:py-36">
-        <div className="grid grid-cols-12 gap-6">
-          <div className="col-span-12 md:col-span-7">
-            <Reveal>
-              <SectionNumber index="02" label="Class formats" />
-              <h2 className="mt-8 max-w-3xl text-balance text-4xl leading-[0.95] md:text-5xl lg:text-6xl">
-                Five formats. One reformer. No two weeks the same.
-              </h2>
-            </Reveal>
-          </div>
-          <div className="col-span-12 flex items-end justify-start md:col-span-5 md:justify-end">
-            <Reveal delay={0.1}>
-              <Link
-                href="/classes"
-                className="link-underline inline-flex items-center gap-2 text-sm tracking-wide text-brown"
-              >
-                See all classes
-                <span aria-hidden>→</span>
-              </Link>
-            </Reveal>
-          </div>
-        </div>
+    <section className="bg-cement-50">
+      <div className="container-tight section">
+        <SectionHeading
+          eyebrow="Class formats"
+          title="Five class types. One reformer."
+          aside={
+            <Link href="/classes" className="text-sm text-brown underline-offset-4 hover:underline">
+              See all classes →
+            </Link>
+          }
+        />
 
-        {/* Asymmetric editorial grid — first card spans 2 cols, then 3-up rows */}
-        <div className="mt-16 grid grid-cols-12 gap-5">
-          {FORMATS.map((f, i) => {
-            // First and fourth cards span 6 cols (large feature cards),
-            // others span 4 cols. Creates an asymmetric magazine flow.
-            const isFeature = i === 0 || i === 3;
-            const span = isFeature ? "md:col-span-6" : "md:col-span-4";
-            return (
-              <Reveal
-                key={f.name}
-                delay={i * 0.05}
-                className={`col-span-12 ${span}`}
-              >
-                <article className="group relative isolate flex h-full flex-col overflow-hidden rounded-sm bg-cream transition-all hover:-translate-y-0.5">
-                  <div className="grid grid-cols-12 gap-0">
-                    <div className={`col-span-12 ${isFeature ? "md:col-span-6" : ""}`}>
-                      <ImageSlot
-                        src={f.src}
-                        alt={f.alt}
-                        aspect={isFeature ? "aspect-[4/5]" : "aspect-[4/5]"}
-                        tone={f.tone}
-                        label={`${f.name.toUpperCase()}`}
-                        hint={isFeature ? "1800×2250" : "1500×1875"}
-                      />
-                    </div>
-                    <div
-                      className={`col-span-12 flex flex-col p-7 ${
-                        isFeature ? "md:col-span-6" : ""
-                      }`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="tabular text-[10px] uppercase tracking-[0.25em] text-brown/55">
-                          0{i + 1} · {f.duration}
-                        </span>
-                        <span className="rounded-full border border-brown/20 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-brown/65">
-                          {f.intensity}
-                        </span>
-                      </div>
-                      <h3 className="mt-5 font-serif text-3xl text-brown md:text-4xl">
-                        {f.name}
-                      </h3>
-                      <p className="mt-3 flex-1 text-sm leading-relaxed text-charcoal/75">
-                        {f.blurb}
-                      </p>
-                      <div className="mt-6 inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-brown/70 transition-colors group-hover:text-brown">
-                        <span className="link-underline">Learn more</span>
-                        <span aria-hidden className="transition-transform group-hover:translate-x-0.5">
-                          →
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </Reveal>
-            );
-          })}
+        <div className="-mx-5 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 sm:-mx-6 sm:px-6 md:mx-0 md:mt-10 md:grid md:grid-cols-3 md:gap-5 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-5">
+          {CLASS_FORMATS.map((f) => (
+            <Link key={f.slug} href={`/classes#${f.slug}`} className="group flex w-[46%] shrink-0 snap-start flex-col md:w-auto">
+              <div className="relative">
+              {f.beginner && (
+                <span className="absolute left-2 top-2 z-10 rounded-full bg-cream px-3 py-1 text-xs font-semibold text-brown shadow">
+                  New? Start here
+                </span>
+              )}
+              <ImageSlot
+                src={f.image}
+                alt={`${f.name} class at Reformd Pilates`}
+                aspect="aspect-[4/5]"
+                sizes="(min-width: 1024px) 20vw, 50vw"
+                className="rounded-sm"
+              />
+              </div>
+              <h3 className="mt-4 text-lg group-hover:underline md:text-xl">{f.name}</h3>
+              <p className="mt-1 text-xs uppercase tracking-[0.15em] text-brown/60">
+                {f.variants.length ? f.variants.join(" · ") : "Reformer"}
+              </p>
+              <p className="mt-2 hidden text-sm leading-snug text-charcoal/75 sm:block">{f.tagline}</p>
+            </Link>
+          ))}
         </div>
       </div>
     </section>

@@ -3,15 +3,11 @@
 @tailwind utilities;
 
 /**
- * Brand palette (per Reformd Brand Guidelines 2025)
- *   Earth         #4f3e33 (primary brown)
- *   Earth Dark    #5e4b40
- *   Concrete      #bfb8a8 (primary stone)
- *   Concrete Lt   #cec6ba
+ * Brand palette (Reformd Brand Guidelines 2025)
+ *   Earth #4f3e33 · Earth Dark #5e4b40 · Concrete #bfb8a8 · Concrete Lt #cec6ba
  */
 :root {
   --color-cream: #f5f0e8;
-  --color-cement: #bfb8a8;
   --color-brown: #4f3e33;
   --color-charcoal: #2a2520;
 }
@@ -23,25 +19,53 @@ html {
 body {
   color: var(--color-charcoal);
   background: var(--color-cream);
-  font-family: var(--font-body), "Founders Grotesk", "Inter", system-ui, sans-serif;
-  font-weight: 400;
-  font-feature-settings: "ss01", "ss02", "kern", "liga";
+  font-family: var(--font-body), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display), "Roc Grotesk Wide", "Archivo Black", Impact, sans-serif;
+  font-family: "roc-grotesk-wide", var(--font-display-fallback), sans-serif;
   color: var(--color-brown);
-  font-weight: 700;
+  font-weight: 600; /* Adobe serves Roc Grotesk Wide Bold as 600 */
+  font-synthesis: none;
   text-transform: uppercase;
   letter-spacing: -0.01em;
-  line-height: 0.95;
+  line-height: 1;
 }
 
-h1 { letter-spacing: -0.025em; }
-h2 { letter-spacing: -0.02em; }
+h3, h4, h5, h6 {
+  line-height: 1.1;
+}
+
+/* Wide cut: drives the Archivo fallback to Expanded; no-op for Roc Grotesk Wide */
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-stretch: 125%;
+  font-synthesis: none;
+}
+
+/* Letter-spacing adds trailing space after the last character, which pushes
+   tracked uppercase button labels left of centre. Indent by the same amount. */
+.inline-flex.uppercase {
+  text-indent: 0.15em;
+}
+
+/* 44px minimum tap target for every pill button (Apple HIG / WCAG 2.5.5) */
+a.rounded-full,
+button.rounded-full {
+  min-height: 44px;
+}
+
+@keyframes menu-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: none; }
+}
+.menu-in {
+  animation: menu-in 180ms ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .menu-in { animation: none; }
+}
 
 ::selection {
   background: var(--color-brown);
@@ -53,94 +77,15 @@ h2 { letter-spacing: -0.02em; }
     text-wrap: balance;
   }
   .container-tight {
-    @apply mx-auto max-w-6xl px-6 lg:px-8;
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8;
   }
-  .container-wide {
-    @apply mx-auto max-w-7xl px-6 lg:px-10;
+  .section {
+    @apply py-16 md:py-24;
   }
-
-  /* Tabular numerals for prices, dates, stats */
+  .eyebrow {
+    @apply text-xs font-medium uppercase tracking-[0.16em] text-brown/60 md:tracking-[0.22em];
+  }
   .tabular {
     font-variant-numeric: tabular-nums;
-  }
-
-  /* Hairline horizontal rule */
-  .rule {
-    @apply h-px w-full bg-brown/15;
-  }
-
-  /* Vertical text — page-edge labels, magazine column markers */
-  .vertical-rl {
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-  }
-
-  /* Atmospheric film grain overlay (place on a `relative isolate` parent) */
-  .grain::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0.07;
-    mix-blend-mode: multiply;
-    background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.31 0 0 0 0 0.24 0 0 0 0 0.2 0 0 0 0.85 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size: 180px 180px;
-  }
-
-  .grain-light::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0.12;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 0.94 0 0 0 0 0.86 0 0 0 0.7 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size: 220px 220px;
-  }
-
-  /* Marquee infinite scroll */
-  @keyframes marquee {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  .animate-marquee {
-    animation: marquee 38s linear infinite;
-    will-change: transform;
-  }
-  .animate-marquee-slow {
-    animation: marquee 70s linear infinite;
-    will-change: transform;
-  }
-
-  /* Soft pulse — status indicators, "live" dots */
-  @keyframes softpulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.45; }
-  }
-  .animate-softpulse {
-    animation: softpulse 2.4s ease-in-out infinite;
-  }
-
-  /* Editorial link underline */
-  .link-underline {
-    position: relative;
-    display: inline-block;
-  }
-  .link-underline::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 100%;
-    height: 1px;
-    background: currentColor;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .link-underline:hover::after {
-    transform: scaleX(1);
   }
 }

@@ -1,167 +1,199 @@
 import Link from "next/link";
 
-import { PageHero } from "@/components/sections/page-hero";
+import { InstagramFeed } from "@/components/sections/instagram-feed";
 import { ButtonLink } from "@/components/ui/button-link";
-import { Reveal } from "@/components/ui/reveal";
-import type { Studio } from "@/lib/constants";
+import { ImageSlot } from "@/components/ui/image-slot";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { SOCIAL_LINKS, type Studio } from "@/lib/constants";
+import { JsonLd, studioClasses, studioFaqs, studioJsonLd } from "@/lib/seo";
 
 export function StudioDetail({ studio }: { studio: Studio }) {
+  const classes = studioClasses(studio);
+  const faqs = studioFaqs(studio);
+
   return (
     <>
-      <PageHero
-        eyebrow={`${studio.suburb} · ${studio.state}`}
-        title={<>{studio.shortName}.</>}
-        lede={studio.blurb}
-      />
+      <JsonLd data={studioJsonLd(studio)} />
 
-      {/* Address + hours + map */}
-      <section className="container-tight py-20">
-        <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr]">
-          <Reveal>
-            <div className="aspect-[4/3] overflow-hidden rounded-lg border border-brown/15 bg-cement-100">
-              <iframe
-                title={`${studio.shortName} map`}
-                src={studio.mapsEmbed}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="h-full w-full"
-                allowFullScreen
-              />
+      {/* Hero: keyword H1 + photo */}
+      <section className="bg-gradient-to-b from-cream to-cement-100/60">
+        <div className="container-tight grid gap-10 pb-12 pt-8 md:pb-16 md:pt-10 lg:grid-cols-2 lg:items-start lg:gap-12 lg:pb-20 lg:pt-12">
+          <div>
+            <p className="eyebrow">{studio.region}</p>
+            <h1 className="mt-5 text-[2.5rem] sm:text-5xl md:text-6xl lg:text-[3.5rem] xl:text-6xl">
+              Reformer Pilates in {studio.suburb}
+            </h1>
+            <p className="mt-5 max-w-md text-lg text-charcoal/75">{studio.blurb}</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <ButtonLink href={`/schedule/${studio.slug}`}>Book a class</ButtonLink>
+              <ButtonLink href={`/pricing/${studio.slug}`} variant="secondary">
+                Pricing
+              </ButtonLink>
             </div>
-          </Reveal>
-
-          <Reveal delay={0.05}>
-            <div className="space-y-8">
-              <div>
-                <p className="text-xs uppercase tracking-[0.2em] text-brown/60">
-                  Find us
-                </p>
-                <p className="mt-2 text-xl leading-relaxed text-charcoal">
-                  {studio.address}
-                  <br />
-                  {studio.suburb} {studio.state} {studio.postcode}
-                </p>
-                <a
-                  href={studio.mapsEmbed.replace("&output=embed", "")}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-3 inline-block text-sm text-brown underline-offset-4 hover:underline"
-                >
-                  Open in Google Maps →
-                </a>
-              </div>
-
-              <div>
-                <p className="text-xs uppercase tracking-[0.2em] text-brown/60">
-                  Hours
-                </p>
-                <ul className="mt-3 space-y-2 text-base text-charcoal/85">
-                  {studio.hours.map((h) => (
-                    <li key={h.day} className="flex justify-between gap-6">
-                      <span>{h.day}</span>
-                      <span className="text-charcoal/70">{h.open}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="flex flex-wrap gap-3 pt-2">
-                <ButtonLink href={`/schedule/${studio.slug}`}>
-                  See schedule
-                </ButtonLink>
-                <ButtonLink href={`/pricing/${studio.slug}`} variant="secondary">
-                  View pricing
-                </ButtonLink>
-              </div>
-            </div>
-          </Reveal>
+          </div>
+          <ImageSlot
+            src={studio.image}
+            alt={`Inside the Reformd Pilates ${studio.suburb} reformer studio`}
+            aspect="aspect-[4/3] lg:aspect-[4/5]"
+            priority
+            className="rounded-sm"
+          />
         </div>
       </section>
 
-      {/* Facilities */}
-      <section className="bg-cement-50">
-        <div className="container-tight py-20 md:py-24">
-          <Reveal>
-            <p className="text-xs uppercase tracking-[0.3em] text-brown/60">
-              The space
-            </p>
-            <h2 className="mt-3 max-w-2xl text-4xl">
-              Built for the way you actually train.
-            </h2>
-          </Reveal>
+      {/* Visit: map + address/hours/facilities */}
+      <section className="container-tight section grid gap-10 lg:grid-cols-2 lg:gap-12">
+        <div className="aspect-[4/3] overflow-hidden rounded-sm border border-brown/15 bg-cement-100">
+          <iframe
+            title={`Map to Reformd Pilates ${studio.suburb}`}
+            src={studio.mapsEmbed}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="h-full w-full"
+            allowFullScreen
+          />
+        </div>
 
-          <div className="mt-12 grid gap-x-10 gap-y-8 md:grid-cols-2">
-            {studio.facilities.map((f, i) => (
-              <Reveal key={f} delay={i * 0.04}>
-                <div className="flex items-start gap-4 border-l border-brown/20 pl-5">
-                  <span aria-hidden className="font-serif text-2xl text-cement-700">
-                    ·
-                  </span>
-                  <p className="text-lg text-charcoal/85">{f}</p>
-                </div>
-              </Reveal>
+        <div className="grid content-start gap-8 sm:grid-cols-2">
+          <div>
+            <p className="eyebrow">Find us</p>
+            <address className="mt-3 text-lg not-italic leading-relaxed">
+              {studio.address}
+              <br />
+              {studio.suburb} {studio.state} {studio.postcode}
+            </address>
+            <a
+              href={studio.mapsEmbed.replace("&output=embed", "")}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-1 inline-block py-2.5 text-sm text-brown underline-offset-4 hover:underline"
+            >
+              Get directions →
+            </a>
+            <a href={`tel:${studio.phone.replace(/\s/g, "")}`} className="inline-block py-2 text-lg tabular text-brown">
+              {studio.phone}
+            </a>
+          </div>
+
+          <div>
+            <p className="eyebrow">Class times</p>
+            <ul className="mt-3 space-y-1.5 text-sm">
+              {studio.hours.map((h) => (
+                <li key={h.day} className="flex justify-between gap-4">
+                  <span>{h.day}</span>
+                  <span className="text-charcoal/70">{h.open}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="sm:col-span-2">
+            <p className="eyebrow">Facilities</p>
+            <p className="mt-3 text-sm leading-relaxed">{studio.facilities.join(" · ")}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Classes at this studio */}
+      <section className="bg-cement-50">
+        <div className="container-tight section">
+          <SectionHeading
+            eyebrow={`Classes in ${studio.suburb}`}
+            title={`${classes.length} class types`}
+            aside={
+              <Link href="/classes" className="text-sm text-brown underline-offset-4 hover:underline">
+                Compare all classes →
+              </Link>
+            }
+          />
+          <div className="mt-10 grid grid-cols-2 gap-4 md:gap-5 lg:grid-cols-5">
+            {classes.map((c) => (
+              <Link key={c.slug} href={`/classes#${c.slug}`} className="group">
+                <ImageSlot
+                  src={c.image}
+                  alt={`${c.name} reformer Pilates class in ${studio.suburb}`}
+                  aspect="aspect-[4/5]"
+                  sizes="(min-width: 1024px) 20vw, 50vw"
+                  className="rounded-sm"
+                />
+                <h3 className="mt-4 text-lg group-hover:underline">{c.name}</h3>
+                <p className="mt-1 text-xs uppercase tracking-[0.15em] text-brown/60">
+                  {c.variants.length ? c.variants.join(" · ") : "Reformer"}
+                </p>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Classes available here */}
-      <section className="container-tight py-20 md:py-24">
-        <Reveal className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-brown/60">
-              At this studio
-            </p>
-            <h2 className="mt-3 max-w-2xl text-4xl">
-              {studio.classes.length} class formats taught here.
-            </h2>
-          </div>
-          <Link
-            href="/classes"
-            className="text-sm tracking-wide text-brown underline-offset-4 hover:underline"
-          >
-            All class formats →
-          </Link>
-        </Reveal>
+      {/* Local: nearby suburbs */}
+      <section className="container-tight section grid gap-8 lg:grid-cols-2 lg:gap-12">
+        <div>
+          <p className="eyebrow">Close to home</p>
+          <h2 className="mt-4 text-[2rem] sm:text-4xl lg:text-5xl">
+            Pilates near {studio.nearby[0]} and {studio.nearby[1]}
+          </h2>
+        </div>
+        <div>
+          <p className="hidden text-base leading-relaxed text-charcoal/80 sm:block">
+            Our {studio.suburb} studio is a short drive from:
+          </p>
+          <ul className="mt-4 flex flex-wrap gap-2">
+            {studio.nearby.map((n) => (
+              <li key={n} className="rounded-full border border-brown/20 px-4 py-1.5 text-sm">
+                {n}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {studio.classes.map((c, i) => (
-            <Reveal key={c} delay={i * 0.04}>
-              <div className="rounded-lg border border-brown/10 bg-cream p-6">
-                <h3 className="font-serif text-2xl text-brown">{c}</h3>
-              </div>
-            </Reveal>
-          ))}
+      <InstagramFeed studios={[studio]} title={`Inside ${studio.shortName}`} />
+
+      {/* FAQ */}
+      <section className="bg-cement-50">
+        <div className="container-tight section grid gap-8 md:grid-cols-[1fr_2fr] md:gap-12">
+          <div>
+            <p className="eyebrow">FAQ</p>
+            <h2 className="mt-4 text-4xl">Good to know</h2>
+          </div>
+          <div className="divide-y divide-brown/15 border-y border-brown/15">
+            {faqs.map((f) => (
+              <details key={f.q} className="group py-3">
+                <summary className="flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-4 py-2 text-base font-medium text-brown">
+                  {f.q}
+                  <span aria-hidden className="text-xl leading-none transition-transform group-open:rotate-45">
+                    +
+                  </span>
+                </summary>
+                <p className="mt-3 text-sm leading-relaxed text-charcoal/80">{f.a}</p>
+              </details>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* CTA band */}
       <section className="bg-brown text-cream">
-        <div className="container-tight flex flex-col items-start gap-6 py-20 md:flex-row md:items-center md:justify-between">
-          <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-cement">
-              Intro offer
-            </p>
-            <h2 className="mt-3 text-cream text-3xl md:text-4xl">
-              Try {studio.shortName} for $49.
-            </h2>
-            <p className="mt-3 max-w-md text-cream/70">
-              Four sessions across any class format. New members only.
-            </p>
-          </div>
+        <div className="container-tight flex flex-col items-start gap-6 py-14 md:flex-row md:items-center md:justify-between">
+          <h2 className="text-3xl !text-cream md:text-4xl">Try {studio.shortName}: 4 classes for $49.</h2>
           <div className="flex flex-wrap gap-3">
-            <Link
-              href={`/schedule/${studio.slug}`}
-              className="inline-flex items-center justify-center rounded-full bg-cream px-7 py-3 text-sm font-medium tracking-wide text-brown transition-colors hover:bg-cement-100"
+            <a
+              href={studio.mindbody.introOfferUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-full bg-cream px-7 py-3 text-sm font-medium text-brown transition-colors hover:bg-cement-100"
             >
-              Book at {studio.shortName}
-            </Link>
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center rounded-full border border-cream/30 px-7 py-3 text-sm font-medium tracking-wide text-cream transition-colors hover:bg-cream/10"
+              Claim the intro offer
+            </a>
+            <a
+              href={SOCIAL_LINKS.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-full border border-cream/30 px-7 py-3 text-sm font-medium text-cream transition-colors hover:bg-cream/10"
             >
-              Get in touch
-            </Link>
+              Message us on Instagram
+            </a>
           </div>
         </div>
       </section>
