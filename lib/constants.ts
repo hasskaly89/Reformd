@@ -170,7 +170,7 @@ export const STUDIOS: Record<StudioSlug, Studio> = {
       "Street parking",
     ],
     blurb: "Reformer Pilates for Blacktown and the north-west. Same small classes, same weekday creche.",
-    image: "/images/classes/reformer.jpg",
+    image: "/images/studios/kings-park-room.jpg",
     // Google Maps pin for 6/2 Garling Rd (verified in the 2 Nov preview audit)
     geo: { lat: -33.7453629, lng: 150.9154175 },
     region: "Blacktown, Western Sydney",

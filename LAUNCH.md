@@ -9,7 +9,8 @@ Everything here happens at or just before the switch from Squarespace. Until ste
 - [ ] Cecil Hills map pin from the Google Business Profile (`lib/constants.ts`, `geo`).
 - [ ] Kings Park Lite contract code (`lib/constants.ts`, `contractIds`).
 - [x] Photos: coached moment, instructor and member faces (19 Jan 2026 shoot, `public/images/shoot/`).
-- [ ] Photos: Ignite jumpboard shot (placeholder is a lunge on the reformer). Confirm with the photographer that the 19 Jan shoot is cleared for web use.
+- [ ] Photos: Ignite jumpboard shot (placeholder is a lunge on the reformer). Confirm with the photographer that the 19 Jan shoot (Kings Park) is cleared for web use.
+- [ ] Photos: a daylight Cecil Hills room shot to match the Kings Park one.
 
 ## 2. Transactions (test with a real, approved customer account)
 - [ ] In a private/incognito window, open every pricing tile at both studios and confirm the product, price and terms Mindbody shows.

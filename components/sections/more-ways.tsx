@@ -20,7 +20,7 @@ const ITEMS = [
     title: "Just you. Or just your people.",
     body: "1:1 and 2:1 reformer sessions tailored to your goals, and private group classes for birthdays, hens and team get-togethers.",
     photo: "/images/shoot/private-session.jpg",
-    alt: "Instructor guiding a member through a strap stretch on the reformer",
+    alt: "Instructor guiding a member through a strap stretch at Reformd Pilates Kings Park",
   },
 ];
 

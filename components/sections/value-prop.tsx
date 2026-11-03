@@ -13,7 +13,7 @@ export function ValueProp() {
       <div className="container-tight section grid items-center gap-10 md:grid-cols-2 md:gap-12">
         <ImageSlot
           src="/images/shoot/member-smile.jpg"
-          alt="Smiling member kneeling on the reformer during a Reformd Pilates class"
+          alt="Smiling member kneeling on the reformer during a class at Reformd Pilates Kings Park"
           position="50% 30%"
           aspect="aspect-[4/3] md:aspect-[4/5]"
           className="rounded-sm"
