@@ -159,6 +159,13 @@ export function SiteNav() {
             <Dropdown label="Book now" items={BOOK_ITEMS} align="right" trigger={PRIMARY_BTN} />
           </div>
 
+          <div className="flex items-center gap-2 lg:hidden">
+          <Link
+            href="/schedule"
+            className="inline-flex items-center justify-center rounded-full bg-brown px-4 py-2 text-sm font-medium text-cream"
+          >
+            Book
+          </Link>
           <button
             ref={toggleRef}
             type="button"
@@ -166,12 +173,13 @@ export function SiteNav() {
             aria-expanded={open}
             aria-controls="mobile-menu"
             onClick={() => setOpen((o) => !o)}
-            className="-mr-2 flex h-11 w-11 flex-col items-center justify-center gap-1.5 lg:hidden"
+            className="-mr-2 flex h-11 w-11 flex-col items-center justify-center gap-1.5"
           >
             <span className={`block h-0.5 w-6 bg-charcoal transition-transform ${open ? "translate-y-2 rotate-45" : ""}`} />
             <span className={`block h-0.5 w-6 bg-charcoal transition-opacity ${open ? "opacity-0" : ""}`} />
             <span className={`block h-0.5 w-6 bg-charcoal transition-transform ${open ? "-translate-y-2 -rotate-45" : ""}`} />
           </button>
+          </div>
         </nav>
       </header>
 

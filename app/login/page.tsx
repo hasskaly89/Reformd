@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 
 import { PageHero } from "@/components/sections/page-hero";
 import { StudioChooser } from "@/components/sections/studio-chooser";
+import { withOg } from "@/lib/meta";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: "Member Login",
   description: "Log in to manage your Reformd Pilates bookings and membership.",
   alternates: { canonical: "/login" },
   robots: { index: false, follow: true },
-};
+});
 
 export default function LoginPage() {
   return (

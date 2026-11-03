@@ -7,6 +7,7 @@ import { SiteNav } from "@/components/layout/site-nav";
 import { IntroPopup } from "@/components/sections/intro-popup";
 import { FeedbackButton } from "@/components/layout/feedback-button";
 import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/constants";
+import { DEFAULT_OG_IMAGE } from "@/lib/meta";
 import { ALLOW_INDEXING } from "@/lib/site-env";
 
 import "./globals.css";
@@ -61,7 +62,7 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     type: "website",
     locale: "en_AU",
-    images: [{ url: "/images/gallery/cecil-hills-community.jpg", width: 1439, height: 1530, alt: "A reformer Pilates class at Reformd Pilates" }],
+    images: [DEFAULT_OG_IMAGE],
   },
   twitter: { card: "summary_large_image" },
   // Stay out of Google until launch day, so this build never competes with

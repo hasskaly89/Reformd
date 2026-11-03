@@ -11,6 +11,7 @@ import {
   type PricingGroup,
   type StudioSlug,
 } from "@/lib/constants";
+import { withOg } from "@/lib/meta";
 
 type Props = { params: { studio: string } };
 
@@ -23,11 +24,11 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: Props): Metadata {
   if (!isStudioSlug(params.studio)) return {};
   const studio = STUDIOS[params.studio];
-  return {
+  return withOg({
     title: `Reformer Pilates Prices ${studio.suburb}`,
     description: `Reformd Pilates ${studio.shortName} pricing: 4 classes for $49, memberships from $30 a week, student rates and class packs.`,
     alternates: { canonical: `/pricing/${studio.slug}` },
-  };
+  });
 }
 
 const GROUPS: { group: PricingGroup; title: string; lede: string; cta: string }[] = [

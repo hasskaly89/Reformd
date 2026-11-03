@@ -4,13 +4,14 @@ import Link from "next/link";
 import { PageHero } from "@/components/sections/page-hero";
 import { ImageSlot } from "@/components/ui/image-slot";
 import { CLASS_FORMATS, STUDIOS } from "@/lib/constants";
+import { withOg } from "@/lib/meta";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: "Classes",
   description:
     "Five reformer Pilates class types at Reformd: Balanced, Dynamic, Ignite, Lift and Recharge. Every level welcome.",
   alternates: { canonical: "/classes" },
-};
+});
 
 export default function ClassesPage() {
   return (

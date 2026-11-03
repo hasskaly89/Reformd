@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 
 import { PageHero } from "@/components/sections/page-hero";
 import { PHONE, PHONE_HREF, SOCIAL_LINKS, STUDIO_LIST } from "@/lib/constants";
+import { withOg } from "@/lib/meta";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: "Contact",
   description: "Contact Reformd Pilates: phone, studio addresses in Cecil Hills and Kings Park, class times and Instagram.",
   alternates: { canonical: "/contact" },
-};
+});
 
 export default function ContactPage() {
   return (

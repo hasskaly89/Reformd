@@ -8,6 +8,7 @@ import {
   STUDIOS,
   type StudioSlug,
 } from "@/lib/constants";
+import { withOg } from "@/lib/meta";
 
 type Props = { params: { studio: string } };
 
@@ -21,11 +22,11 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: Props): Metadata {
   if (!isStudioSlug(params.studio)) return {};
   const studio = STUDIOS[params.studio];
-  return {
+  return withOg({
     title: `Reformer Pilates Timetable ${studio.suburb}`,
     description: `Live class timetable for Reformd Pilates ${studio.shortName}. Book Balanced, Dynamic, Ignite, Lift and Recharge reformer classes online.`,
     alternates: { canonical: `/schedule/${studio.slug}` },
-  };
+  });
 }
 
 export default function SchedulePage({ params }: Props) {

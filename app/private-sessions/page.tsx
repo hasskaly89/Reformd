@@ -3,13 +3,14 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/sections/page-hero";
 import { ImageSlot } from "@/components/ui/image-slot";
 import { PHONE, PHONE_HREF, SOCIAL_LINKS } from "@/lib/constants";
+import { withOg } from "@/lib/meta";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: "Private Sessions & Events",
   description:
     "Private 1:1 and 2:1 reformer Pilates sessions, plus group events and parties at Reformd Pilates Cecil Hills and Kings Park.",
   alternates: { canonical: "/private-sessions" },
-};
+});
 
 const BTN = "inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-medium";
 

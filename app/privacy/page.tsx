@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 
 import { PageHero } from "@/components/sections/page-hero";
 import { PHONE, PHONE_HREF } from "@/lib/constants";
+import { withOg } from "@/lib/meta";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: "Privacy",
   description: "How Reformd Pilates collects and uses your personal information.",
   alternates: { canonical: "/privacy" },
-};
+});
 
 // TODO(owner): review with your adviser before launch.
 const SECTIONS = [

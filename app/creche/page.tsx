@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 
 import { PageHero } from "@/components/sections/page-hero";
 import { CRECHE, STUDIO_LIST } from "@/lib/constants";
+import { withOg } from "@/lib/meta";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: "Creche",
   description: `Supervised creche at Reformd Pilates Cecil Hills and Kings Park, ${CRECHE.days} at ${CRECHE.times.join(" and ")}. ${CRECHE.price} a session, free with a ${CRECHE.freeFor}.`,
   alternates: { canonical: "/creche" },
-};
+});
 
 // Steps as published on the live site's Creche page (captured 1 Nov 2026).
 const ADD_FAMILY_STEPS = [

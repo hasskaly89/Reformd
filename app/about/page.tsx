@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 
 import { PageHero } from "@/components/sections/page-hero";
 import { ImageSlot } from "@/components/ui/image-slot";
+import { withOg } from "@/lib/meta";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: "About",
   description:
     "Owner-operated boutique reformer Pilates in Western Sydney. Studios in Cecil Hills and Kings Park.",
   alternates: { canonical: "/about" },
-};
+});
 
 const GALLERY = [
   { src: "/images/hero/reformer-detail.jpg", alt: "Member using a Pilates ring on the reformer" },
