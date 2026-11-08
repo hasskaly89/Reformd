@@ -59,7 +59,7 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-cream/10">
-        <p className="container-tight py-4 text-sm text-cream/60">
+        <p className="container-tight py-4 text-sm text-cream/75">
           © {new Date().getFullYear()} Reformd Pilates · Cecil Hills + Kings Park, NSW ·{" "}
           <Link href="/privacy" className="underline-offset-4 hover:underline">
             Privacy

@@ -83,7 +83,7 @@ button.rounded-full {
     @apply py-16 md:py-24;
   }
   .eyebrow {
-    @apply text-xs font-medium uppercase tracking-[0.16em] text-brown/60 md:tracking-[0.22em];
+    @apply text-xs font-medium uppercase tracking-[0.16em] text-brown/75 md:tracking-[0.22em];
   }
   .tabular {
     font-variant-numeric: tabular-nums;

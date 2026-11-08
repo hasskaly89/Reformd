@@ -117,7 +117,7 @@ export function StudioDetail({ studio }: { studio: Studio }) {
                   className="rounded-sm"
                 />
                 <h3 className="mt-4 text-lg group-hover:underline">{c.name}</h3>
-                <p className="mt-1 text-xs uppercase tracking-[0.15em] text-brown/60">
+                <p className="mt-1 text-xs uppercase tracking-[0.15em] text-brown/75">
                   {c.variants.length ? c.variants.join(" · ") : "Reformer"}
                 </p>
               </Link>

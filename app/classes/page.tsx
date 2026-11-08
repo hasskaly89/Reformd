@@ -42,7 +42,7 @@ export default function ClassesPage() {
                 )}
               </h2>
               {format.variants.length > 0 && (
-                <p className="mt-2 text-xs uppercase tracking-[0.15em] text-brown/60">
+                <p className="mt-2 text-xs uppercase tracking-[0.15em] text-brown/75">
                   {format.variants.map((v) => `${format.name} | ${v}`).join(" · ")}
                 </p>
               )}

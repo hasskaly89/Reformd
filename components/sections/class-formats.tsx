@@ -36,7 +36,7 @@ export function ClassFormats() {
               />
               </div>
               <h3 className="mt-4 text-lg group-hover:underline md:text-xl">{f.name}</h3>
-              <p className="mt-1 text-xs uppercase tracking-[0.15em] text-brown/60">
+              <p className="mt-1 text-xs uppercase tracking-[0.15em] text-brown/75">
                 {f.variants.length ? f.variants.join(" · ") : "Reformer"}
               </p>
               <p className="mt-2 hidden text-sm leading-snug text-charcoal/75 sm:block">{f.tagline}</p>

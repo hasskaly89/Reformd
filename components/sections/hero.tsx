@@ -33,7 +33,7 @@ export function Hero() {
               </a>
             ))}
           </div>
-          <p className="mt-2 text-xs text-charcoal/60">New clients only. Valid 14 days from first use.</p>
+          <p className="mt-2 text-xs text-charcoal/70">New clients only. Valid 14 days from first use.</p>
 
           <div className="mt-10 hidden max-w-md grid-cols-2 divide-x divide-brown/15 border-y border-brown/15 sm:grid">
             {STUDIO_LIST.map((s, i) => (
@@ -45,7 +45,7 @@ export function Hero() {
                 <span className="font-display text-xl font-semibold uppercase text-brown">
                   {s.shortName}
                 </span>
-                <span className="mt-1 block text-xs text-brown/65 group-hover:text-brown">
+                <span className="mt-1 block text-xs text-brown/75 group-hover:text-brown">
                   Visit studio →
                 </span>
               </Link>

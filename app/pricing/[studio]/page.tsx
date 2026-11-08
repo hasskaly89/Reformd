@@ -95,7 +95,7 @@ export default function PricingPage({ params }: Props) {
                         {tier.unit && <span className="text-sm opacity-75">{tier.unit}</span>}
                       </p>
                       {tier.note && (
-                        <p className={`mt-2 text-xs ${tier.featured ? "text-cream/75" : "text-brown/70"}`}>
+                        <p className={`mt-2 text-xs ${tier.featured ? "text-cream/75" : "text-brown/75"}`}>
                           {tier.note}
                         </p>
                       )}
@@ -133,7 +133,7 @@ export default function PricingPage({ params }: Props) {
                 Book creche
               </a>
             </p>
-            <p className="mt-3 text-xs text-brown/70">
+            <p className="mt-3 text-xs text-brown/75">
               All prices in AUD. Memberships are billed weekly by direct debit. Purchases are handled by Mindbody.
             </p>
           </div>

@@ -199,7 +199,7 @@ export function SiteNav() {
                 <section key={s.slug} className="rounded-2xl border border-brown/15 bg-white/60 p-5">
                   <div className="flex items-baseline justify-between gap-3">
                     <h2 className="text-2xl">{s.shortName}</h2>
-                    <span className="text-xs text-charcoal/60">{s.region.split(", ")[1]}</span>
+                    <span className="text-xs text-charcoal/70">{s.region.split(", ")[1]}</span>
                   </div>
                   <div className="mt-4 grid grid-cols-2 gap-2">
                     <Link
@@ -235,7 +235,7 @@ export function SiteNav() {
               ].map((l) => (
                 <li key={l.href} className="border-b border-brown/15">
                   <Link href={l.href} className="flex items-center justify-between py-4 font-display text-2xl font-semibold uppercase text-brown">
-                    {l.label} <span aria-hidden className="font-sans text-xl text-brown/50">→</span>
+                    {l.label} <span aria-hidden className="font-sans text-xl text-brown/75">→</span>
                   </Link>
                 </li>
               ))}

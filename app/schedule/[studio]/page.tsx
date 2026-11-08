@@ -35,6 +35,7 @@ export default function SchedulePage({ params }: Props) {
   const otherSlug: StudioSlug =
     studio.slug === "cecil-hills" ? "kings-park" : "cecil-hills";
   const other = STUDIOS[otherSlug];
+  const mindbodyTimetableUrl = `https://clients.mindbodyonline.com/classic/mainclass?studioid=${studio.mindbody.studioId}`;
 
   return (
     <>
@@ -62,6 +63,14 @@ export default function SchedulePage({ params }: Props) {
               >
                 New here? 4 classes for $49
               </a>
+              <a
+                href={mindbodyTimetableUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center rounded-full border border-brown/25 bg-cream px-5 py-2 text-xs font-medium uppercase tracking-[0.15em] text-brown transition-colors hover:bg-cement-100"
+              >
+                Open in Mindbody ↗
+              </a>
               <Link
                 href={`/pricing/${studio.slug}`}
                 className="inline-flex items-center rounded-full border border-brown/25 bg-cream px-5 py-2 text-xs font-medium uppercase tracking-[0.15em] text-brown transition-colors hover:bg-cement-100"
@@ -73,23 +82,8 @@ export default function SchedulePage({ params }: Props) {
 
           <div>
             <div className="mt-10 rounded-lg border border-brown/10 bg-cement-50 p-4 md:p-8">
-              <MindbodySchedule widgetId={studio.mindbody.scheduleWidgetId} />
+              <MindbodySchedule widgetId={studio.mindbody.scheduleWidgetId} fallbackUrl={mindbodyTimetableUrl} />
             </div>
-          </div>
-
-          <div>
-            <p className="mt-6 text-xs uppercase tracking-[0.2em] text-brown/55">
-              Schedule loading? Refresh the page or{" "}
-              <a
-                href={`https://clients.mindbodyonline.com/classic/mainclass?studioid=${studio.mindbody.studioId}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline underline-offset-4"
-              >
-                view it directly on Mindbody
-              </a>
-              .
-            </p>
           </div>
         </div>
       </section>

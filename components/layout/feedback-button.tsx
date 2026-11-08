@@ -57,7 +57,7 @@ export function FeedbackButton() {
               type="button"
               onClick={() => setOpen(false)}
               aria-label="Close feedback"
-              className="flex h-9 w-9 items-center justify-center rounded-full text-xl text-brown/70 hover:bg-cement-100"
+              className="flex h-9 w-9 items-center justify-center rounded-full text-xl text-brown/75 hover:bg-cement-100"
             >
               ×
             </button>
@@ -83,7 +83,7 @@ export function FeedbackButton() {
           >
             Send feedback
           </button>
-          <p className="mt-2 text-xs text-charcoal/60">Opens your email with this page&rsquo;s details filled in.</p>
+          <p className="mt-2 text-xs text-charcoal/70">Opens your email with this page&rsquo;s details filled in.</p>
         </form>
       ) : (
         <button

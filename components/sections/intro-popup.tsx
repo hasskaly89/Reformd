@@ -140,7 +140,7 @@ export function IntroPopup() {
           type="button"
           onClick={close}
           aria-label="Close"
-          className="absolute right-3 top-3 flex h-11 w-11 items-center justify-center rounded-full text-2xl leading-none text-brown/70 hover:bg-cement-100"
+          className="absolute right-3 top-3 flex h-11 w-11 items-center justify-center rounded-full text-2xl leading-none text-brown/75 hover:bg-cement-100"
         >
           ×
         </button>
@@ -268,7 +268,7 @@ export function IntroPopup() {
                   </span>
                 ))}
               </p>
-              <button type="button" onClick={close} className="py-2 text-sm text-brown/70 underline-offset-4 hover:underline">
+              <button type="button" onClick={close} className="py-2 text-sm text-brown/75 underline-offset-4 hover:underline">
                 No thanks
               </button>
             </form>

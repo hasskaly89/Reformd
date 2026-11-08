@@ -82,7 +82,7 @@ export function Testimonials() {
                 <blockquote className="mt-4 flex-1 text-base leading-relaxed text-charcoal/90 md:mt-5 md:text-lg">
                   &ldquo;{r.quote}&rdquo;
                 </blockquote>
-                <figcaption className="mt-6 flex items-center justify-between text-xs uppercase tracking-[0.2em] text-brown/70">
+                <figcaption className="mt-6 flex items-center justify-between text-xs uppercase tracking-[0.2em] text-brown/75">
                   <span>{r.initials}</span>
                   <GoogleMark />
                 </figcaption>
