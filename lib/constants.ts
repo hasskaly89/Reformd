@@ -136,7 +136,7 @@ export const STUDIOS: Record<StudioSlug, Studio> = {
       "Free on-site parking",
     ],
     blurb: "Our flagship studio, where Reformd began. The full class lineup, plus a soundproof creche.",
-    image: "/images/hero/cecil-hills-studio.jpg",
+    image: "/images/studios/cecil-hills-room.jpg",
     // geo: TODO(owner) confirm the Cecil Hills pin from Google Business Profile
     region: "Liverpool, South-West Sydney",
     nearby: ["Abbotsbury", "Cecil Park", "Edensor Park", "Bonnyrigg Heights", "Green Valley", "Elizabeth Hills"],

@@ -9,7 +9,7 @@ Everything here happens at or just before the switch from Squarespace. Until ste
 - [ ] Cecil Hills map pin from the Google Business Profile (`lib/constants.ts`, `geo`).
 - [ ] Kings Park Lite contract code (`lib/constants.ts`, `contractIds`).
 - [ ] Photos, rights: written confirmation that Big Creativa's edits and the 19 Jan shoot are licensed for website use, and that every recognisable member/instructor has consented.
-- [ ] Photos, Cecil Hills: the current studio image is confirmed Cecil Hills (8 Nov) but is a tight, dark crop. Replace with a wide shot: best source is the Feb 2025 DSC0xxxx-Enhanced-NR set in the Photos folder root, exported at about 2500 px wide (originals are 12-24 MB, over the Drive transfer limit).
+- [x] Photos, Cecil Hills: wide studio image is DSC05704.jpg (owner-picked, 8 Nov), cropped to remove a delivery box. It predates opening (shelves empty); swap for a current wide shot when one exists.
 - [ ] Photos, gaps: Ignite jumpboard shot (current image is a lunge placeholder); creche playroom shot (creche card shows a class photo).
 - [ ] Photos, Kings Park wide in session: IMG_2117 (10 Feb shoot) is over the 10 MB Drive transfer limit; export it at about 3 MB if wanted.
 
