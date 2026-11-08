@@ -188,7 +188,6 @@ export const CRECHE = {
   days: "Monday to Friday",
   times: ["8:30am", "9:30am"],
   price: "$5",
-  freeFor: "Foundation Membership",
 };
 
 /* ------------------------------------------------------------------ */

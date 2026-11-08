@@ -123,7 +123,7 @@ export default function PricingPage({ params }: Props) {
           <div className="mt-14 border-t border-brown/15 pt-8 text-sm text-charcoal/80">
             <p>
               <strong className="font-semibold text-brown">Creche:</strong> {CRECHE.price} a session,{" "}
-              {CRECHE.days} at {CRECHE.times.join(" and ")}. Free with a {CRECHE.freeFor}.{" "}
+              {CRECHE.days} at {CRECHE.times.join(" and ")}.{" "}
               <a
                 href={studio.mindbody.crecheUrl}
                 target="_blank"

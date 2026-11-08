@@ -67,7 +67,7 @@ export function studioFaqs(studio: Studio): { q: string; a: string }[] {
   if (studio.facilities.some((f) => /creche/i.test(f))) {
     faqs.splice(3, 0, {
       q: `Is there a creche at ${studio.shortName}?`,
-      a: `Yes. Creche runs ${CRECHE.days} at ${CRECHE.times.join(" and ")}, alongside those classes. It's ${CRECHE.price} a session, or free with a ${CRECHE.freeFor}.`,
+      a: `Yes. Creche runs ${CRECHE.days} at ${CRECHE.times.join(" and ")}, alongside those classes. It's ${CRECHE.price} a session.`,
     });
   }
   return faqs;
