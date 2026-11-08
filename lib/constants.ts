@@ -188,6 +188,8 @@ export const CRECHE = {
   days: "Monday to Friday",
   times: ["8:30am", "9:30am"],
   price: "$5",
+  /** Membership that includes creche at no extra cost */
+  freeWith: "Infinite",
 };
 
 /* ------------------------------------------------------------------ */
@@ -218,7 +220,7 @@ export const PRICING_TIERS: PricingTier[] = [
   { group: "membership", name: "Essentials", detail: "2 classes per week", price: "$47", unit: "/wk", note: "12-week minimum", contractIds: { "cecil-hills": 130, "kings-park": 130 } },
   { group: "membership", name: "Elevate", detail: "3 classes per week", price: "$65", unit: "/wk", note: "12-week minimum", contractIds: { "cecil-hills": 131, "kings-park": 131 } },
   { group: "membership", name: "Accelerate", detail: "4 classes per week", price: "$69", unit: "/wk", note: "12-week minimum", contractIds: { "cecil-hills": 137, "kings-park": 139 } },
-  { group: "membership", name: "Infinite", detail: "Unlimited classes", price: "$85", unit: "/wk", note: "12-week minimum", featured: true, contractIds: { "cecil-hills": 132, "kings-park": 132 } },
+  { group: "membership", name: "Infinite", detail: "Unlimited classes, free creche", price: "$85", unit: "/wk", note: "12-week minimum", featured: true, contractIds: { "cecil-hills": 132, "kings-park": 132 } },
   { group: "student", name: "Essentials Student", detail: "2 classes per week", price: "$40", unit: "/wk", note: "12-week minimum. Uni or TAFE students", contractIds: { "cecil-hills": 138, "kings-park": 140 } },
   { group: "student", name: "Elevate Student", detail: "3 classes per week", price: "$45", unit: "/wk", note: "12-week minimum. Uni or TAFE students", contractIds: { "cecil-hills": 139, "kings-park": 141 } },
   { group: "pack", name: "Casual", detail: "1 class", price: "$35", note: "1-week expiry" },
