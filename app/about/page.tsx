@@ -12,9 +12,9 @@ export const metadata: Metadata = withOg({
 });
 
 const GALLERY = [
-  { src: "/images/shoot/members-laughing.jpg", alt: "Three members laughing together in the lounge at Reformd Kings Park" },
-  { src: "/images/shoot/instructor-setup.jpg", alt: "Instructor helping a member set up a reformer before class at Reformd Kings Park" },
-  { src: "/images/shoot/class-strap.jpg", alt: "Members working with straps on the reformer at Reformd Kings Park" },
+  { src: "/images/shoot/members-laughing.jpg", alt: "Three members laughing together in the studio lounge" },
+  { src: "/images/shoot/instructor-setup.jpg", alt: "Instructor helping a member set up a reformer before class" },
+  { src: "/images/shoot/studio-room.jpg", alt: "Rows of reformers in a Reformd studio under warm cove lighting" },
 ];
 
 const VALUES = [

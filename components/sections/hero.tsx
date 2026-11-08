@@ -54,9 +54,9 @@ export function Hero() {
         </div>
 
         <ImageSlot
-          src="/images/shoot/coaching-correction.jpg"
-          alt="Reformd instructor giving a member a hands-on correction during a reformer class at Kings Park"
-          position="50% 15%"
+          src="/images/shoot/hero-coaching.jpg"
+          alt="Instructor guiding a member through a reformer exercise with a Pilates ring"
+          position="50% 8%"
           aspect="aspect-[4/3] lg:aspect-[4/5]"
           priority
           className="rounded-sm"

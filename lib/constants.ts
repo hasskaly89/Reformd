@@ -260,7 +260,7 @@ export const CLASS_FORMATS: ClassFormat[] = [
     name: "Balanced",
     tagline: "Your reformer class, refined. Precision, breath and control.",
     variants: ["Foundation", "Women"],
-    image: "/images/hero/reformer-detail.jpg",
+    image: "/images/shoot/balanced-bridge.jpg",
     beginner: true,
     availableAt: ["cecil-hills", "kings-park"],
   },
@@ -269,7 +269,7 @@ export const CLASS_FORMATS: ClassFormat[] = [
     name: "Dynamic",
     tagline: "High-intensity reformer, done properly.",
     variants: [],
-    image: "/images/classes/dynamic.jpg",
+    image: "/images/shoot/dynamic-straps.jpg",
     availableAt: ["cecil-hills", "kings-park"],
   },
   {
@@ -286,7 +286,7 @@ export const CLASS_FORMATS: ClassFormat[] = [
     name: "Lift",
     tagline: "Strength where it counts: lower, upper or total body.",
     variants: ["Lower", "Upper", "Total"],
-    image: "/images/shoot/lift-weights.jpg",
+    image: "/images/shoot/lift-dumbbells.jpg",
     availableAt: ["cecil-hills", "kings-park"],
   },
   {
@@ -294,7 +294,7 @@ export const CLASS_FORMATS: ClassFormat[] = [
     name: "Recharge",
     tagline: "Slow down. Stretch, mobility and recovery.",
     variants: ["Deep Stretch"],
-    image: "/images/classes/stretch.jpg",
+    image: "/images/shoot/recharge-stretch.jpg",
     availableAt: ["cecil-hills", "kings-park"],
   },
 ];

@@ -111,7 +111,7 @@ export function StudioDetail({ studio }: { studio: Studio }) {
               <Link key={c.slug} href={`/classes#${c.slug}`} className="group">
                 <ImageSlot
                   src={c.image}
-                  alt={`${c.name} reformer Pilates class in ${studio.suburb}`}
+                  alt={`${c.name} reformer Pilates class at Reformd`}
                   aspect="aspect-[4/5]"
                   sizes="(min-width: 1024px) 20vw, 50vw"
                   className="rounded-sm"

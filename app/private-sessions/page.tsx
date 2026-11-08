@@ -42,7 +42,7 @@ export default function PrivateSessionsPage() {
         <div className="lg:col-span-5">
           <ImageSlot
             src="/images/shoot/private-session.jpg"
-            alt="Instructor guiding a member through a strap stretch at Reformd Pilates Kings Park"
+            alt="Instructor guiding a member through an overhead strap stretch on the reformer"
             aspect="aspect-[4/3] lg:aspect-[4/5]"
             className="rounded-sm"
           />
@@ -69,7 +69,7 @@ export default function PrivateSessionsPage() {
           <div className="lg:order-2 lg:col-span-5">
             <ImageSlot
               src="/images/shoot/members-lounge.jpg"
-              alt="Group of friends laughing together in the lounge at Reformd Pilates Kings Park"
+              alt="Group of friends laughing together in the studio lounge"
               aspect="aspect-[4/3] lg:aspect-[4/5]"
               className="rounded-sm"
             />
