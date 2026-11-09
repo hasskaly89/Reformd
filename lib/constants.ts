@@ -261,7 +261,7 @@ export const CLASS_FORMATS: ClassFormat[] = [
     name: "Balanced",
     tagline: "Your reformer class, refined. Precision, breath and control.",
     variants: ["Foundation", "Women"],
-    image: "/images/shoot/balanced-bridge.jpg",
+    image: "/images/shoot/balanced-tabletop.jpg",
     beginner: true,
     availableAt: ["cecil-hills", "kings-park"],
   },
@@ -279,7 +279,7 @@ export const CLASS_FORMATS: ClassFormat[] = [
     tagline: "Reformer meets cardio on the jumpboard.",
     variants: ["Fired Up"],
     // TODO(owner): swap for a jumpboard shot when one exists
-    image: "/images/shoot/ignite-lunge.jpg",
+    image: "/images/shoot/ignite-lunge-r.jpg",
     availableAt: ["cecil-hills", "kings-park"],
   },
   {

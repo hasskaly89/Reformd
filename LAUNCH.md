@@ -5,7 +5,7 @@ Everything here happens at or just before the switch from Squarespace. Until ste
 ## 1. Business facts (owner)
 - [ ] Reviews: verbatim quotes with studio, date and a link to each original review (or remove them).
 - [ ] About: founder name, photo and verified credentials.
-- [ ] Classes: duration, intensity and who each class suits.
+- [x] Classes: 50 minutes, grip socks required (sold with towels at the desk), arrive 10 minutes early (9 Nov). Still to add: intensity and who each class suits.
 - [ ] Cecil Hills map pin from the Google Business Profile (`lib/constants.ts`, `geo`).
 - [ ] Kings Park Lite contract code (`lib/constants.ts`, `contractIds`).
 - [ ] Photos, rights: written confirmation that Big Creativa's edits and the 19 Jan shoot are licensed for website use, and that every recognisable member/instructor has consented.

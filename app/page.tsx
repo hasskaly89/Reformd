@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { ClassFormats } from "@/components/sections/class-formats";
+import { FirstVisit } from "@/components/sections/first-visit";
 import { Hero } from "@/components/sections/hero";
 import { InstagramFeed } from "@/components/sections/instagram-feed";
 import { IntroOffer } from "@/components/sections/intro-offer";
@@ -20,6 +21,7 @@ export default function HomePage() {
       <Hero />
       <ValueProp />
       <ClassFormats />
+      <FirstVisit />
       <Testimonials />
       <InstagramFeed studios={STUDIO_LIST} />
       <StudioLocations />

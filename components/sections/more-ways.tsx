@@ -19,8 +19,8 @@ const ITEMS = [
     eyebrow: "Private sessions & events",
     title: "Just you. Or just your people.",
     body: "1:1 and 2:1 reformer sessions tailored to your goals, and private group classes for birthdays, hens and team get-togethers.",
-    photo: "/images/shoot/private-session.jpg",
-    alt: "Instructor guiding a member through an overhead strap stretch on the reformer",
+    photo: "/images/shoot/members-lounge.jpg",
+    alt: "Group of friends laughing together in the studio lounge",
   },
 ];
 

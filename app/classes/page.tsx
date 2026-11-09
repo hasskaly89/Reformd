@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { FirstVisit } from "@/components/sections/first-visit";
 import { PageHero } from "@/components/sections/page-hero";
 import { ImageSlot } from "@/components/ui/image-slot";
 import { CLASS_FORMATS, STUDIOS } from "@/lib/constants";
@@ -62,6 +63,7 @@ export default function ClassesPage() {
           ))}
         </div>
       </section>
+      <FirstVisit />
     </>
   );
 }
