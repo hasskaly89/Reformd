@@ -1,7 +1,49 @@
+/**
+ * Site content. Studio details, prices and Mindbody product codes mirror the
+ * live site and Mindbody as verified on 1 Nov 2026. Update here, not in
+ * components.
+ */
+
 export const SITE_NAME = "Reformd Pilates";
 export const SITE_TAGLINE = "Redefine strength, reform your body.";
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://reformdpilates.com.au";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.reformdpilates.com.au";
+
+export const PHONE = "+61 430 496 626";
+export const PHONE_HREF = "tel:+61430496626";
+
+/* ------------------------------------------------------------------ */
+/* Mindbody URL builders                                               */
+/*   stype=40  Contracts: recurring memberships (prodid)               */
+/*   stype=41  Services: intro offers, class packs, creche             */
+/*             (sTG service group: 24 intro, 26 packs, 27 creche)      */
+/* Mixing the two sells the wrong product.                             */
+/* ------------------------------------------------------------------ */
+
+const MB = "https://clients.mindbodyonline.com/classic/ws";
+
+/** A membership (contract), preselected in Mindbody checkout */
+export const mindbodyContractUrl = (studioId: string, productId: number) =>
+  `${MB}?studioid=${studioId}&stype=40&prodid=${productId}`;
+
+/** All memberships at a studio (used where a product code is unconfirmed) */
+export const mindbodyContractsUrl = (studioId: string) => `${MB}?studioid=${studioId}&stype=40`;
+
+/** A single service (intro offer) */
+export const mindbodyServiceUrl = (studioId: string, groupId: number, productId: number) =>
+  `${MB}?studioid=${studioId}&stype=41&sTG=${groupId}&prodId=${productId}`;
+
+/** A service group catalogue (class packs, creche) */
+export const mindbodyServiceGroupUrl = (studioId: string, groupId: number) =>
+  `${MB}?studioid=${studioId}&stype=41&sTG=${groupId}`;
+
+/** The studio's live schedule on Mindbody */
+export const mindbodyScheduleUrl = (studioId: string) =>
+  `https://clients.mindbodyonline.com/classic/mainclass?studioid=${studioId}`;
+
+/* ------------------------------------------------------------------ */
+/* Studios                                                             */
+/* ------------------------------------------------------------------ */
 
 export type StudioSlug = "cecil-hills" | "kings-park";
 
@@ -9,63 +51,98 @@ export type Studio = {
   slug: StudioSlug;
   name: string;
   shortName: string;
+  /** Street address, as printed on the live site */
   address: string;
   suburb: string;
   postcode: string;
   state: "NSW";
-  phone?: string;
-  email?: string;
-  /** Google Maps embed query — `output=embed` URL */
+  phone: string;
+  /** Google Maps embed query (`output=embed`) */
   mapsEmbed: string;
-  /** Operating hours, day-by-day */
+  /**
+   * Class times: first class start to last class end, from the studio's
+   * Mindbody schedule (week of 2 Nov 2026). Keep in sync with Google.
+   */
   hours: { day: string; open: string }[];
-  /** Class formats taught at this studio */
-  classes: string[];
-  /** Studio-specific facilities */
   facilities: string[];
-  /** What makes this studio unique — short paragraph */
+  /** One-line studio intro */
   blurb: string;
-  /** Mindbody integration */
+  /** Studio photo under /public */
+  image: string;
+  /**
+   * Verified map pin for schema.org geo. Omit rather than guess: a wrong pin is
+   * worse than none (the address alone identifies the studio).
+   */
+  geo?: { lat: number; lng: number };
+  /** Council area + region, for local copy */
+  region: string;
+  /** Neighbouring suburbs, for local SEO copy + schema areaServed */
+  nearby: string[];
+  /** Instagram handle (no @). TODO(owner): set per studio if they have their own account */
+  instagram: string;
+  /** Google Maps listing, for "read our reviews" links */
+  googleReviewsUrl: string;
   mindbody: {
     studioId: string;
-    /** Healcode widget id for the embedded Schedules widget */
+    /** Branded Web widget id for the embedded schedule */
     scheduleWidgetId: string;
-    /** Direct deep-link to the membership purchase flow on this studio */
-    membershipBuyUrl: string;
+    /** "Intro Offer | 4 for $49" at this studio (verified 1 Nov 2026) */
+    introOfferUrl: string;
+    /** Class Packs catalogue (verified 1 Nov 2026) */
+    classPacksUrl: string;
+    /** "Creche | 1 Class" ($5) (verified 1 Nov 2026) */
+    crecheUrl: string;
+    /** Live schedule on Mindbody, fallback if the widget fails */
+    scheduleUrl: string;
+    /** All memberships at this studio */
+    contractsUrl: string;
   };
 };
+
+const mindbodyFor = (studioId: string, scheduleWidgetId: string, introProductId: number) => ({
+  studioId,
+  scheduleWidgetId,
+  introOfferUrl: mindbodyServiceUrl(studioId, 24, introProductId),
+  classPacksUrl: mindbodyServiceGroupUrl(studioId, 26),
+  crecheUrl: mindbodyServiceGroupUrl(studioId, 27),
+  scheduleUrl: mindbodyScheduleUrl(studioId),
+  contractsUrl: mindbodyContractsUrl(studioId),
+});
 
 export const STUDIOS: Record<StudioSlug, Studio> = {
   "cecil-hills": {
     slug: "cecil-hills",
     name: "Reformd Pilates Cecil Hills",
     shortName: "Cecil Hills",
-    address: "1A/1 Lancaster Ave",
+    address: "Shop 1A, Cecil Hills Shopping Centre, 1 Lancaster Ave",
     suburb: "Cecil Hills",
     postcode: "2171",
     state: "NSW",
+    phone: PHONE,
     mapsEmbed:
-      "https://www.google.com/maps?q=1A/1+Lancaster+Ave,+Cecil+Hills+NSW+2171&output=embed",
+      "https://www.google.com/maps?q=Shop+1A+Cecil+Hills+Shopping+Centre,+1+Lancaster+Ave,+Cecil+Hills+NSW+2171&output=embed",
     hours: [
-      { day: "Mon – Fri", open: "5:30am – 8:00pm" },
-      { day: "Saturday", open: "7:00am – 12:00pm" },
-      { day: "Sunday", open: "8:00am – 11:00am" },
+      { day: "Monday", open: "6:00am to 7:50pm" },
+      { day: "Tuesday", open: "5:00am to 8:50pm" },
+      { day: "Wednesday", open: "5:00am to 7:50pm" },
+      { day: "Thursday", open: "5:00am to 8:50pm" },
+      { day: "Friday", open: "6:00am to 6:50pm" },
+      { day: "Saturday", open: "7:00am to 11:50am" },
+      { day: "Sunday", open: "7:00am to 10:50am" },
     ],
-    classes: ["Reformer", "Jumpboard", "Dynamic", "Sculpt", "Stretch"],
     facilities: [
-      "On-site creche",
-      "Boutique reformer studio",
-      "Showers & change rooms",
+      "Soundproof creche (Mon to Fri, 8:30am and 9:30am)",
+      "Showers and change rooms",
       "Free on-site parking",
     ],
-    blurb:
-      "Our flagship Cecil Hills studio is where Reformd began. It's the full menu — every class format, plus an on-site creche so the half-hour you carve out for yourself actually happens.",
-    mindbody: {
-      studioId: "5741473",
-      scheduleWidgetId: "047812b344",
-      membershipBuyUrl:
-        "https://clients.mindbodyonline.com/classic/ws?studioid=5741473&stype=41&sTG=24&prodId=100041",
-    },
+    blurb: "Our flagship studio, where Reformd began. The full class lineup, plus a soundproof creche.",
+    image: "/images/studios/cecil-hills-room.jpg",
+    // geo: TODO(owner) confirm the Cecil Hills pin from Google Business Profile
+    region: "Liverpool, South-West Sydney",
+    nearby: ["Abbotsbury", "Cecil Park", "Edensor Park", "Bonnyrigg Heights", "Green Valley", "Elizabeth Hills"],
+    instagram: "reformdpilatesstudio",
+    googleReviewsUrl: "https://www.google.com/maps/search/?api=1&query=Reformd+Pilates+Cecil+Hills",
+    mindbody: mindbodyFor("5741473", "047812b344", 100041),
   },
   "kings-park": {
     slug: "kings-park",
@@ -75,151 +152,195 @@ export const STUDIOS: Record<StudioSlug, Studio> = {
     suburb: "Kings Park",
     postcode: "2148",
     state: "NSW",
+    phone: PHONE,
     mapsEmbed:
       "https://www.google.com/maps?q=6/2+Garling+Rd,+Kings+Park+NSW+2148&output=embed",
     hours: [
-      { day: "Mon – Fri", open: "5:30am – 8:00pm" },
-      { day: "Saturday", open: "7:00am – 12:00pm" },
-      { day: "Sunday", open: "8:00am – 11:00am" },
+      { day: "Monday", open: "6:00am to 7:50pm" },
+      { day: "Tuesday", open: "5:00am to 7:50pm" },
+      { day: "Wednesday", open: "6:00am to 7:50pm" },
+      { day: "Thursday", open: "5:00am to 7:50pm" },
+      { day: "Friday", open: "6:00am to 7:50pm" },
+      { day: "Saturday", open: "7:00am to 10:50am" },
+      { day: "Sunday", open: "7:00am to 9:50am" },
     ],
-    classes: ["Reformer", "Dynamic", "Sculpt", "Stretch"],
     facilities: [
-      "Boutique reformer studio",
-      "Showers & change rooms",
+      "Creche (Mon to Fri, 8:30am and 9:30am)",
+      "Showers and change rooms",
       "Street parking",
     ],
-    blurb:
-      "Our Kings Park studio brings the Reformd experience further west. Same boutique sizes, same instructor quality, with a class lineup tailored to the local schedule.",
-    mindbody: {
-      studioId: "5749916",
-      scheduleWidgetId: "20429556a3a",
-      membershipBuyUrl:
-        "https://clients.mindbodyonline.com/classic/ws?studioid=5749916&stype=41&sTG=24&prodId=100111",
-    },
+    blurb: "Reformer Pilates for Blacktown and the north-west. Same small classes, same weekday creche.",
+    image: "/images/studios/kings-park-room.jpg",
+    // Google Maps pin for 6/2 Garling Rd (verified in the 2 Nov preview audit)
+    geo: { lat: -33.7453629, lng: 150.9154175 },
+    region: "Blacktown, Western Sydney",
+    nearby: ["Blacktown", "Quakers Hill", "Marayong", "Kings Langley", "Acacia Gardens", "Glenwood"],
+    instagram: "reformdpilatesstudio",
+    googleReviewsUrl: "https://www.google.com/maps/search/?api=1&query=Reformd+Pilates+Kings+Park",
+    mindbody: mindbodyFor("5749916", "20429556a3a", 100111),
   },
 };
 
-/** Intro offer URL — same product across both studios (hosted on Cecil Hills' Mindbody) */
-export const INTRO_OFFER_BUY_URL =
-  "https://clients.mindbodyonline.com/classic/ws?studioid=5741473&stype=40&prodid=130";
+export const STUDIO_LIST: Studio[] = [STUDIOS["cecil-hills"], STUDIOS["kings-park"]];
 
-/** Pricing — identical at both studios; per-studio Mindbody URLs are derived */
+/** Creche runs at both studios alongside the 8:30 and 9:30 classes */
+export const CRECHE = {
+  days: "Monday to Friday",
+  times: ["8:30am", "9:30am"],
+  price: "$5",
+  /** Membership that includes creche at no extra cost */
+  freeWith: "Infinite",
+};
+
+/* ------------------------------------------------------------------ */
+/* Pricing: identical at both studios; product codes differ per studio */
+/* ------------------------------------------------------------------ */
+
+export type PricingGroup = "intro" | "membership" | "student" | "pack";
+
 export type PricingTier = {
+  group: PricingGroup;
   name: string;
+  /** What you get, e.g. "2 classes per week" */
+  detail: string;
   price: string;
-  /** Sub-label e.g. "/wk", or the cadence */
   unit?: string;
-  /** Fine print e.g. "12-week commitment" */
   note?: string;
-  /** Group these in the UI */
-  group: "intro" | "membership" | "pack";
-  /** Highlight one tier visually */
   featured?: boolean;
+  /**
+   * Mindbody contract id per studio. `null` = code not confirmed after the
+   * 2 Nov link check; links to that studio's membership list instead.
+   */
+  contractIds?: Record<StudioSlug, number | null>;
 };
 
 export const PRICING_TIERS: PricingTier[] = [
-  { group: "intro",      name: "Intro Offer",        price: "$49",     unit: "for 4 classes", note: "First-timers only",   featured: true },
-  { group: "membership", name: "2 Classes / week",   price: "$47",     unit: "/wk",            note: "12-week commitment" },
-  { group: "membership", name: "3 Classes / week",   price: "$65",     unit: "/wk",            note: "12-week commitment" },
-  { group: "membership", name: "Infinite Unlimited", price: "$85",     unit: "/wk",            note: "12-week commitment", featured: true },
-  { group: "pack",       name: "Casual",             price: "$35",     unit: "1 class",        note: "1-week expiry" },
-  { group: "pack",       name: "10 Classes",         price: "$310",    unit: "10 classes",     note: "12-month expiry" },
-  { group: "pack",       name: "20 Classes",         price: "$599",    unit: "20 classes",     note: "12-month expiry" },
-  { group: "pack",       name: "50 Classes",         price: "$1,250",  unit: "50 classes",     note: "12-month expiry" },
+  { group: "intro", name: "Intro Offer", detail: "4 classes, any format", price: "$49", note: "New clients only. 14 days from first use", featured: true },
+  { group: "membership", name: "Lite", detail: "1 class per week", price: "$30", unit: "/wk", note: "26-week minimum", contractIds: { "cecil-hills": 136, "kings-park": null } },
+  { group: "membership", name: "Essentials", detail: "2 classes per week", price: "$47", unit: "/wk", note: "12-week minimum", contractIds: { "cecil-hills": 130, "kings-park": 130 } },
+  { group: "membership", name: "Elevate", detail: "3 classes per week", price: "$65", unit: "/wk", note: "12-week minimum", contractIds: { "cecil-hills": 131, "kings-park": 131 } },
+  { group: "membership", name: "Accelerate", detail: "4 classes per week", price: "$69", unit: "/wk", note: "12-week minimum", contractIds: { "cecil-hills": 137, "kings-park": 139 } },
+  { group: "membership", name: "Infinite", detail: "Unlimited classes, free creche", price: "$85", unit: "/wk", note: "12-week minimum", featured: true, contractIds: { "cecil-hills": 132, "kings-park": 132 } },
+  { group: "student", name: "Essentials Student", detail: "2 classes per week", price: "$40", unit: "/wk", note: "12-week minimum. Uni or TAFE students", contractIds: { "cecil-hills": 138, "kings-park": 140 } },
+  { group: "student", name: "Elevate Student", detail: "3 classes per week", price: "$45", unit: "/wk", note: "12-week minimum. Uni or TAFE students", contractIds: { "cecil-hills": 139, "kings-park": 141 } },
+  { group: "pack", name: "Casual", detail: "1 class", price: "$35", note: "1-week expiry" },
+  { group: "pack", name: "10 Class Pack", detail: "10 classes", price: "$310", note: "12 months from first use" },
+  { group: "pack", name: "20 Class Pack", detail: "20 classes", price: "$599", note: "12 months from first use" },
+  { group: "pack", name: "50 Class Pack", detail: "50 classes", price: "$1,250", note: "12 months from first use" },
 ];
+
+/** Where a pricing tile sends people in Mindbody for a given studio */
+export function buyUrl(tier: PricingTier, studio: Studio): string {
+  const mb = studio.mindbody;
+  if (tier.group === "intro") return mb.introOfferUrl;
+  if (tier.group === "pack") return mb.classPacksUrl;
+  const id = tier.contractIds?.[studio.slug];
+  return id ? mindbodyContractUrl(mb.studioId, id) : mb.contractsUrl;
+}
+
+/* ------------------------------------------------------------------ */
+/* Classes: the five families, as named on the schedule ("Lift | Total") */
+/* ------------------------------------------------------------------ */
 
 export type ClassFormat = {
   slug: string;
   name: string;
   tagline: string;
-  description: string;
-  /** Studios that run this format */
+  /** Variants as they appear on the schedule */
+  variants: string[];
+  /** Photo under /public; omitted = tonal block */
+  image?: string;
+  /** Recommended first class for beginners */
+  beginner?: boolean;
   availableAt: StudioSlug[];
 };
 
 export const CLASS_FORMATS: ClassFormat[] = [
   {
-    slug: "reformer",
-    name: "Reformer",
-    tagline: "The classic. Long, lean, controlled.",
-    description:
-      "Our signature class. A 50-minute full-body reformer session built around precision, breath and progressive load. Suitable for every level — beginners welcome, regulars challenged.",
+    slug: "balanced",
+    name: "Balanced",
+    tagline: "Your reformer class, refined. Precision, breath and control.",
+    variants: ["Foundation", "Women"],
+    image: "/images/shoot/balanced-tabletop.jpg",
+    beginner: true,
     availableAt: ["cecil-hills", "kings-park"],
-  },
-  {
-    slug: "jumpboard",
-    name: "Jumpboard",
-    tagline: "Cardio in disguise.",
-    description:
-      "Reformer meets HIIT. A jumpboard attached to the carriage turns the reformer into a low-impact cardio machine. Sweat without smashing your joints.",
-    availableAt: ["cecil-hills"],
   },
   {
     slug: "dynamic",
     name: "Dynamic",
-    tagline: "Faster pace, bigger burn.",
-    description:
-      "A faster, flow-based reformer class. Continuous transitions, fewer rest beats — you finish having moved through the entire body.",
+    tagline: "High-intensity reformer, done properly.",
+    variants: [],
+    image: "/images/shoot/dynamic-straps.jpg",
     availableAt: ["cecil-hills", "kings-park"],
   },
   {
-    slug: "sculpt",
-    name: "Sculpt",
-    tagline: "Reformer + weights.",
-    description:
-      "Layer in light dumbbells and resistance bands for a class that builds on the reformer base with targeted upper-body and glute work.",
+    slug: "ignite",
+    name: "Ignite",
+    tagline: "Reformer meets cardio on the jumpboard.",
+    variants: ["Fired Up"],
+    // TODO(owner): swap for a jumpboard shot when one exists
+    image: "/images/shoot/ignite-lunge-r.jpg",
     availableAt: ["cecil-hills", "kings-park"],
   },
   {
-    slug: "stretch",
-    name: "Stretch",
-    tagline: "Slow it down. Open up.",
-    description:
-      "A 45-minute reformer-assisted mobility class. Holds, breath work, deep release. The recovery class your training already needs.",
+    slug: "lift",
+    name: "Lift",
+    tagline: "Strength where it counts: lower, upper or total body.",
+    variants: ["Lower", "Upper", "Total"],
+    image: "/images/shoot/lift-dumbbells.jpg",
+    availableAt: ["cecil-hills", "kings-park"],
+  },
+  {
+    slug: "recharge",
+    name: "Recharge",
+    tagline: "Slow down. Stretch, mobility and recovery.",
+    variants: ["Deep Stretch"],
+    image: "/images/shoot/recharge-stretch.jpg",
     availableAt: ["cecil-hills", "kings-park"],
   },
 ];
 
-export const STUDIO_LIST: Studio[] = [
-  STUDIOS["cecil-hills"],
-  STUDIOS["kings-park"],
-];
+/* ------------------------------------------------------------------ */
+/* Navigation + social                                                 */
+/* ------------------------------------------------------------------ */
 
-export const NAV_LINKS = [
-  { label: "About", href: "/about" },
+export type NavLink = {
+  label: string;
+  href?: string;
+  external?: boolean;
+  children?: { label: string; href: string; external?: boolean }[];
+};
+
+export const NAV_LINKS: NavLink[] = [
   {
     label: "Studios",
-    children: [
-      { label: "Cecil Hills", href: "/studios/cecil-hills" },
-      { label: "Kings Park", href: "/studios/kings-park" },
-    ],
+    children: STUDIO_LIST.map((s) => ({ label: s.shortName, href: `/studios/${s.slug}` })),
   },
   { label: "Classes", href: "/classes" },
   {
     label: "Schedule",
-    children: [
-      { label: "Cecil Hills", href: "/schedule/cecil-hills" },
-      { label: "Kings Park", href: "/schedule/kings-park" },
-    ],
+    children: STUDIO_LIST.map((s) => ({ label: s.shortName, href: `/schedule/${s.slug}` })),
   },
   {
     label: "Pricing",
-    children: [
-      { label: "Cecil Hills", href: "/pricing/cecil-hills" },
-      { label: "Kings Park", href: "/pricing/kings-park" },
-    ],
+    children: STUDIO_LIST.map((s) => ({ label: s.shortName, href: `/pricing/${s.slug}` })),
   },
-  { label: "Instructors", href: "/instructors" },
-  { label: "Shop", href: "/shop" },
-  { label: "Contact", href: "/contact" },
-] as const;
+  { label: "About", href: "/about" },
+];
 
+/**
+ * Google reviews widget (Repuso). Paste the embed code from
+ * Repuso > Widgets > your widget > "Get code" between the backticks.
+ * Empty = the site shows its own review cards instead.
+ */
+export const REVIEWS_WIDGET_HTML = ``;
+
+/**
+ * Verified 2 Nov 2026 against the REFORMD PILATES Meta ad account: every ad
+ * runs from Facebook Page 475593318971497 and Instagram @reformdpilatesstudio.
+ * The numeric Page URL always redirects to the Page's current vanity URL.
+ */
 export const SOCIAL_LINKS = {
-  instagram: "https://www.instagram.com/reformdpilates",
-  facebook: "https://www.facebook.com/reformdpilates",
-};
-
-export const APP_LINKS = {
-  ios: "#",
-  android: "#",
+  instagram: "https://www.instagram.com/reformdpilatesstudio/",
+  facebook: "https://www.facebook.com/475593318971497",
 };

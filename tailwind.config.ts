@@ -61,10 +61,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        display: ["var(--font-display)", "Roc Grotesk Wide", "Archivo Black", "Impact", "sans-serif"],
-        sans: ["var(--font-body)", "Founders Grotesk", "Inter", "system-ui", "sans-serif"],
-        // Aliases (legacy `font-serif` etc. would still work)
-        serif: ["var(--font-display)", "Roc Grotesk Wide", "Archivo Black", "sans-serif"],
+        display: ['"roc-grotesk-wide"', "var(--font-display-fallback)", "sans-serif"],
+        sans: ["var(--font-body)", "system-ui", "sans-serif"],
       },
       letterSpacing: {
         brand: "-0.01em",

@@ -1,90 +1,95 @@
-import { Reveal } from "@/components/ui/reveal";
-import { SectionNumber } from "@/components/ui/section-number";
+import { EmbedHtml } from "@/components/ui/embed-html";
+import { REVIEWS_WIDGET_HTML, STUDIO_LIST } from "@/lib/constants";
 
+// TODO(owner): confirm these are verbatim 5-star Google reviews before launch.
 const REVIEWS = [
   {
     quote:
-      "Absolutely love Reformd Pilates. The studio is stunning, the vibe is always welcoming, and the instructors are so knowledgeable and encouraging. Every class challenges me in the best way and leaves me feeling stronger, more flexible and refreshed.",
-    source: "Google review",
+      "Absolutely love Reformd Pilates. The studio is stunning, the vibe is always welcoming, and the instructors are so knowledgeable and encouraging.",
     initials: "S.M.",
   },
   {
     quote:
       "The classes at Reformd are well-structured, balanced and have lots of variety. All instructors are very knowledgeable and super helpful.",
-    source: "Google review",
     initials: "A.K.",
   },
   {
     quote:
-      "Best Pilates studio I've been to. The trainers are experienced, very knowledgeable and helpful. The vibes are great and the range of class times available suits everyone's busy schedule.",
-    source: "Google review",
+      "Best Pilates studio I've been to. The trainers are experienced, very knowledgeable and helpful.",
     initials: "J.D.",
   },
 ];
 
+function Stars({ className = "" }: { className?: string }) {
+  return (
+    <span role="img" aria-label="5 out of 5 stars" className={`flex gap-0.5 text-[#E8A33D] ${className}`}>
+      {Array.from({ length: 5 }).map((_, i) => (
+        <svg key={i} aria-hidden viewBox="0 0 20 20" className="h-4 w-4 fill-current">
+          <path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8 4.8 17.6l1-5.8L1.5 7.7l5.9-.8z" />
+        </svg>
+      ))}
+    </span>
+  );
+}
+
+function GoogleMark() {
+  return (
+    <svg aria-hidden viewBox="0 0 24 24" className="h-5 w-5">
+      <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.4h6.5a5.6 5.6 0 0 1-2.4 3.6v3h3.9c2.2-2.1 3.5-5.1 3.5-8.7z" />
+      <path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-2.9l-3.9-3c-1.1.7-2.5 1.2-4.1 1.2-3.1 0-5.8-2.1-6.7-5H1.3v3.1A12 12 0 0 0 12 24z" />
+      <path fill="#FBBC05" d="M5.3 14.3a7.2 7.2 0 0 1 0-4.6V6.6h-4a12 12 0 0 0 0 10.8l4-3.1z" />
+      <path fill="#EA4335" d="M12 4.8c1.8 0 3.3.6 4.6 1.8l3.4-3.4A12 12 0 0 0 1.3 6.6l4 3.1c.9-2.9 3.6-4.9 6.7-4.9z" />
+    </svg>
+  );
+}
+
 export function Testimonials() {
   return (
-    <section className="relative isolate bg-cream">
-      <div className="container-tight py-28 md:py-36">
-        <div className="grid grid-cols-12 gap-6">
-          <div className="col-span-12 md:col-span-5">
-            <Reveal>
-              <SectionNumber index="03" label="From the room" />
-              <h2 className="mt-8 max-w-md text-balance text-[2.5rem] leading-[0.92] sm:text-5xl md:text-[3.25rem]">
-                The room
-                <br />
-                speaks for
-                <br />
-                <span className="italic font-normal lowercase tracking-tight text-brown/85">
-                  itself.
-                </span>
-              </h2>
-            </Reveal>
+    <section className="bg-cement-100">
+      <div className="container-tight section">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="eyebrow flex items-center gap-2">
+              <GoogleMark /> Google reviews
+            </p>
+            <h2 className="mt-4 text-4xl md:text-5xl">Loved by our members.</h2>
           </div>
-
-          {/* Featured pull quote — large */}
-          <div className="col-span-12 md:col-span-7 md:pl-6">
-            <Reveal delay={0.1}>
-              <figure className="border-l border-brown/20 pl-6 md:pl-8">
-                <span
-                  aria-hidden
-                  className="font-serif text-[6rem] leading-[0.7] text-brown/25 md:text-[8rem]"
-                >
-                  &ldquo;
-                </span>
-                <blockquote className="-mt-6 max-w-xl text-2xl font-light leading-[1.35] text-charcoal/90 md:text-3xl">
-                  {REVIEWS[0].quote}
-                </blockquote>
-                <figcaption className="mt-8 flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-brown/65">
-                  <span className="tabular">{REVIEWS[0].initials}</span>
-                  <span className="h-px w-8 bg-brown/30" />
-                  <span>{REVIEWS[0].source}</span>
-                </figcaption>
-              </figure>
-            </Reveal>
+          <div className="flex flex-wrap gap-3">
+            {STUDIO_LIST.map((s) => (
+              <a
+                key={s.slug}
+                href={s.googleReviewsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-brown/25 bg-cream px-5 py-2.5 text-sm font-medium text-brown transition-colors hover:bg-white"
+              >
+                <GoogleMark /> {s.shortName} reviews
+              </a>
+            ))}
           </div>
         </div>
 
-        {/* Secondary quotes — slim editorial pair */}
-        <div className="mt-20 grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2">
-          {REVIEWS.slice(1).map((r, i) => (
-            <Reveal key={i} delay={0.1 + i * 0.06}>
-              <figure className="flex h-full flex-col">
-                <span className="tabular text-[10px] uppercase tracking-[0.25em] text-brown/55">
-                  0{i + 2} · Review
-                </span>
-                <blockquote className="mt-5 flex-1 text-lg leading-[1.5] text-charcoal/85">
-                  {r.quote}
+        {REVIEWS_WIDGET_HTML ? (
+          <EmbedHtml html={REVIEWS_WIDGET_HTML} className="mt-10" />
+        ) : (
+          <div className="-mx-5 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 sm:-mx-6 sm:px-6 md:mx-0 md:mt-10 md:grid md:grid-cols-3 md:gap-5 md:overflow-visible md:px-0 md:pb-0">
+            {REVIEWS.map((r) => (
+              <figure
+                key={r.initials}
+                className="flex w-[82%] shrink-0 snap-start flex-col rounded-sm bg-cream p-6 shadow-[0_1px_0_rgba(79,62,51,0.08),0_12px_30px_-18px_rgba(79,62,51,0.35)] md:w-auto md:p-7"
+              >
+                <Stars />
+                <blockquote className="mt-4 flex-1 text-base leading-relaxed text-charcoal/90 md:mt-5 md:text-lg">
+                  &ldquo;{r.quote}&rdquo;
                 </blockquote>
-                <figcaption className="mt-6 flex items-center gap-3 text-[10px] uppercase tracking-[0.25em] text-brown/55">
-                  <span className="tabular">{r.initials}</span>
-                  <span className="h-px w-6 bg-brown/30" />
-                  <span>{r.source}</span>
+                <figcaption className="mt-6 flex items-center justify-between text-xs uppercase tracking-[0.2em] text-brown/75">
+                  <span>{r.initials}</span>
+                  <GoogleMark />
                 </figcaption>
               </figure>
-            </Reveal>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
