@@ -54,9 +54,9 @@ export function Hero() {
         </div>
 
         <ImageSlot
-          src="/images/shoot/hero-guiding.jpg"
-          alt="Smiling instructor guiding a member through a strap exercise on the reformer"
-          position="50% 20%"
+          src="/images/shoot/private-session.jpg"
+          alt="Instructor guiding a member through an overhead strap stretch on the reformer"
+          position="50% 18%"
           aspect="aspect-[4/3] lg:aspect-[4/5]"
           priority
           className="rounded-sm"
