@@ -12,9 +12,9 @@ export function ValueProp() {
     <section className="bg-cream">
       <div className="container-tight section grid items-center gap-10 md:grid-cols-2 md:gap-12">
         <ImageSlot
-          src="/images/shoot/community-smile.jpg"
-          alt="Three smiling members sitting together on a reformer"
-          position="50% 30%"
+          src="/images/shoot/community-group.jpg"
+          alt="A group of smiling members gathered together on the reformers"
+          position="50% 10%"
           aspect="aspect-[4/3] md:aspect-[4/5]"
           className="rounded-sm"
         />
