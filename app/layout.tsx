@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     template: `%s · ${SITE_NAME}`,
   },
   description:
-    "Boutique reformer Pilates studios in Cecil Hills and Kings Park, Sydney. Small classes, five class formats, every level welcome. Try 4 classes for $49.",
+    "Boutique reformer Pilates studios in Cecil Hills and Kings Park, Sydney. Small classes for every goal, every level welcome. Try 4 classes for $49.",
   openGraph: {
     title: `Reformer Pilates Cecil Hills & Kings Park | ${SITE_NAME}`,
     description: SITE_TAGLINE,

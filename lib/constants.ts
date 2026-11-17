@@ -239,7 +239,7 @@ export function buyUrl(tier: PricingTier, studio: Studio): string {
 }
 
 /* ------------------------------------------------------------------ */
-/* Classes: the five families, as named on the schedule ("Lift | Total") */
+/* Classes: the class families, as named on the schedule ("Lift | Total") */
 /* ------------------------------------------------------------------ */
 
 export type ClassFormat = {
@@ -334,6 +334,15 @@ export const NAV_LINKS: NavLink[] = [
  * Repuso > Widgets > your widget > "Get code" between the backticks.
  * Empty = the site shows its own review cards instead.
  */
+/**
+ * Public ClassPass ratings, checked 17 Nov 2026 on each studio's ClassPass page.
+ * Owner confirmed they're real. Re-check before launch and every few months.
+ */
+export const CLASSPASS_RATINGS: { studio: StudioSlug; rating: string; count: string; url: string }[] = [
+  { studio: "cecil-hills", rating: "4.9", count: "1,000+", url: "https://classpass.com/studios/reformd-pilates-cecil-hills" },
+  { studio: "kings-park", rating: "4.8", count: "500+", url: "https://classpass.com/studios/reformd-pilates--kings-park" },
+];
+
 export const REVIEWS_WIDGET_HTML = ``;
 
 /**

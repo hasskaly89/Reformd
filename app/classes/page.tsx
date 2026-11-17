@@ -10,7 +10,7 @@ import { withOg } from "@/lib/meta";
 export const metadata: Metadata = withOg({
   title: "Classes",
   description:
-    "Five reformer Pilates class types at Reformd: Balanced, Dynamic, Ignite, Lift and Recharge. Every level welcome.",
+    "Reformer Pilates classes at Reformd: Balanced, Dynamic, Ignite, Lift and Recharge. Every level welcome.",
   alternates: { canonical: "/classes" },
 });
 
@@ -19,7 +19,7 @@ export default function ClassesPage() {
     <>
       <PageHero
         eyebrow="Class formats"
-        title={<>Five class types. One reformer.</>}
+        title={<>A class for every goal.</>}
         lede="Sweat, sculpt or slow down. Every level welcome."
       />
 

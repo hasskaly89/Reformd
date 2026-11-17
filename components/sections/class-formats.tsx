@@ -10,7 +10,7 @@ export function ClassFormats() {
       <div className="container-tight section">
         <SectionHeading
           eyebrow="Class formats"
-          title="Five class types. One reformer."
+          title="A class for every goal."
           aside={
             <Link href="/classes" className="text-sm text-brown underline-offset-4 hover:underline">
               See all classes →

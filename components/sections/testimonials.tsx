@@ -1,5 +1,5 @@
 import { EmbedHtml } from "@/components/ui/embed-html";
-import { REVIEWS_WIDGET_HTML, STUDIO_LIST } from "@/lib/constants";
+import { CLASSPASS_RATINGS, REVIEWS_WIDGET_HTML, STUDIOS, STUDIO_LIST } from "@/lib/constants";
 
 // TODO(owner): confirm these are verbatim 5-star Google reviews before launch.
 const REVIEWS = [
@@ -20,9 +20,9 @@ const REVIEWS = [
   },
 ];
 
-function Stars({ className = "" }: { className?: string }) {
+function Stars({ className = "", label = "5 out of 5 stars" }: { className?: string; label?: string }) {
   return (
-    <span role="img" aria-label="5 out of 5 stars" className={`flex gap-0.5 text-[#E8A33D] ${className}`}>
+    <span role="img" aria-label={label} className={`flex gap-0.5 text-[#E8A33D] ${className}`}>
       {Array.from({ length: 5 }).map((_, i) => (
         <svg key={i} aria-hidden viewBox="0 0 20 20" className="h-4 w-4 fill-current">
           <path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8 4.8 17.6l1-5.8L1.5 7.7l5.9-.8z" />
@@ -49,10 +49,23 @@ export function Testimonials() {
       <div className="container-tight section">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="eyebrow flex items-center gap-2">
-              <GoogleMark /> Google reviews
-            </p>
+            <p className="eyebrow">Member reviews</p>
             <h2 className="mt-4 text-4xl md:text-5xl">Loved by our members.</h2>
+            <ul className="mt-6 flex flex-wrap gap-x-8 gap-y-4">
+              {CLASSPASS_RATINGS.map((r) => (
+                <li key={r.studio}>
+                  <a href={r.url} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3">
+                    <span className="font-display text-4xl font-semibold leading-none text-brown tabular">{r.rating}</span>
+                    <span>
+                      <Stars label={`${r.rating} out of 5 stars`} />
+                      <span className="mt-1 block text-sm text-charcoal/80 group-hover:text-brown">
+                        {STUDIOS[r.studio].shortName} · {r.count} ratings on ClassPass
+                      </span>
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
           <div className="flex flex-wrap gap-3">
             {STUDIO_LIST.map((s) => (

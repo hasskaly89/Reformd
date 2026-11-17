@@ -15,7 +15,7 @@ export function Hero() {
           </h1>
 
           <p className="mt-5 max-w-md text-base leading-relaxed text-charcoal/75 sm:text-lg">
-            Small classes. Expert instructors. Five class types, every level welcome.
+            Small classes. Expert instructors. Every level welcome.
           </p>
 
           <p className="mt-8 text-sm font-semibold text-brown">Try 4 classes for $49 at:</p>
