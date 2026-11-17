@@ -183,6 +183,14 @@ export const STUDIOS: Record<StudioSlug, Studio> = {
 
 export const STUDIO_LIST: Studio[] = [STUDIOS["cecil-hills"], STUDIOS["kings-park"]];
 
+/** First-visit facts, confirmed by the owner 9 Nov 2026. Used by the First Visit section and studio FAQs. */
+export const FIRST_VISIT = {
+  classMinutes: 50,
+  arriveEarlyMinutes: 10,
+  /** Sold at the front desk */
+  forSale: "Grip socks and towels",
+};
+
 /** Creche runs at both studios alongside the 8:30 and 9:30 classes */
 export const CRECHE = {
   days: "Monday to Friday",

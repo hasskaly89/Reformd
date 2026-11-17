@@ -1,4 +1,5 @@
 import { SectionHeading } from "@/components/ui/section-heading";
+import { FIRST_VISIT } from "@/lib/constants";
 
 /** Owner-confirmed first-visit facts (9 Nov): 50-minute classes, grip socks required, arrive 10 minutes early, socks and towels sold in studio. */
 const STEPS = [
@@ -7,16 +8,16 @@ const STEPS = [
     body: "Our foundation class. Precision, breath and control, at your pace.",
   },
   {
-    title: "Arrive 10 minutes early",
+    title: `Arrive ${FIRST_VISIT.arriveEarlyMinutes} minutes early`,
     body: "Time to check in and get settled on your reformer before class starts.",
   },
   {
-    title: "Classes run 50 minutes",
+    title: `Classes run ${FIRST_VISIT.classMinutes} minutes`,
     body: "Full-body reformer work from warm-up to final stretch.",
   },
   {
     title: "Grip socks required",
-    body: "Forgot yours? Grip socks and towels are for sale at the front desk.",
+    body: `Forgot yours? ${FIRST_VISIT.forSale} are for sale at the front desk.`,
   },
 ];
 

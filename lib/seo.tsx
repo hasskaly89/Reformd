@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import {
   CLASS_FORMATS,
   CRECHE,
+  FIRST_VISIT,
   PRICING_TIERS,
   SITE_NAME,
   SITE_URL,
@@ -46,6 +47,10 @@ export function studioFaqs(studio: Studio): { q: string; a: string }[] {
     {
       q: `Is reformer Pilates in ${studio.suburb} good for beginners?`,
       a: `Yes. Every class at Reformd ${studio.shortName} welcomes beginners, and classes are small so your instructor can adjust your form. Balanced | Foundation is the best place to start.`,
+    },
+    {
+      q: "How long is a class, and what should I bring?",
+      a: `Classes run ${FIRST_VISIT.classMinutes} minutes. Grip socks are required; ${FIRST_VISIT.forSale.toLowerCase()} are for sale at the front desk. On your first visit, arrive ${FIRST_VISIT.arriveEarlyMinutes} minutes early to check in and get settled.`,
     },
     {
       q: `How much does reformer Pilates cost at ${studio.shortName}?`,
