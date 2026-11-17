@@ -89,3 +89,13 @@ button.rounded-full {
     font-variant-numeric: tabular-nums;
   }
 }
+
+/* repu.ai inline reviews widget: hide the studio logo + name row on each
+   review card (the widget has no setting for it). Cards are the direct
+   children of [data-repu-track]; their first child is that row. */
+[data-repu-inline] [data-repu-track] > div > div:first-child {
+  display: none !important;
+}
+[data-repu-inline] [data-repu-track] > div > div:nth-child(2) {
+  margin-top: 0 !important;
+}
