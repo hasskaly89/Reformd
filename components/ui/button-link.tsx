@@ -9,10 +9,8 @@ type ButtonLinkProps = ComponentProps<typeof Link> & {
 };
 
 const VARIANTS: Record<Variant, string> = {
-  primary:
-    "bg-brown text-cream hover:bg-charcoal",
-  secondary:
-    "bg-cream text-brown ring-1 ring-inset ring-brown/30 hover:bg-cement-100",
+  primary: "btn-primary",
+  secondary: "btn-outline",
   ghost:
     "text-brown underline-offset-4 hover:underline",
 };
@@ -25,8 +23,8 @@ export function ButtonLink({
 }: ButtonLinkProps) {
   const base =
     variant === "ghost"
-      ? "inline-flex items-center gap-1 text-sm tracking-wide transition-colors"
-      : "inline-flex items-center justify-center rounded-full px-7 py-3 text-sm font-medium tracking-wide transition-colors";
+      ? "inline-flex items-center gap-1 text-sm transition-colors"
+      : "btn";
   return (
     <Link {...rest} className={`${base} ${VARIANTS[variant]} ${className ?? ""}`}>
       {children}

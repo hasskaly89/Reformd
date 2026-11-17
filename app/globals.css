@@ -72,6 +72,28 @@ button.rounded-full {
   color: var(--color-cream);
 }
 
+/* Buttons: one system everywhere. Default 48px tall, .btn-sm 44px (the tap-target minimum). */
+@layer components {
+  .btn {
+    @apply inline-flex h-12 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full px-6 text-sm font-medium leading-none transition-colors disabled:opacity-60;
+  }
+  .btn-sm {
+    @apply h-11 px-5;
+  }
+  .btn-primary {
+    @apply bg-brown text-cream hover:bg-charcoal;
+  }
+  .btn-outline {
+    @apply border border-brown/25 text-brown hover:bg-cement-100;
+  }
+  .btn-light {
+    @apply bg-cream text-brown hover:bg-cement-100;
+  }
+  .btn-outline-light {
+    @apply border border-cream/30 text-cream hover:bg-cream/10;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -80,7 +102,7 @@ button.rounded-full {
     @apply mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8;
   }
   .section {
-    @apply py-16 md:py-24;
+    @apply py-10 md:py-24;
   }
   .eyebrow {
     @apply text-xs font-medium uppercase tracking-[0.16em] text-brown/75 md:tracking-[0.22em];

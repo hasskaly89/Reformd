@@ -51,7 +51,7 @@ export default function SchedulePage({ params }: Props) {
             <div className="flex flex-wrap gap-3">
               <Link
                 href={`/schedule/${other.slug}`}
-                className="inline-flex items-center rounded-full border border-brown/25 bg-cream px-5 py-2 text-xs font-medium uppercase tracking-[0.15em] text-brown transition-colors hover:bg-cement-100"
+                className="btn btn-sm btn-outline"
               >
                 Switch to {other.shortName} →
               </Link>
@@ -59,7 +59,7 @@ export default function SchedulePage({ params }: Props) {
                 href={studio.mindbody.introOfferUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center rounded-full bg-brown px-5 py-2 text-xs font-medium uppercase tracking-[0.15em] text-cream transition-colors hover:bg-charcoal"
+                className="btn btn-sm btn-primary"
               >
                 New here? 4 classes for $49
               </a>
@@ -67,13 +67,13 @@ export default function SchedulePage({ params }: Props) {
                 href={mindbodyTimetableUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center rounded-full border border-brown/25 bg-cream px-5 py-2 text-xs font-medium uppercase tracking-[0.15em] text-brown transition-colors hover:bg-cement-100"
+                className="btn btn-sm btn-outline"
               >
                 Open in Mindbody ↗
               </a>
               <Link
                 href={`/pricing/${studio.slug}`}
-                className="inline-flex items-center rounded-full border border-brown/25 bg-cream px-5 py-2 text-xs font-medium uppercase tracking-[0.15em] text-brown transition-colors hover:bg-cement-100"
+                className="btn btn-sm btn-outline"
               >
                 See pricing
               </Link>

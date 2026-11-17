@@ -82,7 +82,7 @@ export default function AboutPage() {
           <h2 className="text-3xl !text-cream md:text-4xl">4 classes for $49.</h2>
           <a
             href="/#intro-offer"
-            className="inline-flex items-center justify-center rounded-full bg-cream px-7 py-3 text-sm font-medium text-brown transition-colors hover:bg-cement-100"
+            className="btn btn-light"
           >
             Claim the intro offer
           </a>

@@ -21,7 +21,7 @@ export function StudioLocations() {
 
         <div className="mt-10 grid gap-10 md:grid-cols-2 md:gap-6">
           {STUDIO_LIST.map((s) => (
-            <article key={s.slug}>
+            <article key={s.slug} className="flex flex-col">
               <ImageSlot
                 src={s.image}
                 alt={`Inside the Reformd Pilates ${s.shortName} reformer studio`}
@@ -29,19 +29,19 @@ export function StudioLocations() {
                 className="rounded-sm"
               />
               <h3 className="mt-6 text-3xl !text-cream">{s.shortName}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-cream/70">
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-cream/70">
                 {s.address}, {s.suburb} {s.state} {s.postcode}<span className="hidden md:inline"> · {s.region}</span>
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
                 <Link
                   href={`/schedule/${s.slug}`}
-                  className="inline-flex items-center justify-center rounded-full bg-cream px-6 py-2.5 text-sm font-medium text-brown transition-colors hover:bg-cement-100"
+                  className="btn btn-sm btn-light"
                 >
                   Book a class
                 </Link>
                 <Link
                   href={`/studios/${s.slug}`}
-                  className="inline-flex items-center justify-center rounded-full border border-cream/30 px-6 py-2.5 text-sm font-medium text-cream transition-colors hover:bg-cream/10"
+                  className="btn btn-sm btn-outline-light"
                 >
                   Studio details
                 </Link>

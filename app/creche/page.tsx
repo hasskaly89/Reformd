@@ -66,7 +66,7 @@ export default function CrechePage() {
               href={s.mindbody.crecheUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full bg-brown px-6 py-3 text-sm font-medium text-cream"
+              className="btn btn-primary"
             >
               Book creche at {s.shortName}
             </a>

@@ -12,15 +12,15 @@ export const metadata: Metadata = withOg({
   alternates: { canonical: "/private-sessions" },
 });
 
-const BTN = "inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-medium";
+const BTN = "btn";
 
 function Enquire() {
   return (
     <div className="mt-8 flex flex-wrap gap-3">
-      <a href={PHONE_HREF} className={`${BTN} bg-brown text-cream`}>
+      <a href={PHONE_HREF} className={`${BTN} btn-primary`}>
         Call {PHONE}
       </a>
-      <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className={`${BTN} border border-brown/25 text-brown`}>
+      <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className={`${BTN} btn-outline`}>
         Message us on Instagram
       </a>
     </div>

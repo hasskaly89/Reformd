@@ -27,7 +27,7 @@ export function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Claim 4 classes for $49 at ${s.shortName}`}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-brown px-6 py-3.5 text-sm font-medium text-cream transition-colors hover:bg-charcoal"
+                className="btn btn-primary"
               >
                 {s.shortName} <span aria-hidden>→</span>
               </a>

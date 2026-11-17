@@ -72,7 +72,7 @@ export function MindbodySchedule({ widgetId, widgetType = "Schedules", fallbackU
                 href={fallbackUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-full bg-brown px-6 py-3 text-sm font-medium text-cream transition-colors hover:bg-charcoal"
+                className="btn btn-primary"
               >
                 Open timetable in Mindbody ↗
               </a>

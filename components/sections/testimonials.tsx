@@ -74,7 +74,7 @@ export function Testimonials() {
                 href={s.googleReviewsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-brown/25 bg-cream px-5 py-2.5 text-sm font-medium text-brown transition-colors hover:bg-white"
+                className="btn btn-sm border border-brown/25 bg-cream text-brown hover:bg-white"
               >
                 <GoogleMark /> {s.shortName} reviews
               </a>
@@ -95,7 +95,7 @@ export function Testimonials() {
                 <blockquote className="mt-4 flex-1 text-base leading-relaxed text-charcoal/90 md:mt-5 md:text-lg">
                   &ldquo;{r.quote}&rdquo;
                 </blockquote>
-                <figcaption className="mt-6 flex items-center justify-between text-xs uppercase tracking-[0.2em] text-brown/75">
+                <figcaption className="mt-6 flex items-center justify-between text-xs uppercase tracking-[0.16em] text-brown/75">
                   <span>{r.initials}</span>
                   <GoogleMark />
                 </figcaption>

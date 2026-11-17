@@ -20,7 +20,7 @@ export function IntroOffer() {
                 href={st.mindbody.introOfferUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-brown px-6 py-3.5 text-sm font-medium text-cream transition-colors hover:bg-charcoal"
+                className="btn btn-primary"
               >
                 Claim at {st.shortName} <span aria-hidden>→</span>
               </a>

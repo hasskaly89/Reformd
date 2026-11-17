@@ -164,7 +164,7 @@ export function IntroPopup() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={close}
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-brown px-6 py-3.5 text-sm font-medium text-cream hover:bg-charcoal"
+                  className="btn btn-primary"
                 >
                   Claim at {s.shortName} <span aria-hidden>→</span>
                 </a>
@@ -247,7 +247,7 @@ export function IntroPopup() {
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className="inline-flex items-center justify-center rounded-full bg-brown px-6 py-3.5 text-sm font-medium text-cream transition-colors hover:bg-charcoal disabled:opacity-60"
+                className="btn btn-primary"
               >
                 {status === "sending" ? "Sending…" : "Text me the offer"}
               </button>

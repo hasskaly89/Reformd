@@ -25,7 +25,7 @@ export function StudioChooser({ href, cta, external }: Props) {
                 <h2 className="text-2xl">{s.shortName}</h2>
                 <p className="mt-1 text-sm text-charcoal/70">{s.address}, {s.suburb}</p>
               </div>
-              <span className="inline-flex shrink-0 items-center justify-center rounded-full bg-brown px-5 py-3 text-sm font-medium text-cream">
+              <span className="btn btn-sm btn-primary">
                 {cta}
               </span>
             </div>

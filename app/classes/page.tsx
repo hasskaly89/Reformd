@@ -43,8 +43,8 @@ export default function ClassesPage() {
                 )}
               </h2>
               {format.variants.length > 0 && (
-                <p className="mt-2 text-xs uppercase tracking-[0.15em] text-brown/75">
-                  {format.variants.map((v) => `${format.name} | ${v}`).join(" · ")}
+                <p className="mt-2 text-xs uppercase tracking-[0.16em] text-brown/75">
+                  {format.variants.join(" · ")}
                 </p>
               )}
               <p className="mt-3 flex-1 text-base leading-relaxed text-charcoal/80">{format.tagline}</p>
@@ -53,7 +53,7 @@ export default function ClassesPage() {
                   <Link
                     key={slug}
                     href={`/schedule/${slug}`}
-                    className="inline-flex items-center rounded-full bg-brown px-5 py-2 text-xs font-medium uppercase tracking-[0.15em] text-cream transition-colors hover:bg-charcoal"
+                    className="btn btn-sm btn-primary"
                   >
                     Book {STUDIOS[slug].shortName}
                   </Link>

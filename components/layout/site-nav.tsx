@@ -83,7 +83,7 @@ function Dropdown({
 }
 
 const PRIMARY_BTN =
-  "inline-flex items-center justify-center rounded-full bg-brown px-6 py-2.5 text-sm font-medium text-cream transition-colors hover:bg-charcoal";
+  "btn btn-sm btn-primary";
 
 export function SiteNav() {
   const [open, setOpen] = useState(false);
@@ -162,7 +162,7 @@ export function SiteNav() {
           <div className="flex items-center gap-2 lg:hidden">
           <Link
             href="/schedule"
-            className="inline-flex items-center justify-center rounded-full bg-brown px-4 py-2 text-sm font-medium text-cream"
+            className="btn btn-sm btn-primary px-4"
           >
             Book
           </Link>
@@ -204,19 +204,19 @@ export function SiteNav() {
                   <div className="mt-4 grid grid-cols-2 gap-2">
                     <Link
                       href={`/schedule/${s.slug}`}
-                      className="col-span-2 inline-flex items-center justify-center rounded-full bg-brown px-4 py-3 text-base font-medium text-cream"
+                      className="btn btn-primary col-span-2 text-base"
                     >
                       Book a class
                     </Link>
                     <Link
                       href={`/pricing/${s.slug}`}
-                      className="inline-flex items-center justify-center rounded-full border border-brown/25 px-4 py-3 text-sm font-medium text-brown"
+                      className="btn btn-sm btn-outline px-4"
                     >
                       Pricing
                     </Link>
                     <Link
                       href={`/studios/${s.slug}`}
-                      className="inline-flex items-center justify-center rounded-full border border-brown/25 px-4 py-3 text-sm font-medium text-brown"
+                      className="btn btn-sm btn-outline px-4"
                     >
                       Studio info
                     </Link>
@@ -276,14 +276,14 @@ export function SiteNav() {
             <Link
               href="/schedule"
               tabIndex={showBar ? 0 : -1}
-              className="flex-1 inline-flex items-center justify-center rounded-full border border-brown/25 px-4 py-3 text-sm font-medium text-brown"
+              className="btn btn-sm btn-outline flex-1 px-4"
             >
               Book a class
             </Link>
             <a
               href="/#intro-offer"
               tabIndex={showBar ? 0 : -1}
-              className="flex-1 inline-flex items-center justify-center rounded-full bg-brown px-4 py-3 text-sm font-medium text-cream"
+              className="btn btn-sm btn-primary flex-1 px-4"
             >
               4 classes for $49
             </a>

@@ -117,7 +117,7 @@ export function StudioDetail({ studio }: { studio: Studio }) {
                   className="rounded-sm"
                 />
                 <h3 className="mt-4 text-lg group-hover:underline">{c.name}</h3>
-                <p className="mt-1 text-xs uppercase tracking-[0.15em] text-brown/75">
+                <p className="mt-1 text-xs uppercase tracking-[0.16em] text-brown/75">
                   {c.variants.length ? c.variants.join(" · ") : "Reformer"}
                 </p>
               </Link>
@@ -182,7 +182,7 @@ export function StudioDetail({ studio }: { studio: Studio }) {
               href={studio.mindbody.introOfferUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full bg-cream px-7 py-3 text-sm font-medium text-brown transition-colors hover:bg-cement-100"
+              className="btn btn-light"
             >
               Claim the intro offer
             </a>
@@ -190,7 +190,7 @@ export function StudioDetail({ studio }: { studio: Studio }) {
               href={SOCIAL_LINKS.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full border border-cream/30 px-7 py-3 text-sm font-medium text-cream transition-colors hover:bg-cream/10"
+              className="btn btn-outline-light"
             >
               Message us on Instagram
             </a>

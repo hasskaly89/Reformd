@@ -56,13 +56,13 @@ export default function PricingPage({ params }: Props) {
           <div className="flex flex-wrap gap-3">
             <Link
               href={`/pricing/${other.slug}`}
-              className="inline-flex items-center rounded-full border border-brown/25 px-5 py-2 text-xs font-medium uppercase tracking-[0.15em] text-brown hover:bg-cement-100"
+              className="btn btn-sm btn-outline"
             >
               Switch to {other.shortName} →
             </Link>
             <Link
               href={`/schedule/${studio.slug}`}
-              className="inline-flex items-center rounded-full border border-brown/25 px-5 py-2 text-xs font-medium uppercase tracking-[0.15em] text-brown hover:bg-cement-100"
+              className="btn btn-sm btn-outline"
             >
               See the schedule
             </Link>
@@ -105,11 +105,7 @@ export default function PricingPage({ params }: Props) {
                         aria-label={`${cta} ${tier.name} at ${studio.shortName}, ${tier.price}${tier.unit ?? ""}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`mt-6 inline-flex items-center justify-center rounded-full px-5 py-2.5 text-xs font-medium uppercase tracking-[0.15em] transition-colors ${
-                          tier.featured
-                            ? "bg-cream text-brown hover:bg-cement-100"
-                            : "bg-brown text-cream hover:bg-charcoal"
-                        }`}
+                        className={`btn btn-sm mt-6 w-full ${tier.featured ? "btn-light" : "btn-primary"}`}
                       >
                         {cta}
                       </a>
