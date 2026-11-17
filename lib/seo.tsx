@@ -104,7 +104,7 @@ export function studioJsonLd(studio: Studio) {
         name,
         value: true,
       })),
-      sameAs: [SOCIAL_LINKS.instagram, SOCIAL_LINKS.facebook],
+      sameAs: [SOCIAL_LINKS.instagram, SOCIAL_LINKS.facebook, SOCIAL_LINKS.tiktok],
       parentOrganization: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
     },
     {
@@ -134,7 +134,7 @@ export const ORGANIZATION_JSON_LD = {
   name: SITE_NAME,
   url: SITE_URL,
   logo: abs("/images/logo-brown.svg"),
-  sameAs: [SOCIAL_LINKS.instagram, SOCIAL_LINKS.facebook],
+  sameAs: [SOCIAL_LINKS.instagram, SOCIAL_LINKS.facebook, SOCIAL_LINKS.tiktok],
 };
 
 export function JsonLd({ data }: { data: object | object[] }) {

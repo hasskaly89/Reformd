@@ -353,6 +353,6 @@ export const REVIEWS_WIDGET_HTML = ``;
 export const SOCIAL_LINKS = {
   instagram: "https://www.instagram.com/reformdpilatesstudio/",
   facebook: "https://www.facebook.com/475593318971497",
-  /** TODO(owner): full TikTok profile URL, e.g. "https://www.tiktok.com/@handle". Empty hides the link. */
-  tiktok: "",
+  /** Owner-supplied 17 Nov 2026. */
+  tiktok: "https://www.tiktok.com/@reformd.pilates",
 };
