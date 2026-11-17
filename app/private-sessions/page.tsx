@@ -41,8 +41,8 @@ export default function PrivateSessionsPage() {
       <section className="container-tight section grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
           <ImageSlot
-            src="/images/shoot/private-session.jpg"
-            alt="Instructor guiding a member through an overhead strap stretch on the reformer"
+            src="/images/shoot/private-coaching.jpg"
+            alt="Instructor guiding a member through a reformer exercise with a Pilates ring"
             aspect="aspect-[4/3] lg:aspect-[4/5]"
             className="rounded-sm"
           />

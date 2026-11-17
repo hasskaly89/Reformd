@@ -29,6 +29,11 @@ export function SiteFooter() {
             <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noreferrer" className="inline-block py-2.5 hover:text-cream">
               Facebook
             </a>
+            {SOCIAL_LINKS.tiktok && (
+              <a href={SOCIAL_LINKS.tiktok} target="_blank" rel="noreferrer" className="inline-block py-2.5 hover:text-cream">
+                TikTok
+              </a>
+            )}
           </div>
         </div>
 

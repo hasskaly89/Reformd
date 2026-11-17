@@ -229,6 +229,7 @@ export function SiteNav() {
             <ul className="mt-6 border-t border-brown/15">
               {[
                 { label: "Classes", href: "/classes" },
+                { label: "Private sessions", href: "/private-sessions" },
                 { label: "About", href: "/about" },
                 { label: "Creche", href: "/creche" },
                 { label: "Contact", href: "/contact" },

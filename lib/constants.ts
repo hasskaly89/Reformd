@@ -317,6 +317,7 @@ export const NAV_LINKS: NavLink[] = [
     children: STUDIO_LIST.map((s) => ({ label: s.shortName, href: `/studios/${s.slug}` })),
   },
   { label: "Classes", href: "/classes" },
+  { label: "Private sessions", href: "/private-sessions" },
   {
     label: "Schedule",
     children: STUDIO_LIST.map((s) => ({ label: s.shortName, href: `/schedule/${s.slug}` })),
@@ -343,4 +344,6 @@ export const REVIEWS_WIDGET_HTML = ``;
 export const SOCIAL_LINKS = {
   instagram: "https://www.instagram.com/reformdpilatesstudio/",
   facebook: "https://www.facebook.com/475593318971497",
+  /** TODO(owner): full TikTok profile URL, e.g. "https://www.tiktok.com/@handle". Empty hides the link. */
+  tiktok: "",
 };
