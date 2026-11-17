@@ -3,7 +3,7 @@
 Everything here happens at or just before the switch from Squarespace. Until step 4, the live site is untouched.
 
 ## 1. Business facts (owner)
-- [ ] Reviews: verbatim quotes with studio, date and a link to each original review (or remove them).
+- [x] Reviews: live Google reviews via the repu.ai widget (42c91ec9f33ae8a4), plus ClassPass ratings (checked 17 Nov). Check the widget renders on the preview and shows both studios.
 - [ ] About: founder name, photo and verified credentials.
 - [x] Classes: 50 minutes, grip socks required (sold with towels at the desk), arrive 10 minutes early (9 Nov). Still to add: intensity and who each class suits.
 - [ ] Cecil Hills map pin from the Google Business Profile (`lib/constants.ts`, `geo`).

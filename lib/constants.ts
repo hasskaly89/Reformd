@@ -343,7 +343,8 @@ export const CLASSPASS_RATINGS: { studio: StudioSlug; rating: string; count: str
   { studio: "kings-park", rating: "4.8", count: "500+", url: "https://classpass.com/studios/reformd-pilates--kings-park" },
 ];
 
-export const REVIEWS_WIDGET_HTML = ``;
+export const REVIEWS_WIDGET_HTML = `<script src="https://business.repu.ai/widget/reviews.js" async></script>
+<div data-repu-inline="42c91ec9f33ae8a4"></div>`;
 
 /**
  * Verified 2 Nov 2026 against the REFORMD PILATES Meta ad account: every ad
