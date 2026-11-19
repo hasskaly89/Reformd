@@ -136,10 +136,23 @@ export function studioJsonLd(studio: Studio) {
 export const ORGANIZATION_JSON_LD = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": `${SITE_URL}/#organization`,
   name: SITE_NAME,
   url: SITE_URL,
   logo: abs("/images/logo-brown.svg"),
   sameAs: [SOCIAL_LINKS.instagram, SOCIAL_LINKS.facebook, SOCIAL_LINKS.tiktok],
+};
+
+/** WebSite: tells Google the site's name (used for the site name shown in results). */
+export const WEBSITE_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${SITE_URL}/#website`,
+  name: SITE_NAME,
+  alternateName: "Reformd",
+  url: SITE_URL,
+  publisher: { "@id": `${SITE_URL}/#organization` },
+  inLanguage: "en-AU",
 };
 
 export function JsonLd({ data }: { data: object | object[] }) {

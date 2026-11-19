@@ -13,6 +13,12 @@ Everything here happens at or just before the switch from Squarespace. Until ste
 - [ ] Photos, gaps: Ignite jumpboard shot (current image is a lunge placeholder); creche playroom shot added 19 Nov (owner photo, tidied).
 - [ ] Photos, Kings Park wide in session: IMG_2117 (10 Feb shoot) is over the 10 MB Drive transfer limit; export it at about 3 MB if wanted.
 
+## 1b. Protect what already brings leads (from the meeting review)
+- [ ] List every organic landing page on the current site (reported: 761 leads since April, no paid traffic). Each URL must exist on the new site or 308-redirect to its closest match (`next.config.mjs`), and its lead form must still reach PD Wise.
+- [ ] The exit pop-up is the top-clicked lead source today. The new site's pop-up has desktop exit intent, but it only sends leads once `CRM_WEBHOOK_URL` is set; test it end to end before DNS switches.
+- [ ] Confirm the analytics period and lead definition behind the 761 figure, so the new site has a like-for-like baseline.
+- [ ] Organization legal name for schema (`legalName`), if you want it shown; confirm the exact registered name.
+
 ## 2. Transactions (test with a real, approved customer account)
 - [ ] In a private/incognito window, open every pricing tile at both studios and confirm the product, price and terms Mindbody shows.
 - [ ] Complete one intro-offer purchase per studio. Confirm the payment, the confirmation email and the booking in Mindbody.

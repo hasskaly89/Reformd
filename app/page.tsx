@@ -10,7 +10,7 @@ import { StudioLocations } from "@/components/sections/studio-locations";
 import { Testimonials } from "@/components/sections/testimonials";
 import { ValueProp } from "@/components/sections/value-prop";
 import { STUDIO_LIST } from "@/lib/constants";
-import { JsonLd, ORGANIZATION_JSON_LD } from "@/lib/seo";
+import { JsonLd, ORGANIZATION_JSON_LD, WEBSITE_JSON_LD } from "@/lib/seo";
 
 export const metadata: Metadata = { alternates: { canonical: "/" } };
 
@@ -18,6 +18,7 @@ export default function HomePage() {
   return (
     <>
       <JsonLd data={ORGANIZATION_JSON_LD} />
+      <JsonLd data={WEBSITE_JSON_LD} />
       <Hero />
       <ValueProp />
       <ClassFormats />
