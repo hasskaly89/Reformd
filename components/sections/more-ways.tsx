@@ -11,8 +11,8 @@ const ITEMS = [
     eyebrow: "Creche",
     title: "Bring the kids.",
     body: `Creche at both studios, ${CRECHE.days} at ${CRECHE.times.join(" and ")}. Free with an ${CRECHE.freeWith} membership, ${CRECHE.price} a session otherwise.`,
-    photo: "/images/studios/cecil-hills-detail.jpg",
-    alt: "A member training at Reformd Pilates Cecil Hills",
+    photo: "/images/studios/creche-room.jpg",
+    alt: "The creche room at Reformd Pilates, with toys and a colourful spotted wall",
   },
   {
     href: "/private-sessions",
