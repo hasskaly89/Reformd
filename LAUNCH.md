@@ -36,3 +36,6 @@ Everything here happens at or just before the switch from Squarespace. Until ste
 - [ ] Google Search Console: verify the domain, submit `/sitemap.xml`, watch Pages and 404 reports for two weeks.
 - [ ] Google Business Profiles: website links point to the matching studio page; hours match the site.
 - [ ] Analytics: pick one (GA4 or Vercel Web Analytics). Track offer clicks and leads, and reconcile intro purchases against Mindbody sales.
+- [ ] Bing Webmaster Tools: import the site from Search Console (one click), submit `/sitemap.xml`. Bing's index also feeds ChatGPT search and Copilot answers.
+- [ ] Check `/llms.txt` loads on the live domain (it's generated from `lib/constants.ts`, so it updates itself when prices or times change).
+- [ ] Re-run the schema check after any image or page change: every JSON-LD block should parse and every image it references should load (Schema Markup Validator: validator.schema.org).

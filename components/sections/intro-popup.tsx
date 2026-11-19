@@ -51,7 +51,7 @@ export function IntroPopup() {
     setOpen(true);
   }, [excluded]);
 
-  // Triggers: 12s on page, 45% scroll, or desktop exit intent. Whichever first.
+  // Triggers: 30s on page, 70% scroll, or desktop exit intent. Whichever first.
   useEffect(() => {
     if (excluded || store.suppressed()) return;
     const timer = window.setTimeout(show, DELAY_MS);
