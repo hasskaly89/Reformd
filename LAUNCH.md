@@ -1,0 +1,47 @@
+# Reformd launch checklist
+
+Everything here happens at or just before the switch from Squarespace. Until step 4, the live site is untouched.
+
+## 1. Business facts (owner)
+- [x] Reviews: live Google reviews via the repu.ai widget (42c91ec9f33ae8a4), plus ClassPass ratings (checked 17 Nov). Check the widget renders on the preview and shows both studios.
+- [ ] About: founder name, photo and verified credentials.
+- [x] Classes: 50 minutes, grip socks required (sold with towels at the desk), arrive 10 minutes early (9 Nov). Still to add: intensity and who each class suits.
+- [ ] Cecil Hills map pin from the Google Business Profile (`lib/constants.ts`, `geo`).
+- [ ] Kings Park Lite contract code (`lib/constants.ts`, `contractIds`).
+- [ ] Photos, rights: written confirmation that Big Creativa's edits and the 19 Jan shoot are licensed for website use, and that every recognisable member/instructor has consented.
+- [x] Photos, Cecil Hills: wide studio image is DSC05704.jpg (owner-picked, 8 Nov), cropped to remove a delivery box. It predates opening (shelves empty); swap for a current wide shot when one exists.
+- [ ] Photos, gaps: Ignite jumpboard shot (current image is a lunge placeholder); creche playroom shot added 19 Nov (owner photo, tidied).
+- [ ] Photos, Kings Park wide in session: IMG_2117 (10 Feb shoot) is over the 10 MB Drive transfer limit; export it at about 3 MB if wanted.
+
+## 1b. Protect what already brings leads (from the meeting review)
+- [ ] List every organic landing page on the current site (reported: 761 leads since April, no paid traffic). Each URL must exist on the new site or 308-redirect to its closest match (`next.config.mjs`), and its lead form must still reach PD Wise.
+- [ ] The exit pop-up is the top-clicked lead source today. The new site's pop-up has desktop exit intent, but it only sends leads once `CRM_WEBHOOK_URL` is set; test it end to end before DNS switches.
+- [ ] Confirm the analytics period and lead definition behind the 761 figure, so the new site has a like-for-like baseline.
+- [ ] Organization legal name for schema (`legalName`), if you want it shown; confirm the exact registered name.
+
+## 2. Transactions (test with a real, approved customer account)
+- [ ] In a private/incognito window, open every pricing tile at both studios and confirm the product, price and terms Mindbody shows.
+- [ ] Complete one intro-offer purchase per studio. Confirm the payment, the confirmation email and the booking in Mindbody.
+- [ ] Pop-up: submit a test lead per studio. Confirm it lands in PD Wise with the right studio tag and pipeline stage, and that the SMS arrives with a working link.
+
+## 3. Vercel settings (Production environment)
+- [ ] `NEXT_PUBLIC_SITE_URL=https://www.reformdpilates.com.au` (or unset, which defaults to the same).
+- [ ] `CRM_WEBHOOK_URL`, plus `INTRO_OFFER_SMS_URL_CECIL_HILLS` / `_KINGS_PARK` if PD supplies tracked links.
+- [ ] Optional: `INSTAGRAM_FEED_CECIL_HILLS` / `_KINGS_PARK`.
+- [ ] Leave `NEXT_PUBLIC_FEEDBACK_EMAIL` unset in Production (the feedback button is preview-only anyway).
+- [ ] Adobe Fonts kit `kkx7tho`: allowed domains include the production domain.
+
+## 4. Go live
+- [ ] Merge the PR into `main`.
+- [ ] Add `www.reformdpilates.com.au` (and the apex) to the Vercel project, then point DNS from Squarespace to Vercel.
+- [ ] Set `ALLOW_INDEXING=true` in Production and redeploy.
+- [ ] Run `node scripts/verify-launch.mjs https://www.reformdpilates.com.au`. Every check must pass.
+- [ ] Keep the Squarespace site available (unpublished, not deleted) for a few weeks in case you need to roll back.
+
+## 5. After launch
+- [ ] Google Search Console: verify the domain, submit `/sitemap.xml`, watch Pages and 404 reports for two weeks.
+- [ ] Google Business Profiles: website links point to the matching studio page; hours match the site.
+- [ ] Analytics: pick one (GA4 or Vercel Web Analytics). Track offer clicks and leads, and reconcile intro purchases against Mindbody sales.
+- [ ] Bing Webmaster Tools: import the site from Search Console (one click), submit `/sitemap.xml`. Bing's index also feeds ChatGPT search and Copilot answers.
+- [ ] Check `/llms.txt` loads on the live domain (it's generated from `lib/constants.ts`, so it updates itself when prices or times change).
+- [ ] Re-run the schema check after any image or page change: every JSON-LD block should parse and every image it references should load (Schema Markup Validator: validator.schema.org).
