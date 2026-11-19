@@ -12,7 +12,7 @@ const ITEMS = [
     title: "Bring the kids.",
     body: `Creche at both studios, ${CRECHE.days} at ${CRECHE.times.join(" and ")}. Free with an ${CRECHE.freeWith} membership, ${CRECHE.price} a session otherwise.`,
     photo: "/images/studios/creche-room.jpg",
-    alt: "The creche room at Reformd Pilates, with toys and a colourful spotted wall",
+    alt: "The creche room at Reformd Pilates, with soft flower and star cushions and a colourful spotted wall",
   },
   {
     href: "/private-sessions",

@@ -10,7 +10,7 @@ Everything here happens at or just before the switch from Squarespace. Until ste
 - [ ] Kings Park Lite contract code (`lib/constants.ts`, `contractIds`).
 - [ ] Photos, rights: written confirmation that Big Creativa's edits and the 19 Jan shoot are licensed for website use, and that every recognisable member/instructor has consented.
 - [x] Photos, Cecil Hills: wide studio image is DSC05704.jpg (owner-picked, 8 Nov), cropped to remove a delivery box. It predates opening (shelves empty); swap for a current wide shot when one exists.
-- [ ] Photos, gaps: Ignite jumpboard shot (current image is a lunge placeholder); creche playroom shot added 19 Nov (owner photo); swap for a tidier shot if the bags in the doorway bother you.
+- [ ] Photos, gaps: Ignite jumpboard shot (current image is a lunge placeholder); creche playroom shot added 19 Nov (owner photo, tidied).
 - [ ] Photos, Kings Park wide in session: IMG_2117 (10 Feb shoot) is over the 10 MB Drive transfer limit; export it at about 3 MB if wanted.
 
 ## 2. Transactions (test with a real, approved customer account)
