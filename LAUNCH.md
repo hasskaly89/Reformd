@@ -14,19 +14,19 @@ Everything here happens at or just before the switch from Squarespace. Until ste
 - [ ] Photos, Kings Park wide in session: IMG_2117 (10 Feb shoot) is over the 10 MB Drive transfer limit; export it at about 3 MB if wanted.
 
 ## 1b. Protect what already brings leads (from the meeting review)
-- [ ] List every organic landing page on the current site (reported: 761 leads since April, no paid traffic). Each URL must exist on the new site or 308-redirect to its closest match (`next.config.mjs`), and its lead form must still reach PD Wise.
-- [ ] The exit pop-up is the top-clicked lead source today. The new site's pop-up has desktop exit intent, but it only sends leads once `CRM_WEBHOOK_URL` is set; test it end to end before DNS switches.
-- [ ] Confirm the analytics period and lead definition behind the 761 figure, so the new site has a like-for-like baseline.
+- [ ] The exit pop-up is the top-clicked lead source today. The new site's pop-up has desktop exit intent, and it only sends leads once the PD Wise settings below are in Vercel; test it end to end before DNS switches.
 - [ ] Organization legal name for schema (`legalName`), if you want it shown; confirm the exact registered name.
 
 ## 2. Transactions (test with a real, approved customer account)
 - [ ] In a private/incognito window, open every pricing tile at both studios and confirm the product, price and terms Mindbody shows.
 - [ ] Complete one intro-offer purchase per studio. Confirm the payment, the confirmation email and the booking in Mindbody.
-- [ ] Pop-up: submit a test lead per studio. Confirm it lands in PD Wise with the right studio tag and pipeline stage, and that the SMS arrives with a working link.
+- [ ] Pop-up: submit a test lead per studio. Confirm PD Wise shows the contact (tags `website-intro-offer`, `studio-<slug>`, `no-purchase`) and an open opportunity in the **No Purchase** stage, and that the SMS arrives with a working link.
 
 ## 3. Vercel settings (Production environment)
 - [ ] `NEXT_PUBLIC_SITE_URL=https://www.reformdpilates.com.au` (or unset, which defaults to the same).
-- [ ] `CRM_WEBHOOK_URL`, plus `INTRO_OFFER_SMS_URL_CECIL_HILLS` / `_KINGS_PARK` if PD supplies tracked links.
+- [ ] PD Wise (from PD): `PDWISE_TOKEN_<STUDIO>` (Private Integration token with contacts.write, opportunities.readonly, opportunities.write) and `PDWISE_LOCATION_ID_<STUDIO>` for CECIL_HILLS and KINGS_PARK (or un-suffixed if one sub-account). Optional `PDWISE_PIPELINE` / `PDWISE_STAGE` if the stage isn't literally "No Purchase".
+- [ ] PD Wise workflow: trigger on opportunity created in "No Purchase" (or tag `website-intro-offer`) and send the intro-offer SMS. The site creates the lead; PD Wise sends the text.
+- [ ] Optional: `CRM_WEBHOOK_URL` as a backup path, plus `INTRO_OFFER_SMS_URL_CECIL_HILLS` / `_KINGS_PARK` if PD supplies tracked links.
 - [ ] Optional: `INSTAGRAM_FEED_CECIL_HILLS` / `_KINGS_PARK`.
 - [ ] Leave `NEXT_PUBLIC_FEEDBACK_EMAIL` unset in Production (the feedback button is preview-only anyway).
 - [ ] Adobe Fonts kit `kkx7tho`: allowed domains include the production domain.
