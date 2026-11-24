@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { PageHero } from "@/components/sections/page-hero";
+import { ImageSlot } from "@/components/ui/image-slot";
 import { CRECHE, STUDIO_LIST } from "@/lib/constants";
 import { withOg } from "@/lib/meta";
 
@@ -53,9 +54,21 @@ export default function CrechePage() {
         title="Your workout. Their playtime."
         lede={`Reformd runs a supervised creche at both studios ${CRECHE.days}, at ${CRECHE.times.join(" and ")}. A staff member keeps it safe and engaging while you train, so you can enjoy your session knowing your little one is in good hands. ${CRECHE.price} a session, or free with an ${CRECHE.freeWith} membership.`}
       />
-      <section className="container-tight section grid gap-12 md:grid-cols-2">
-        <Steps title="1. Add your child" steps={ADD_FAMILY_STEPS} />
-        <Steps title="2. Book a creche spot" steps={BOOK_STEPS} />
+      <section className="container-tight section grid gap-10 lg:grid-cols-12 lg:gap-16">
+        <div className="lg:col-span-5">
+          <ImageSlot
+            src="/images/studios/creche-playroom.jpg"
+            alt="The creche room at Reformd Pilates, with soft flower and star cushions and a colourful spotted wall"
+            aspect="aspect-[4/3] lg:aspect-[4/5]"
+            position="50% 40%"
+            sizes="(min-width: 1024px) 40vw, 100vw"
+            className="rounded-sm lg:sticky lg:top-28"
+          />
+        </div>
+        <div className="grid gap-12 lg:col-span-7">
+          <Steps title="1. Add your child" steps={ADD_FAMILY_STEPS} />
+          <Steps title="2. Book a creche spot" steps={BOOK_STEPS} />
+        </div>
       </section>
       <section className="bg-cement-50">
         <div className="container-tight flex flex-wrap items-center gap-3 py-12">
