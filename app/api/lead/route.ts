@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { STUDIOS, type StudioSlug } from "@/lib/constants";
-import { normaliseAuMobile } from "@/lib/lead";
+import { normaliseAuMobile, normaliseEmail } from "@/lib/lead";
 import { pdwiseConfig, pushLeadToPdWise } from "@/lib/pdwise";
 
 /**
@@ -30,8 +30,12 @@ export async function POST(req: Request) {
 
   const firstName = typeof body.firstName === "string" ? body.firstName.trim().slice(0, 60) : "";
   const phone = typeof body.phone === "string" ? normaliseAuMobile(body.phone) : null;
+  const rawEmail = typeof body.email === "string" ? body.email.trim() : "";
+  const email = rawEmail ? normaliseEmail(rawEmail) : null;
   if (!firstName) return NextResponse.json({ ok: false, error: "Please add your first name." }, { status: 422 });
   if (!phone) return NextResponse.json({ ok: false, error: "Please use an Australian mobile, e.g. 0412 345 678." }, { status: 422 });
+  if ((rawEmail || body.requireEmail === true) && !email)
+    return NextResponse.json({ ok: false, error: "Please check your email address." }, { status: 422 });
   if (!isStudio(body.studio)) return NextResponse.json({ ok: false, error: "Please choose a studio." }, { status: 422 });
   if (body.consent !== true) return NextResponse.json({ ok: false, error: "Please agree to receive the SMS." }, { status: 422 });
 
@@ -44,7 +48,7 @@ export async function POST(req: Request) {
   const pdwise = pdwiseConfig(studio.slug);
   if (pdwise) {
     try {
-      await pushLeadToPdWise(pdwise, { firstName, phone, studio, offerUrl, page });
+      await pushLeadToPdWise(pdwise, { firstName, phone, email: email ?? undefined, studio, offerUrl, page });
       return NextResponse.json({ ok: true });
     } catch (err) {
       console.error("PD Wise lead push failed", err);
@@ -59,6 +63,7 @@ export async function POST(req: Request) {
   const payload = {
     first_name: firstName,
     phone,
+    email: email ?? "",
     studio: studio.shortName,
     studio_slug: studio.slug,
     tags: ["website-intro-offer", `studio-${studio.slug}`, "no-purchase"],

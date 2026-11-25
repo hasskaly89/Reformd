@@ -8,3 +8,9 @@ export function normaliseAuMobile(raw: string): string | null {
       : digits;
   return /^04\d{8}$/.test(local) ? `+61${local.slice(1)}` : null;
 }
+
+/** Trimmed, lower-cased email, or null if it doesn't look like one. */
+export function normaliseEmail(raw: string): string | null {
+  const email = raw.trim().toLowerCase().slice(0, 120);
+  return /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/.test(email) ? email : null;
+}

@@ -109,6 +109,7 @@ async function resolveStage(cfg: Config) {
 export type Lead = {
   firstName: string;
   phone: string; // E.164
+  email?: string;
   studio: Studio;
   offerUrl: string;
   page: string;
@@ -117,6 +118,7 @@ export type Lead = {
 /** Upsert the contact and open a "No Purchase" opportunity. Throws on failure. */
 export async function pushLeadToPdWise(cfg: Config, lead: Lead): Promise<{ contactId: string; opportunityId?: string; duplicate?: boolean }> {
   const tags = ["website-intro-offer", `studio-${lead.studio.slug}`, "no-purchase"];
+  const source = lead.page.startsWith("/studios/") ? "Website studio page form" : "Website intro offer pop-up";
 
   const contact = await call<{ contact?: { id: string } }>(cfg, "/contacts/upsert", {
     method: "POST",
@@ -124,8 +126,9 @@ export async function pushLeadToPdWise(cfg: Config, lead: Lead): Promise<{ conta
       locationId: cfg.locationId,
       firstName: lead.firstName,
       phone: lead.phone,
+      ...(lead.email ? { email: lead.email } : {}),
       tags,
-      source: "Website intro offer pop-up",
+      source,
     }),
   });
   const contactId = contact.data.contact?.id;
@@ -141,7 +144,7 @@ export async function pushLeadToPdWise(cfg: Config, lead: Lead): Promise<{ conta
       contactId,
       name: `${lead.firstName} | Website intro offer | ${lead.studio.shortName}`,
       status: "open",
-      source: "Website intro offer pop-up",
+      source,
     }),
   });
 

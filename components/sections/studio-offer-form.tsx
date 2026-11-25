@@ -34,6 +34,8 @@ export function StudioOfferForm({ studio }: { studio: Studio }) {
         body: JSON.stringify({
           firstName: form.get("firstName"),
           phone: form.get("phone"),
+          email: form.get("email"),
+          requireEmail: true,
           studio: studio.slug,
           consent: form.get("consent") === "on",
           company: form.get("company"),
@@ -71,6 +73,10 @@ export function StudioOfferForm({ studio }: { studio: Studio }) {
             Mobile
             <input name="phone" type="tel" inputMode="tel" required autoComplete="tel" placeholder="0412 345 678" className={FIELD} />
           </label>
+          <label className="grid gap-1.5 text-sm font-medium text-brown sm:col-span-2">
+            Email
+            <input name="email" type="email" inputMode="email" required autoComplete="email" placeholder="you@example.com" className={FIELD} />
+          </label>
         </div>
 
         {/* Honeypot: hidden from people, filled by bots */}
@@ -79,7 +85,7 @@ export function StudioOfferForm({ studio }: { studio: Studio }) {
         <label className="flex items-start gap-3 text-xs leading-relaxed text-charcoal/75">
           <input name="consent" type="checkbox" required className="mt-0.5 h-5 w-5 shrink-0 accent-brown" />
           <span>
-            I agree to receive SMS from Reformd Pilates about this offer. Reply STOP to opt out. See our{" "}
+            I agree to receive SMS and email from Reformd Pilates about this offer. Unsubscribe or reply STOP any time. See our{" "}
             <Link href="/privacy" className="underline underline-offset-2">
               privacy policy
             </Link>
