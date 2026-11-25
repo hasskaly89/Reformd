@@ -104,6 +104,8 @@ export function IntroPopup() {
         body: JSON.stringify({
           firstName: form.get("firstName"),
           phone: form.get("phone"),
+          email: form.get("email"),
+          requireEmail: true,
           studio: form.get("studio"),
           consent: form.get("consent") === "on",
           company: form.get("company"),
@@ -207,6 +209,18 @@ export function IntroPopup() {
                 />
               </label>
               <label className="grid gap-1.5 text-sm font-medium text-brown">
+                Email
+                <input
+                  name="email"
+                  type="email"
+                  inputMode="email"
+                  required
+                  autoComplete="email"
+                  placeholder="you@example.com"
+                  className="h-12 rounded-lg border border-brown/25 bg-white px-4 text-base font-normal text-charcoal outline-none focus:border-brown focus:ring-2 focus:ring-brown/20"
+                />
+              </label>
+              <label className="grid gap-1.5 text-sm font-medium text-brown">
                 Studio
                 <select
                   name="studio"
@@ -232,7 +246,7 @@ export function IntroPopup() {
               <label className="flex items-start gap-3 text-xs leading-relaxed text-charcoal/75">
                 <input name="consent" type="checkbox" required className="mt-0.5 h-5 w-5 shrink-0 accent-brown" />
                 <span>
-                  I agree to receive SMS from Reformd Pilates about this offer. Reply STOP to opt out. See our{" "}
+                  I agree to receive SMS and email from Reformd Pilates about this offer. Unsubscribe or reply STOP any time. See our{" "}
                   <Link href="/privacy" className="underline underline-offset-2" onClick={close}>
                     privacy policy
                   </Link>
