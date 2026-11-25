@@ -28,6 +28,7 @@ Everything here happens at or just before the switch from Squarespace. Until ste
 - [ ] PD Wise workflow: trigger on opportunity created in "No Purchase" (or tag `website-intro-offer`) and send the intro-offer SMS. The site creates the lead; PD Wise sends the text.
 - [ ] Optional: `CRM_WEBHOOK_URL` as a backup path, plus `INTRO_OFFER_SMS_URL_CECIL_HILLS` / `_KINGS_PARK` if PD supplies tracked links.
 - [ ] Optional: `INSTAGRAM_FEED_CECIL_HILLS` / `_KINGS_PARK`.
+- [ ] `NEXT_PUBLIC_META_PIXEL_ID=1571899406800868` in Production only (same pixel as the current site and the kpintro/chintro landing pages; keeps retargeting audiences filling). Check Events Manager shows PageView from the new domain on day one.
 - [ ] Leave `NEXT_PUBLIC_FEEDBACK_EMAIL` unset in Production (the feedback button is preview-only anyway).
 - [ ] Adobe Fonts kit `kkx7tho`: allowed domains include the production domain.
 

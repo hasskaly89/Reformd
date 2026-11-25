@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteNav } from "@/components/layout/site-nav";
 import { IntroPopup } from "@/components/sections/intro-popup";
 import { FeedbackButton } from "@/components/layout/feedback-button";
+import { MetaPixel } from "@/components/layout/meta-pixel";
 import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/constants";
 import { DEFAULT_OG_IMAGE } from "@/lib/meta";
 import { ALLOW_INDEXING } from "@/lib/site-env";
@@ -86,6 +87,7 @@ export default function RootLayout({
         <div aria-hidden className="h-20 bg-brown lg:hidden" />
         <IntroPopup />
         <FeedbackButton />
+        <MetaPixel />
       </body>
     </html>
   );

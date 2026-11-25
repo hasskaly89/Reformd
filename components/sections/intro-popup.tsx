@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { trackMeta } from "@/components/layout/meta-pixel";
 import { STUDIO_LIST, STUDIOS, type StudioSlug } from "@/lib/constants";
 
 const STORAGE_KEY = "reformd-intro-popup";
@@ -113,6 +114,7 @@ export function IntroPopup() {
       if (res.ok) {
         setStatus("done");
         store.suppress();
+        trackMeta("Lead", { content_name: "Website intro offer pop-up", content_category: form.get("studio") });
       } else if (data.fallback) {
         setStatus("fallback");
       } else {
