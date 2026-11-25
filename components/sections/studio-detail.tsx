@@ -1,45 +1,78 @@
 import Link from "next/link";
 
+import { FirstVisit } from "@/components/sections/first-visit";
 import { InstagramFeed } from "@/components/sections/instagram-feed";
-import { ButtonLink } from "@/components/ui/button-link";
+import { StudioOfferForm } from "@/components/sections/studio-offer-form";
+import { Testimonials } from "@/components/sections/testimonials";
 import { ImageSlot } from "@/components/ui/image-slot";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { SOCIAL_LINKS, type Studio } from "@/lib/constants";
+import { CLASSPASS_RATINGS, CRECHE, FIRST_VISIT, SOCIAL_LINKS, type Studio } from "@/lib/constants";
 import { JsonLd, studioClasses, studioFaqs, studioJsonLd } from "@/lib/seo";
 
 export function StudioDetail({ studio }: { studio: Studio }) {
   const classes = studioClasses(studio);
   const faqs = studioFaqs(studio);
+  const rating = CLASSPASS_RATINGS.find((r) => r.studio === studio.slug);
+  const hasCreche = studio.facilities.some((f) => /creche/i.test(f));
+  const facts = [
+    `${FIRST_VISIT.classMinutes}-minute classes, small groups, every level welcome`,
+    hasCreche ? `Weekday creche: ${CRECHE.price} a session, free with ${CRECHE.freeWith}` : null,
+    `${studio.address}, ${studio.suburb}`,
+  ].filter(Boolean) as string[];
 
   return (
     <>
       <JsonLd data={studioJsonLd(studio)} />
 
-      {/* Hero: keyword H1 + photo */}
+      {/* Hero: keyword H1, proof, and the intro-offer form on the first screen */}
       <section className="bg-gradient-to-b from-cream to-cement-100/60">
-        <div className="container-tight grid gap-10 pb-12 pt-8 md:pb-16 md:pt-10 lg:grid-cols-2 lg:items-start lg:gap-12 lg:pb-20 lg:pt-12">
-          <div>
+        <div className="container-tight grid gap-8 pb-12 pt-8 md:pb-16 md:pt-10 lg:grid-cols-2 lg:gap-x-12 lg:gap-y-8 lg:pb-20 lg:pt-12">
+          <div className="lg:col-start-1 lg:row-start-1">
             <p className="eyebrow">{studio.region}</p>
             <h1 className="mt-5 text-[2.5rem] sm:text-5xl md:text-6xl lg:text-[3.5rem] xl:text-6xl">
               Reformer Pilates in {studio.suburb}
             </h1>
             <p className="mt-5 max-w-md text-lg text-charcoal/75">{studio.blurb}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <ButtonLink href={`/schedule/${studio.slug}`}>Book a class</ButtonLink>
-              <ButtonLink href={`/pricing/${studio.slug}`} variant="secondary">
-                Pricing
-              </ButtonLink>
-            </div>
+            {rating && (
+              <a href={rating.url} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-3">
+                <span className="font-display text-3xl font-semibold leading-none text-brown tabular">{rating.rating}</span>
+                <span className="text-sm leading-snug text-charcoal/80">
+                  <span aria-hidden className="text-[#E8A33D]">★★★★★</span>
+                  <span className="sr-only">{rating.rating} out of 5 stars</span>
+                  <br />
+                  {rating.count} ratings on ClassPass
+                </span>
+              </a>
+            )}
           </div>
-          <ImageSlot
-            src={studio.image}
-            alt={`Inside the Reformd Pilates ${studio.suburb} reformer studio`}
-            aspect="aspect-[4/3] lg:aspect-[4/5]"
-            priority
-            className="rounded-sm"
-          />
+
+          <div className="lg:col-start-2 lg:row-span-2 lg:row-start-1">
+            <StudioOfferForm studio={studio} />
+          </div>
+
+          <div className="lg:col-start-1 lg:row-start-2">
+            <ul className="grid gap-2.5 text-base text-charcoal/85">
+              {facts.map((f) => (
+                <li key={f} className="flex gap-3">
+                  <span aria-hidden className="mt-0.5 text-brown">✓</span>
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <ImageSlot
+              src={studio.image}
+              alt={`Inside the Reformd Pilates ${studio.suburb} reformer studio`}
+              aspect="aspect-[16/10]"
+              priority
+              sizes="(min-width: 1024px) 45vw, 100vw"
+              className="mt-8 rounded-sm"
+            />
+          </div>
         </div>
       </section>
+
+      <Testimonials />
+      <FirstVisit />
 
       {/* Visit: map + address/hours/facilities */}
       <section className="container-tight section grid gap-10 lg:grid-cols-2 lg:gap-12">
@@ -173,25 +206,15 @@ export function StudioDetail({ studio }: { studio: Studio }) {
         </div>
       </section>
 
-      {/* CTA band */}
+      {/* CTA band: back to the form */}
       <section className="bg-brown text-cream">
         <div className="container-tight flex flex-col items-start gap-6 py-14 md:flex-row md:items-center md:justify-between">
           <h2 className="text-3xl !text-cream md:text-4xl">Try {studio.shortName}: 4 classes for $49.</h2>
           <div className="flex flex-wrap gap-3">
-            <a
-              href={studio.mindbody.introOfferUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-light"
-            >
-              Claim the intro offer
+            <a href="#claim" className="btn btn-light">
+              Claim my 4 classes
             </a>
-            <a
-              href={SOCIAL_LINKS.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-outline-light"
-            >
+            <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className="btn btn-outline-light">
               Message us on Instagram
             </a>
           </div>

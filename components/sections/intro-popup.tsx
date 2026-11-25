@@ -11,8 +11,8 @@ const STORAGE_KEY = "reformd-intro-popup";
 const SUPPRESS_DAYS = 7;
 const DELAY_MS = 30_000;
 const SCROLL_TRIGGER = 0.7;
-/** Pages where people are already buying: never interrupt them */
-const EXCLUDED = ["/pricing", "/schedule", "/privacy", "/api"];
+/** Pages where people are already buying (or already see an inline offer form): never interrupt them */
+const EXCLUDED = ["/pricing", "/schedule", "/privacy", "/api", "/studios"];
 
 const store = {
   suppressed(): boolean {

@@ -89,6 +89,8 @@ export function SiteNav() {
   const [open, setOpen] = useState(false);
   const [showBar, setShowBar] = useState(false);
   const pathname = usePathname();
+  // On a studio page, the sticky bar points at that studio's timetable and its on-page offer form
+  const studioSlug = STUDIO_LIST.find((s) => pathname?.startsWith(`/studios/${s.slug}`))?.slug;
   const toggleRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const wasOpen = useRef(false);
@@ -114,13 +116,26 @@ export function SiteNav() {
     };
   }, [open]);
 
-  // Mobile booking bar appears once the hero has scrolled away
+  // Mobile booking bar appears once the hero has scrolled away, and steps aside
+  // while an on-page offer form (#claim, on studio pages) is on screen.
   useEffect(() => {
-    const onScroll = () => setShowBar(window.scrollY > 560);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    let formVisible = false;
+    const update = () => setShowBar(window.scrollY > 560 && !formVisible);
+    const form = document.getElementById("claim");
+    const io = form
+      ? new IntersectionObserver(([entry]) => {
+          formVisible = entry.isIntersecting;
+          update();
+        })
+      : null;
+    if (form && io) io.observe(form);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", update);
+      io?.disconnect();
+    };
+  }, [pathname]);
   const hideBar = pathname.startsWith("/schedule") || pathname.startsWith("/pricing");
 
   return (
@@ -274,14 +289,14 @@ export function SiteNav() {
         >
           <div className="mx-auto flex max-w-md gap-2">
             <Link
-              href="/schedule"
+              href={studioSlug ? `/schedule/${studioSlug}` : "/schedule"}
               tabIndex={showBar ? 0 : -1}
               className="btn btn-sm btn-outline flex-1 px-4"
             >
               Book a class
             </Link>
             <a
-              href="/#intro-offer"
+              href={studioSlug ? "#claim" : "/#intro-offer"}
               tabIndex={showBar ? 0 : -1}
               className="btn btn-sm btn-primary flex-1 px-4"
             >
