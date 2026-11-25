@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 
+import { introCheckoutEvent, trackGa } from "@/components/layout/google-analytics";
 import { trackMeta } from "@/components/layout/meta-pixel";
 import type { Studio } from "@/lib/constants";
 
@@ -49,11 +50,16 @@ export function StudioOfferForm({ studio }: { studio: Studio }) {
         setError(data.error ?? "Please check your details.");
         return;
       }
-      if (res.ok) trackMeta("Lead", { content_name: "Studio page intro offer", content_category: studio.slug });
+      if (res.ok) {
+        trackMeta("Lead", { content_name: "Studio page intro offer", content_category: studio.slug });
+        void trackGa("generate_lead", { form: "studio page", studio: studio.slug, page_path: `/studios/${studio.slug}` });
+      }
     } catch {
       // Network or CRM trouble: still take them to checkout.
     }
     setStatus("redirecting");
+    // Waits for GA to confirm (max 800 ms) so the event isn't lost to the redirect; instant when GA is off.
+    await introCheckoutEvent(checkout, `form:/studios/${studio.slug}`);
     window.location.href = checkout;
   }
 

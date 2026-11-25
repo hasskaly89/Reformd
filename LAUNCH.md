@@ -17,6 +17,16 @@ Everything here happens at or just before the switch from Squarespace. Until ste
 - [ ] The exit pop-up is the top-clicked lead source today. The new site's pop-up has desktop exit intent, and it only sends leads once the PD Wise settings below are in Vercel; test it end to end before DNS switches.
 - [ ] Organization legal name for schema (`legalName`), if you want it shown; confirm the exact registered name.
 
+## 1c. Measurement: set up BEFORE launch (so there's a "before" to compare against)
+Live-site baseline, Squarespace Analytics 27 Aug - 25 Nov 2026: 3,044 visits, 2,214 unique visitors, 7,174 pageviews, 44.8% bounce, 77% mobile. Sources: direct 55%, Google 23%, Trialus 15% (447), Linktree 3%, social 2%. Top pages: home 1,543, classes 1,021, Kings Park timetable 935, Cecil Hills timetable 804, pricing KP 675 / CH 655. Google keywords: none, because Search Console is disconnected.
+- [ ] **Google Search Console (owner, ~10 min, doesn't touch the live site):** search.google.com/search-console > Add property > **Domain** > `reformdpilates.com.au`. Add the TXT record it gives you at the DNS provider (Squarespace Domains), then Verify. A Domain property covers www, the apex and both the old and new sites, so it survives the switch with no re-verification.
+- [ ] Search Console, two weeks later: export Performance > Queries and Pages for the last 3 months as the pre-launch baseline. Use it to update the query table in `CLAUDE.md`.
+- [ ] Optional: reconnect Search Console inside Squarespace (Analytics > Search Keywords) so the old dashboard shows real terms until launch.
+- [ ] **GA4 (owner):** analytics.google.com > Admin > Create property "Reformd Pilates website" (Australia, AUD, timezone Sydney) > Web stream for `https://www.reformdpilates.com.au`, with Enhanced measurement on (default). Copy the Measurement ID (`G-...`).
+- [ ] GA4 > Admin > Data retention: 14 months (default is 2).
+- [ ] GA4 > Admin > Product links > Search Console: link the Domain property above.
+- [ ] Trialus (Google lead capture landing page) stays as it is. No change needed.
+
 ## 2. Transactions (test with a real, approved customer account)
 - [ ] In a private/incognito window, open every pricing tile at both studios and confirm the product, price and terms Mindbody shows.
 - [ ] Complete one intro-offer purchase per studio. Confirm the payment, the confirmation email and the booking in Mindbody.
@@ -29,6 +39,7 @@ Everything here happens at or just before the switch from Squarespace. Until ste
 - [ ] Optional: `CRM_WEBHOOK_URL` as a backup path, plus `INTRO_OFFER_SMS_URL_CECIL_HILLS` / `_KINGS_PARK` if PD supplies tracked links.
 - [ ] Optional: `INSTAGRAM_FEED_CECIL_HILLS` / `_KINGS_PARK`.
 - [ ] `NEXT_PUBLIC_META_PIXEL_ID=1571899406800868` in Production only (same pixel as the current site and the kpintro/chintro landing pages; keeps retargeting audiences filling). Check Events Manager shows PageView from the new domain on day one.
+- [ ] `NEXT_PUBLIC_GA4_ID=G-...` in **Production only** (previews stay out of the data). The site then sends: `generate_lead` (form or pop-up submitted), `intro_offer_checkout` (sent to a studio's Mindbody intro offer), `mindbody_click` (other Mindbody links), `phone_click`.
 - [ ] Leave `NEXT_PUBLIC_FEEDBACK_EMAIL` unset in Production (the feedback button is preview-only anyway).
 - [ ] Adobe Fonts kit `kkx7tho`: allowed domains include the production domain.
 
@@ -36,13 +47,17 @@ Everything here happens at or just before the switch from Squarespace. Until ste
 - [ ] Merge the PR into `main`.
 - [ ] Add `www.reformdpilates.com.au` (and the apex) to the Vercel project, then point DNS from Squarespace to Vercel.
 - [ ] Set `ALLOW_INDEXING=true` in Production and redeploy.
-- [ ] Run `node scripts/verify-launch.mjs https://www.reformdpilates.com.au`. Every check must pass.
+- [ ] Run `node scripts/verify-launch.mjs https://www.reformdpilates.com.au`. Every check must pass (includes the legacy redirects: /home, /book, /coming-soon, /cecil-hills, /kings-park, /pricing-cecil-hills, /pricing-kings-park).
+- [ ] GA4 > Reports > Realtime: open the site on your phone, tap a Mindbody link, and confirm the visit and `mindbody_click` appear. Submit one test lead and confirm `generate_lead` and `intro_offer_checkout`.
+- [ ] GA4 > Admin > Events: mark `generate_lead` and `intro_offer_checkout` as **key events** (they show up to mark once they've fired once).
+- [ ] Linktree: point the Instagram bio links straight at the new pages (`/studios/...`, `/schedule/...`) instead of relying on redirects.
 - [ ] Keep the Squarespace site available (unpublished, not deleted) for a few weeks in case you need to roll back.
 
 ## 5. After launch
-- [ ] Google Search Console: verify the domain, submit `/sitemap.xml`, watch Pages and 404 reports for two weeks.
+- [ ] Google Search Console (already verified in 1c): submit `https://www.reformdpilates.com.au/sitemap.xml`, then watch Pages and 404 reports daily for two weeks. Any old URL with a 404 gets a redirect in `next.config.mjs`.
 - [ ] Google Business Profiles: website links point to the matching studio page; hours match the site.
-- [ ] Analytics: pick one (GA4 or Vercel Web Analytics). Track offer clicks and leads, and reconcile intro purchases against Mindbody sales.
+- [ ] Monthly: compare GA4 `intro_offer_checkout` and `generate_lead` with Mindbody intro-offer sales and PD Wise leads per studio. The gap between checkouts started and intro sales is the Mindbody checkout drop-off.
+- [ ] Monthly: Search Console queries vs the `CLAUDE.md` query table. Fix any query landing on the wrong page.
 - [ ] Bing Webmaster Tools: import the site from Search Console (one click), submit `/sitemap.xml`. Bing's index also feeds ChatGPT search and Copilot answers.
 - [ ] Check `/llms.txt` loads on the live domain (it's generated from `lib/constants.ts`, so it updates itself when prices or times change).
 - [ ] Re-run the schema check after any image or page change: every JSON-LD block should parse and every image it references should load (Schema Markup Validator: validator.schema.org).

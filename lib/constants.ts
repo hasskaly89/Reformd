@@ -319,13 +319,13 @@ export type NavLink = {
   children?: { label: string; href: string; external?: boolean }[];
 };
 
+/** Order follows live-site usage (Squarespace, 27 Aug - 25 Nov 2026): timetables 2,108 views, pricing 1,653, private sessions 104. */
 export const NAV_LINKS: NavLink[] = [
   {
     label: "Studios",
     children: STUDIO_LIST.map((s) => ({ label: s.shortName, href: `/studios/${s.slug}` })),
   },
   { label: "Classes", href: "/classes" },
-  { label: "Private sessions", href: "/private-sessions" },
   {
     label: "Schedule",
     children: STUDIO_LIST.map((s) => ({ label: s.shortName, href: `/schedule/${s.slug}` })),
@@ -334,6 +334,7 @@ export const NAV_LINKS: NavLink[] = [
     label: "Pricing",
     children: STUDIO_LIST.map((s) => ({ label: s.shortName, href: `/pricing/${s.slug}` })),
   },
+  { label: "Private sessions", href: "/private-sessions" },
   { label: "About", href: "/about" },
 ];
 

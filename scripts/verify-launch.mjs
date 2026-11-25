@@ -32,6 +32,8 @@ const PAGES = [
 ];
 const REDIRECTS = {
   "/home": "/",
+  "/book": "/schedule",
+  "/coming-soon": "/",
   "/cecil-hills": "/schedule/cecil-hills",
   "/kings-park": "/schedule/kings-park",
   "/pricing-cecil-hills": "/pricing/cecil-hills",

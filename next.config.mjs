@@ -8,6 +8,8 @@ const nextConfig = {
   async redirects() {
     return [
       { source: "/home", destination: "/", permanent: true },
+      { source: "/book", destination: "/schedule", permanent: true },
+      { source: "/coming-soon", destination: "/", permanent: true },
       { source: "/cecil-hills", destination: "/schedule/cecil-hills", permanent: true },
       { source: "/kings-park", destination: "/schedule/kings-park", permanent: true },
       { source: "/pricing-cecil-hills", destination: "/pricing/cecil-hills", permanent: true },

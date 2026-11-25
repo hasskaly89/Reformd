@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { trackGa } from "@/components/layout/google-analytics";
 import { trackMeta } from "@/components/layout/meta-pixel";
 import { STUDIO_LIST, STUDIOS, type StudioSlug } from "@/lib/constants";
 
@@ -117,6 +118,7 @@ export function IntroPopup() {
         setStatus("done");
         store.suppress();
         trackMeta("Lead", { content_name: "Website intro offer pop-up", content_category: form.get("studio") });
+        void trackGa("generate_lead", { form: "pop-up", studio: form.get("studio"), page_path: pathname });
       } else if (data.fallback) {
         setStatus("fallback");
       } else {

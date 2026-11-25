@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteNav } from "@/components/layout/site-nav";
 import { IntroPopup } from "@/components/sections/intro-popup";
 import { FeedbackButton } from "@/components/layout/feedback-button";
+import { GoogleAnalytics } from "@/components/layout/google-analytics";
 import { MetaPixel } from "@/components/layout/meta-pixel";
 import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/constants";
 import { DEFAULT_OG_IMAGE } from "@/lib/meta";
@@ -88,6 +89,7 @@ export default function RootLayout({
         <IntroPopup />
         <FeedbackButton />
         <MetaPixel />
+        <GoogleAnalytics />
       </body>
     </html>
   );

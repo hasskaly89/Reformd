@@ -14,7 +14,7 @@ export const metadata: Metadata = withOg({
 const SECTIONS = [
   {
     h: "What we collect",
-    b: "When you request an offer or book with us, we collect your first name, mobile number and preferred studio. Bookings and payments are handled by Mindbody under its own privacy policy.",
+    b: "When you request an offer or book with us, we collect your first name, mobile number, email address and preferred studio. Bookings and payments are handled by Mindbody under its own privacy policy.",
   },
   {
     h: "How we use it",
@@ -23,6 +23,14 @@ const SECTIONS = [
   {
     h: "SMS",
     b: "We only text you if you agree to it. Every message identifies Reformd Pilates, and you can reply STOP at any time to opt out.",
+  },
+  {
+    h: "Analytics and cookies",
+    b: `We use Google Analytics to see how people use this website, such as which pages they visit and which buttons they tap, so we can improve it. It uses cookies and doesn't identify you by name.${
+      process.env.NEXT_PUBLIC_META_PIXEL_ID
+        ? " We also use the Meta Pixel to measure our Facebook and Instagram ads and show them to people who have visited the site."
+        : ""
+    } You can block cookies in your browser settings, or opt out of Google Analytics with Google's opt-out browser add-on.`,
   },
   {
     h: "Sharing",
